@@ -1,0 +1,24 @@
+###############################################################
+##                 						                     ##
+##  EveryOne is Requested to Help in the Design of Database  ##
+##															 ##
+###############################################################
+
+
+This File Contain the Details of database.
+  1. Table Name
+  2. Contenets of the table
+  3. Details of primary Key
+  3. Releation Ship between tables
+
+
+Table 1 
+	Name            : Generic
+	Desc            : Contains the Generic Name of the Medicine
+	Contents        : GenericName
+
+Table 2
+	To be filled
+
+...
+...
