@@ -26,6 +26,11 @@ public class Loginfxmlcontroller implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Good Morning!!");
     }
+     @FXML
+    private void handleButtonAction1(ActionEvent event) {
+        System.out.println("You Dont clicked me!");
+        label.setText("Good Afternoon!!");
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
