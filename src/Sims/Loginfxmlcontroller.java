@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -20,11 +21,18 @@ public class Loginfxmlcontroller implements Initializable {
     
     @FXML
     private Label label;
+    @FXML private TextField username;
+    @FXML private TextField password;
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Good Morning!!");
+    private void onclicked1(ActionEvent event) {
+        String un =username.getText();
+        String pw =password.getText();
+        System.out.println("Login Procedure Initiating ");
+        System.out.println("Username :  "+un);
+        System.out.println("Password :  "+pw);
+        
+        //label.setText("Good Morning!!");
     }
      @FXML
     private void handleButtonAction1(ActionEvent event) {
