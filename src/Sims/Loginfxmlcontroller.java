@@ -19,10 +19,9 @@ import javafx.scene.control.TextField;
  */
 public class Loginfxmlcontroller implements Initializable {
     
-    @FXML
-    private Label label;
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private Label status;
     
     @FXML
     private void onclicked1(ActionEvent event) {
@@ -32,12 +31,15 @@ public class Loginfxmlcontroller implements Initializable {
         System.out.println("Username :  "+un);
         System.out.println("Password :  "+pw);
         
+        int ret=Database.connect("localhost", "test", un, pw);
+        if(ret == 1){
+            System.out.println("Login Failed");
+            status.setText("Login failed");
+        }else{
+            System.out.println("Login Success");
+        }
+        
         //label.setText("Good Morning!!");
-    }
-     @FXML
-    private void handleButtonAction1(ActionEvent event) {
-        System.out.println("You Dont clicked me!");
-        label.setText("Good Afternoon!!");
     }
     
     @Override

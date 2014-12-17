@@ -45,6 +45,7 @@
                   <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
+            <Label fx:id="status" />
             <HBox alignment="BASELINE_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
                <children>
                   <Region prefHeight="96.0" prefWidth="387.0" HBox.hgrow="ALWAYS" />
