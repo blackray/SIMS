@@ -24,7 +24,7 @@ public class Loginfxmlcontroller implements Initializable {
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
-        label.setText("Hello World!!");
+        label.setText("Good Morning!!");
     }
     
     @Override
