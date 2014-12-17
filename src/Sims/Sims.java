@@ -33,7 +33,8 @@ public class Sims extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Database db = Database.getInstance();
+        Database.connectDerby("sims");
+        Database.setupDatabase();
         launch(args);
     }
     
