@@ -26,9 +26,16 @@ public class Database {
     private Database(){
         conn = null;
     }
+    
+    /*To be called first time the Program is run
+    the function create the necessary database table
+    for the working of the program
+    */
     public static void setupDatabase(){
-        if(!ifexistdb("LOGIN"))
+        if(ifexist_table("LOGIN")) {
+        } else {
             createLoginDB();
+        }
     }
     private static void createLoginDB(){
         String str = "CREATE TABLE LOGIN "
@@ -39,7 +46,7 @@ public class Database {
             Statement smt = conn.createStatement();
             smt.executeUpdate(str);
         } catch (SQLException ex) {
-            System.out.println("Can't Create Table Login"+ex.getMessage());
+            System.out.println("Can't Create Table Login : "+ex.getMessage());
         }
     }
     public static Database getInstance(){
@@ -54,7 +61,7 @@ public class Database {
         }
         return 0;
     }
-    public static boolean ifexistdb(String dbname){
+    public static boolean ifexist_table(String dbname){
         try {
             DatabaseMetaData dbm = conn.getMetaData();
             ResultSet table = dbm.getTables(null, null, dbname, null);
@@ -81,7 +88,7 @@ public class Database {
     
     public static boolean authenticate(String User,String Pass){
         System.out.println("Loging in with "+User+" "+Pass);
-        return ifexistdb("LOGIN");
+        return ifexist_table("LOGIN");
     } 
     public static boolean check(){
         try{
