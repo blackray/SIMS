@@ -42,12 +42,7 @@ public class Database {
         + "(USERNAME VARCHAR(20) NOT NULL,"
         + "PASS VARCHAR(20) NOT NULL)";
         
-        try {
-            Statement smt = conn.createStatement();
-            smt.executeUpdate(str);
-        } catch (SQLException ex) {
-            System.out.println("Can't Create Table Login : "+ex.getMessage());
-        }
+        Update(str);
     }
     public static Database getInstance(){
         return db;
@@ -85,7 +80,24 @@ public class Database {
         }
         return true;
     }
-     
-
     
+    public static ResultSet Query(String q){
+        ResultSet res = null;
+        try {
+            Statement smt = conn.createStatement();
+            res = smt.executeQuery(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+    public static boolean Update(String q){
+        try {
+            Statement smt = conn.createStatement();
+            smt.executeQuery(q);
+        } catch (SQLException ex) {
+            return false;
+        }
+        return true;
+    }
 }
