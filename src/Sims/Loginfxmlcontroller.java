@@ -27,9 +27,11 @@ public class Loginfxmlcontroller implements Initializable {
     private void onclicked1(ActionEvent event) {
         String un =username.getText();
         String pw =password.getText();
-        System.out.println("Login Procedure Initiating ");
-        System.out.println("Username :  "+un);
-        System.out.println("Password :  "+pw);
+        if(Control.Authenticate(un, pw)){
+            
+        }else{
+            status.setText("Login Failed");
+        }
     }
     
     @Override
