@@ -85,19 +85,7 @@ public class Database {
         }
         return true;
     }
-    
-    public static boolean authenticate(String User,String Pass){
-        System.out.println("Loging in with "+User+" "+Pass);
-        return ifexist_table("LOGIN");
-    } 
-    public static boolean check(){
-        try{
-            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-        }catch(java.lang.ClassNotFoundException ex){
-            System.err.println("Class Not Found");
-            return false;
-        }
-        return true;
-    }
+     
+
     
 }

@@ -30,11 +30,6 @@ public class Loginfxmlcontroller implements Initializable {
         System.out.println("Login Procedure Initiating ");
         System.out.println("Username :  "+un);
         System.out.println("Password :  "+pw);
-        if(!Database.authenticate(un, pw)){
-            status.setText("Login Failed");
-        }
- 
-
     }
     
     @Override
