@@ -6,11 +6,16 @@
 package Sims;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 
 /**
  *
  * @author amalcs
  */
 public class GenericController {
+    @FXML private TableView<GenericNames> table;
+
+    public GenericController() {
+    }
     
 }
