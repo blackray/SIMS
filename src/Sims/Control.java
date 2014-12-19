@@ -5,15 +5,23 @@
  */
 package Sims;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 /**
  *
  * @author amalcs
  */
 public class Control {
-    private static boolean logedin;
+    private Stage stage;
+    private boolean logedin;
     private static final Control Instance = new Control();
 
     private Control() {
@@ -22,7 +30,23 @@ public class Control {
     public static Control getInstance(){
         return Instance;
     }
-    public static boolean Authenticate(String username,String password){
+    public void SetStage(Stage stage){
+        this.stage = stage;
+    }
+    public void SetPane(String s){
+        stage.close();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+            if(s.equals("main")){
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public boolean Authenticate(String username,String password){
         ResultSet Query = Database.Query("select PASSWORD from LOGIN where USERNAME='"+username+"'");
         if(Query == null){
             return false;

@@ -27,11 +27,13 @@ public class Loginfxmlcontroller implements Initializable {
     private void onclicked1(ActionEvent event) {
         String un =username.getText();
         String pw =password.getText();
-        if(Control.Authenticate(un, pw)){
-            
+        Control c = Control.getInstance();
+        if(c.Authenticate(un, pw)){
+            c.SetPane("main");
         }else{
             status.setText("Login Failed");
         }
+        
     }
     
     @Override

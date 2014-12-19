@@ -21,6 +21,8 @@ public class Sims extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        Control c = Control.getInstance();
+        c.SetStage(stage);
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         
         Scene scene = new Scene(root);
