@@ -23,6 +23,7 @@ public class Control {
     private Stage stage;
     private boolean logedin;
     private static final Control Instance = new Control();
+    private MainDocumentController maincontroller;
 
     private Control() {
         logedin = false;
@@ -37,6 +38,7 @@ public class Control {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
             if(s.equals("main")){
+                stage.close();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Netbill");
