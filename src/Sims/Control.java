@@ -34,12 +34,12 @@ public class Control {
         this.stage = stage;
     }
     public void SetPane(String s){
-        stage.close();
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
             if(s.equals("main")){
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
+                stage.setTitle("Netbill");
                 stage.show();
             }
         } catch (IOException ex) {

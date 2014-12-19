@@ -26,7 +26,7 @@ public class Sims extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Netbill Login");
         stage.setScene(scene);
         stage.show();
     }
