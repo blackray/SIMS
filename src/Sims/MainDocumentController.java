@@ -33,7 +33,6 @@ public class MainDocumentController implements Initializable {
 
     @FXML
     private void MenuGenericAction(ActionEvent ev) {
-        System.out.println("Generic");
         displayarea.getChildren().clear();
         try {
             displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("GenericDatabase.fxml")));
