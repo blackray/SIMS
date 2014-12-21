@@ -37,7 +37,7 @@ public class Database {
         } else {
             createLoginDB();
         }
-        if (ifexist_table("generic")){
+        if (ifexist_table("GENERIC")){
             System.out.println("generic Table Found");
         }else{
             createGenericDB();
