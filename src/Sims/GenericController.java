@@ -5,8 +5,11 @@
  */
 package Sims;
 
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -14,8 +17,22 @@ import javafx.scene.control.TableView;
  */
 public class GenericController {
     @FXML private TableView<GenericNames> table;
-
-    public GenericController() {
-    }
+    ObservableList<GenericNames> list;
+    @FXML private TextField entry;
     
+    int count = 0;
+
+    @FXML protected void addGenericNames(ActionEvent ev){
+        String n = entry.getText();
+        if(n.equals("")){
+            return;
+        }
+        count++;
+        ObservableList<GenericNames> data = table.getItems();
+        String c = count+"";
+        data.add(new GenericNames(c,entry.getText()));
+        entry.setText("");
+    }
+    public GenericController() {
+    } 
 }

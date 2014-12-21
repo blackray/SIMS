@@ -6,39 +6,35 @@
 package Sims;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 /**
  *
  * @author amalcs
  */
 public class GenericNames {
-    private StringProperty Id;
-    public void setId(String value){
-        firstIdProperty().setValue(value);
+    private SimpleStringProperty Index = new SimpleStringProperty("");
+    private SimpleStringProperty Generic_Name = new SimpleStringProperty("");
+    
+    public GenericNames(){
+        this("","");
     }
-    public StringProperty firstIdProperty(){
-        if(Id == null){
-            Id = new SimpleStringProperty(this,"Id");
-        }
-        return Id;
-    }
-    public String getId(){
-        return firstIdProperty().get();
+    public GenericNames(String Index,String Generic_name){
+        setIndex(Index);
+        setGeneric_Name(Generic_name);
     }
     
-    private StringProperty Generic_Name;
-    public void setGenericName(String Value){
-        firstGenericNameProperty().set(Value);
+    public void setIndex(String index){
+        Index.set(index);
     }
-    public StringProperty firstGenericNameProperty(){
-        if(Generic_Name == null){
-            Generic_Name = new SimpleStringProperty(this, "Generic_Name");
-        }
-        return Generic_Name;
+    public String getIndex(){
+        return Index.get();
     }
-    public String getGenericName(){
-        return firstGenericNameProperty().get();
+    
+    public void setGeneric_Name(String genericname){
+        Generic_Name.set(genericname);
+    }
+    public String getGeneric_Name(){
+        return Generic_Name.get();
     }
     
 }

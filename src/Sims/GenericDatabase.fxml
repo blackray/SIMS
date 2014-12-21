@@ -5,6 +5,8 @@
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
 
 <HBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.GenericController">
    <children>
@@ -13,8 +15,8 @@
             <HBox alignment="CENTER_LEFT" prefHeight="13.0" prefWidth="600.0" spacing="20.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Generic Name" wrappingWidth="110.89794921875" />
-                  <TextField prefHeight="25.0" prefWidth="203.0" HBox.hgrow="ALWAYS" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Add" />
+                  <TextField fx:id="entry" onAction="#addGenericNames" prefHeight="25.0" prefWidth="203.0" HBox.hgrow="ALWAYS" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#addGenericNames" prefHeight="25.0" prefWidth="103.0" text="Add" />
                </children>
                <VBox.margin>
                   <Insets left="10.0" right="10.0" />
@@ -23,13 +25,18 @@
             <Separator prefWidth="200.0" />
             <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
+                  <TableView fx:id="table" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="Id" />
-                        <TableColumn prefWidth="75.0" text="Generic_Name" />
+                                                <TableColumn fx:id="Index" prefWidth="75.0" text="Index">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Index" /> 
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="Generic_Name" prefWidth="200"  text="Generic_Name">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Generic_Name" />
+                            </cellValueFactory>
+                        </TableColumn>
                      </columns>
                   </TableView>
                </children>
