@@ -27,7 +27,7 @@
                <children>
                   <TableView fx:id="table" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <columns>
-                                                <TableColumn fx:id="Index" prefWidth="75.0" text="Index">
+                            <TableColumn fx:id="Index" prefWidth="75.0" text="Index">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Index" /> 
                             </cellValueFactory>
@@ -41,6 +41,14 @@
                   </TableView>
                </children>
             </HBox>
+            <Label fx:id="status" alignment="BOTTOM_LEFT" prefHeight="15.0" prefWidth="1357.0" text="Status" textAlignment="RIGHT" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </Label>
          </children>
       </VBox>
    </children>
