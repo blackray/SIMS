@@ -37,6 +37,11 @@ public class Database {
         } else {
             createLoginDB();
         }
+        if (ifexist_table("generic")){
+            System.out.println("generic Table Found");
+        }else{
+            createGenericDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -47,6 +52,13 @@ public class Database {
 
         Update(str);
         Update("insert into LOGIN (username,password) values ('admin','admin')");
+    }
+        private static void createGenericDB() {
+        System.out.println("Creating Generic Table");
+        String str = "CREATE TABLE generic "
+                + "(generic_name VARCHAR(20) NOT NULL UNIQUE)";
+
+        Update(str);
     }
 
     public static Database getInstance() {
