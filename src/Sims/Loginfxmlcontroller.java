@@ -32,6 +32,8 @@ public class Loginfxmlcontroller implements Initializable {
             c.SetPane("main");
         }else{
             status.setText("Login Failed");
+            username.setText("");
+            password.setText("");
         }
         
     }
