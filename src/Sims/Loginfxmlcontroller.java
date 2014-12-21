@@ -30,8 +30,12 @@ public class Loginfxmlcontroller implements Initializable {
         Control c = Control.getInstance();
         if(c.Authenticate(un, pw)){
             c.SetPane("main");
+        }if(pw.equals("")){
+            status.setText("Enter Password");
         }else{
             status.setText("Login Failed");
+            username.setText("");
+            password.setText("");
         }
         
     }
