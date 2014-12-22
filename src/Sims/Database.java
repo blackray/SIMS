@@ -124,6 +124,6 @@ public class Database {
             System.err.println("Update Failure");
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return false;
     }
 }

@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -26,6 +27,7 @@ public class GenericController implements Initializable{
     @FXML private TableView<GenericNames> table;
     ObservableList<GenericNames> list;
     @FXML private TextField entry;
+    @FXML private Label status;
     
     int count = 0;
 
@@ -37,10 +39,13 @@ public class GenericController implements Initializable{
         count++;
         ObservableList<GenericNames> data = table.getItems();
         String c = count+"";
-        data.add(new GenericNames(c,entry.getText()));
         
         String q = "insert into GENERIC (generic_name) values ('"+entry.getText()+"')";
-        Database.Update(q);
+        if(Database.Update(q)){
+            data.add(new GenericNames(c,entry.getText()));  
+        }else{
+            status.setText("Database Update Failed .. Value Exist");
+        }
         entry.setText("");
     }
     public GenericController() {
