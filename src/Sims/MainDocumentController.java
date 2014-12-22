@@ -41,6 +41,15 @@ public class MainDocumentController implements Initializable {
         }
 
     }
+    @FXML 
+    private void MenuCustomerAction(ActionEvent ev){
+        displayarea.getChildren().clear();
+        try {
+            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("Customerdataentry.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
