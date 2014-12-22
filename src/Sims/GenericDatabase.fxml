@@ -41,14 +41,6 @@
                   </TableView>
                </children>
             </HBox>
-            <Label fx:id="status" alignment="BOTTOM_LEFT" prefHeight="15.0" prefWidth="1357.0" text="Status" textAlignment="RIGHT" VBox.vgrow="NEVER">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </Label>
          </children>
       </VBox>
    </children>

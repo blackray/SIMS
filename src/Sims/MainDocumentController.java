@@ -30,6 +30,8 @@ public class MainDocumentController implements Initializable {
     private MenuItem Generic;
     @FXML
     private Pane displayarea;
+    
+    @FXML private Label status;
 
     @FXML
     private void MenuGenericAction(ActionEvent ev) {
@@ -50,9 +52,15 @@ public class MainDocumentController implements Initializable {
             Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void Setstatusmessage(String str){
+        status.setText(str);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Control ctrl = Control.getInstance();
+        ctrl.SetMainDocumentController(this);
+        status.setText("Buhaha");
     }
 
 }

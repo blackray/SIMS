@@ -31,6 +31,12 @@ public class Control {
     public static Control getInstance(){
         return Instance;
     }
+    public void SetMainDocumentController(MainDocumentController mc){
+        maincontroller = mc;
+    }
+    public MainDocumentController getMainDocumentController(){
+        return maincontroller;
+    }
     public void SetStage(Stage stage){
         this.stage = stage;
     }

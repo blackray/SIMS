@@ -44,7 +44,9 @@ public class GenericController implements Initializable{
         if(Database.Update(q)){
             data.add(new GenericNames(c,entry.getText()));  
         }else{
-            status.setText("Database Update Failed .. Value Exist");
+            Control ctrl = Control.getInstance();
+            MainDocumentController mc =ctrl.getMainDocumentController();
+            mc.Setstatusmessage("Database Updata Failed ... Value Exist");
         }
         entry.setText("");
     }

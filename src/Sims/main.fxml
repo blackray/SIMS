@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="663.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.MainDocumentController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.MainDocumentController">
    <children>
       <MenuBar>
         <menus>
@@ -24,7 +24,6 @@
             <Menu mnemonicParsing="false" text="Database">
               <items>
                 <MenuItem fx:id="Generic" mnemonicParsing="false" onAction="#MenuGenericAction" text="Generic" />
-                  <MenuItem mnemonicParsing="false" onAction="#MenuCustomerAction" text="Customer" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -35,5 +34,10 @@
         </menus>
       </MenuBar>
       <HBox fx:id="displayarea" VBox.vgrow="ALWAYS" />
+      <Label fx:id="status" alignment="BOTTOM_LEFT" prefHeight="15.0" prefWidth="1357.0" text="Status" textAlignment="RIGHT">
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
    </children>
 </VBox>
