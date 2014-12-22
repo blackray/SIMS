@@ -42,6 +42,11 @@ public class Database {
         }else{
             createGenericDB();
         }
+        if (ifexist_table("CUSTOMER")){
+            System.out.println("CUSTOMER Table Found");
+        }else{
+            createCustomerDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -53,10 +58,17 @@ public class Database {
         Update(str);
         Update("insert into LOGIN (username,password) values ('admin','admin')");
     }
-        private static void createGenericDB() {
+    private static void createGenericDB() {
         System.out.println("Creating Generic Table");
         String str = "CREATE TABLE generic "
                 + "(generic_name VARCHAR(20) NOT NULL UNIQUE)";
+
+        Update(str);
+    }
+    private static void createCustomerDB() {
+        System.out.println("Creating Customer Table");
+        String str = "CREATE TABLE CUSTOMER "
+                + "(Name VARCHAR(20) NOT NULL,Address VARCHAR(100) NOT NULL,Place VARCHAR(50) NOT NULL,Phone VARCHAR(20) NOT NULL,Area VARCHAR(20) NOT NULL)";
 
         Update(str);
     }
