@@ -47,6 +47,11 @@ public class Database {
         }else{
             createCustomerDB();
         }
+        if (ifexist_table("AREA")){
+            System.out.println("AREA Table Found");
+        }else{
+            createAreaDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -69,6 +74,13 @@ public class Database {
         System.out.println("Creating Customer Table");
         String str = "CREATE TABLE CUSTOMER "
                 + "(Name VARCHAR(20) NOT NULL,Address VARCHAR(100) NOT NULL,Place VARCHAR(50) NOT NULL,Phone VARCHAR(20) NOT NULL,Area VARCHAR(20) NOT NULL)";
+
+        Update(str);
+    }
+    private static void createAreaDB() {
+        System.out.println("Creating Area Table");
+        String str = "CREATE TABLE Area "
+                + "(Area VARCHAR(20) NOT NULL UNIQUE)";
 
         Update(str);
     }
