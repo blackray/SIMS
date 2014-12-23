@@ -6,7 +6,11 @@
 package Sims;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,9 +48,18 @@ public class Customerentrycontroller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> data = area.getItems();
+        try {
+            ObservableList<String> data = area.getItems();
+            
+            String q = "SELECT * FROM AREA";
+            ResultSet Query = Database.getInstance().Query(q);
+            
+            while(Query.next()){
+                data.add(Query.getString("Area"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Customerentrycontroller.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        data.add("Thrissur");
-        data.add("Thriprayar");
     } 
 }
