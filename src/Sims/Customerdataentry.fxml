@@ -77,7 +77,7 @@
                </HBox.margin>
             </TextField>
             <Label text="Area" />
-            <ChoiceBox prefHeight="25.0" prefWidth="297.0" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="area" editable="true" prefHeight="25.0" prefWidth="313.0" promptText="Area" HBox.hgrow="ALWAYS" />
          </children>
          <VBox.margin>
             <Insets right="20.0" />
