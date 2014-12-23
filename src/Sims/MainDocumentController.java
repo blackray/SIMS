@@ -52,6 +52,15 @@ public class MainDocumentController implements Initializable {
             Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @FXML 
+    private void MenuAreaAction(ActionEvent ev){
+        displayarea.getChildren().clear();
+        try {
+            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("AreaDocument.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void Setstatusmessage(String str){
         status.setText(str);
     }
@@ -62,5 +71,4 @@ public class MainDocumentController implements Initializable {
         ctrl.SetMainDocumentController(this);
         status.setText("Buhaha");
     }
-
 }
