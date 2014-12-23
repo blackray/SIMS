@@ -32,9 +32,8 @@ public class Areacontroller implements Initializable{
         ObservableList<Area> data = table.getItems();
         data.add(new Area(area_tf.getText()));
         String query = "INSERT INTO AREA (Area) VALUES ('"+area_tf.getText()+"')";
-        Database db;
-        db = Database.getInstance();
-        if(Database.Update(query)){
+        Database db = Database.getInstance();
+        if(db.Update(query)){
             Control.getInstance().getMainDocumentController().Setstatusmessage("Updated Successfully");
         }else{
             Control.getInstance().getMainDocumentController().Setstatusmessage("Database Update Failed... Value Exist");
