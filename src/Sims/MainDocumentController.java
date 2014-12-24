@@ -61,6 +61,15 @@ public class MainDocumentController implements Initializable {
             Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @FXML 
+    private void MenuCompanyAction(ActionEvent ev){
+        displayarea.getChildren().clear();
+        try {
+            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("Companydataentry.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void Setstatusmessage(String str){
         status.setText(str);
     }

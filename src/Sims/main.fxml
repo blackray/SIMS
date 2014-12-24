@@ -24,7 +24,7 @@
             <Menu mnemonicParsing="false" text="Database">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#MenuAreaAction" text="Area" />
-                  <MenuItem mnemonicParsing="false" text="Company" />
+                  <MenuItem mnemonicParsing="false" onAction="#MenuCompanyAction" text="Company" />
                   <MenuItem mnemonicParsing="false" onAction="#MenuCustomerAction" text="Customer" />
                 <MenuItem fx:id="Generic" mnemonicParsing="false" onAction="#MenuGenericAction" text="Generic" />
               </items>
