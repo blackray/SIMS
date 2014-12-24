@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.Companyentrycontroller">
    <children>
       <Label text="COMPANY MASTER">
          <font>
@@ -17,7 +17,7 @@
       <HBox alignment="CENTER" prefHeight="6.0" prefWidth="560.0" spacing="20.0">
          <children>
             <Label text="Name   " />
-            <TextField HBox.hgrow="ALWAYS" />
+            <TextField fx:id="name" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <Separator prefWidth="200.0" />
@@ -28,34 +28,34 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="97.0" prefWidth="560.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <TextArea prefHeight="54.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <TextArea fx:id="area" prefHeight="54.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="6.0" prefWidth="560.0" spacing="20.0">
          <children>
             <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="53.0" text="Place    " HBox.hgrow="NEVER" />
-            <TextField HBox.hgrow="ALWAYS" />
+            <TextField fx:id="place" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="6.0" prefWidth="560.0" spacing="20.0">
          <children>
             <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="53.0" text="Phone   " HBox.hgrow="NEVER" />
-            <TextField prefHeight="25.0" prefWidth="814.0" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="phone" prefHeight="25.0" prefWidth="814.0" HBox.hgrow="ALWAYS" />
             <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="53.0" text="DL        " HBox.hgrow="NEVER" />
-            <TextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="260.0" />
+            <TextField fx:id="dl" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="260.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="6.0" prefWidth="560.0" spacing="20.0">
          <children>
             <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="53.0" text="TIN       " HBox.hgrow="NEVER" />
-            <TextField prefHeight="25.0" prefWidth="810.0" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="tin" prefHeight="25.0" prefWidth="810.0" HBox.hgrow="ALWAYS" />
             <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="53.0" text="CST      " HBox.hgrow="NEVER" />
-            <TextField minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="260.0" />
+            <TextField fx:id="cst" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="260.0" />
          </children>
       </HBox>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="3.0" prefWidth="1326.0">
          <children>
-            <Button mnemonicParsing="false" text="Add" />
+            <Button mnemonicParsing="false" onAction="#add" text="Add" />
          </children>
       </HBox>
    </children>
