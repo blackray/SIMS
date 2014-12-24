@@ -30,21 +30,21 @@ public class Areacontroller implements Initializable{
     @FXML
     private void AddAction(ActionEvent ev){
         ObservableList<Area> data = table.getItems();
-        data.add(new Area(area_tf.getText()));
         String query = "INSERT INTO AREA (Area) VALUES ('"+area_tf.getText()+"')";
         Database db = Database.getInstance();
         if(db.Update(query)){
             Control.getInstance().getMainDocumentController().Setstatusmessage("Updated Successfully");
+            refresh();
         }else{
             Control.getInstance().getMainDocumentController().Setstatusmessage("Database Update Failed... Value Exist");
         }
     }
     
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    private void refresh(){
         try {
             System.out.println("Hereeeeeeeeeee");
             ObservableList<Area> data = table.getItems();
+            data.clear();
             Database db = Database.getInstance();
             String query = "Select * from AREA";
             ResultSet Query;
@@ -56,6 +56,11 @@ public class Areacontroller implements Initializable{
         } catch (SQLException ex) {
             Logger.getLogger(Areacontroller.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        refresh();
     }
     
     
