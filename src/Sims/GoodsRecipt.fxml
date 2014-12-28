@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutY="14.0" prefHeight="17.0" prefWidth="67.0" text="Recipt No:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="14.0" />
+      <Label layoutY="46.0" prefHeight="17.0" prefWidth="67.0" text="Recipt Date:" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="46.0" />
+      <TextField layoutX="41.0" layoutY="11.0" prefHeight="25.0" prefWidth="109.0" />
+      <TextField layoutX="68.0" layoutY="42.0" prefHeight="25.0" prefWidth="109.0" />
+      <Separator layoutX="185.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="89.0" prefWidth="8.0" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="-2.0" />
+      <Separator layoutX="1.0" layoutY="88.0" prefHeight="0.0" prefWidth="600.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="88.0" />
+      <Separator layoutX="449.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="89.0" prefWidth="8.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="-2.0" />
+      <Label layoutX="193.0" layoutY="6.0" text="Company:" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="6.0" />
+      <TextField layoutX="248.0" layoutY="2.0" prefHeight="83.0" prefWidth="199.0" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="2.0" />
+      <Label layoutX="457.0" layoutY="6.0" prefHeight="17.0" prefWidth="25.0" text="TIN:" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="6.0" />
+      <Label layoutX="454.0" layoutY="34.0" text="Order No:" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="34.0" />
+      <Label layoutX="454.0" layoutY="67.0" prefHeight="17.0" prefWidth="67.0" text="Order Date:" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="67.0" />
+      <TextField layoutX="479.0" layoutY="2.0" prefHeight="25.0" prefWidth="117.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="2.0" />
+      <TextField layoutX="507.0" layoutY="30.0" prefHeight="25.0" prefWidth="88.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0" />
+      <DatePicker layoutX="519.0" layoutY="63.0" prefHeight="25.0" prefWidth="75.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="63.0" />
+      <TableView layoutX="1.0" layoutY="76.0" prefHeight="287.0" prefWidth="590.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="76.0">
+        <columns>
+          <TableColumn prefWidth="118.0" resizable="false" text="Product" />
+            <TableColumn prefWidth="49.0" resizable="false" text="B-Rate" />
+          <TableColumn prefWidth="63.0" text="M.R.P" />
+            <TableColumn prefWidth="57.0" text="S-Rate" />
+            <TableColumn prefWidth="500.0" text="Batch" />
+            <TableColumn prefWidth="500.0" text="Batch" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
