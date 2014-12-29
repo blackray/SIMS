@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.GoodsReciptController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -118,7 +118,7 @@
                   <Insets right="2.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="133.0" text="Add" />
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="133.0" text="Add" />
          </children>
       </HBox>
    </children>
