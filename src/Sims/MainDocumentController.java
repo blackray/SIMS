@@ -79,5 +79,11 @@ public class MainDocumentController implements Initializable {
         Control ctrl = Control.getInstance();
         ctrl.SetMainDocumentController(this);
         status.setText("Buhaha");
+        displayarea.getChildren().clear();
+        try {
+            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("GoodsRecipt.fxml")));
+        } catch (IOException ex) {
+            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

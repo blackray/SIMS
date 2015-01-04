@@ -21,7 +21,7 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Database">
+            <Menu mnemonicParsing="false" text="Data Entry">
               <items>
                   <MenuItem mnemonicParsing="false" onAction="#MenuAreaAction" text="Area" />
                   <MenuItem mnemonicParsing="false" onAction="#MenuCompanyAction" text="Company" />
