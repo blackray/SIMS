@@ -58,6 +58,11 @@ public class Database {
         }else{
             createCompanyDB();
         }
+        if(ifexist_table("STOCK")){
+            System.out.println("STOCK Table Found");
+        }else{
+            createStockDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -97,6 +102,12 @@ public class Database {
                 + "Phone VARCHAR(20) NOT NULL,DL VARCHAR(20),"
                 + "TIN VARCHAR(20) NOT NULL,CST VARCHAR(20))";
 
+        Update(str);
+    }
+    private static void createStockDB() {
+        System.out.println("Creating STOCK Table");
+        String str = "CREATE TABLE STOCK "
+                + "(Name VARCHAR(20) NOT NULL,MRP REAL,Quantity INTEGER,Free INTEGER)";
         Update(str);
     }
 
