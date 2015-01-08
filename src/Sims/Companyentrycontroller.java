@@ -31,19 +31,70 @@ public class Companyentrycontroller implements Initializable{
     @FXML private TextField cst;
 
     @FXML private void add(ActionEvent ev){
+        MainDocumentController mc = Control.getInstance().getMainDocumentController();
+        String Name = name.getText();
+        if(Name.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter Name");
+            return;
+        }
+        
+        String Area = area.getText();
+        if(Area.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter Address");
+            return;
+        }
+        
+        String Place = place.getText();
+        if(Place.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter Place");
+            return;
+        }
+        
+        String Phone = phone.getText();
+        if(Phone.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter Phone No");
+            return;
+        }
+        
+        String DL = dl.getText();
+        if(DL.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter DL No");
+            return;
+        }
+        
+        String TIN = tin.getText();
+        if(TIN.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter TIN No");
+            return;
+        }
+        
+        String CST = cst.getText();
+        if(CST.equals("")){
+            mc.Setstatusmessage("Update Failed : Enter CST No");
+            return;
+        }
         try {
             String stmt = "INSERT INTO COMPANY (Name,Address,Place,Phone,DL,TIN,CST) "
                     + "VALUES(?,?,?,?,?,?,?)";
             PreparedStatement updatecompany = Database.GetPreparedStmt(stmt);
-            updatecompany.setString(1,name.getText());
-            updatecompany.setString(2,area.getText());
-            updatecompany.setString(3,place.getText());
-            updatecompany.setString(4, phone.getText());
-            updatecompany.setString(5, dl.getText());
-            updatecompany.setString(6, tin.getText());
-            updatecompany.setString(7, cst.getText());
+            updatecompany.setString(1,Name);
+            updatecompany.setString(2,Area);
+            updatecompany.setString(3,Place);
+            updatecompany.setString(4,Phone);
+            updatecompany.setString(5,DL);
+            updatecompany.setString(6,TIN);
+            updatecompany.setString(7,CST);
             int executeUpdate = updatecompany.executeUpdate();
             System.out.println(executeUpdate+" Row Changed");
+            mc.Setstatusmessage("Update Success");
+            
+            name.clear();
+            area.clear();
+            place.clear();
+            phone.clear();
+            dl.clear();
+            tin.clear();
+            cst.clear();
         } catch (SQLException ex) {
             Logger.getLogger(Companyentrycontroller.class.getName()).log(Level.SEVERE, null, ex);
         }
