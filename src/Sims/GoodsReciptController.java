@@ -39,18 +39,58 @@ public class GoodsReciptController implements Initializable{
     @FXML private TextField free;
     @FXML private TextField qty;
   
-    
+    private boolean isNumber(String s){
+        try{
+            Double.parseDouble(s);
+        }catch(NumberFormatException e){
+            return false;
+        }
+        return true;
+    }
      @FXML private void add(ActionEvent ev){
      String proname=product.getText();
+     
+     MainDocumentController mc = Control.getInstance().getMainDocumentController();
+     if(proname.equals("")){
+         mc.Setstatusmessage("Error : Enter Product Name");
+         return;
+     }
      String Mrp=mrp.getText();
+     if(Mrp.equals("")){
+         mc.Setstatusmessage("Error : Enter Mrp");
+         return;
+     }else if(!isNumber(Mrp)){
+         mc.Setstatusmessage("Error : Mrp Should be Number");
+         return;
+     }
      String Batch=batch.getText();
+     if(Batch.equals("")){
+         mc.Setstatusmessage("Error : Enter Batch");
+         return;
+     }else if(!isNumber(Batch)){
+         mc.Setstatusmessage("Error : Batch Should Be a Number");
+         return;
+     }
      String Qty=qty.getText();
+     if(Qty.equals("")){
+         mc.Setstatusmessage("Error : Enter Quantity");
+         return;
+     }else if(!isNumber(Qty)){
+         mc.Setstatusmessage("Error : Quantity should be number");
+         return;
+     }
      String Free=free.getText();
-     double dmrp = Integer.parseInt(Mrp);
-     double dqty=Integer.parseInt(Qty);
-     double dfree=Integer.parseInt(Free);
-     double dbatch=Integer.parseInt(Batch);
-     System.out.println("fkjkfjsldkfjlksa");
+     if(Free.equals("")){
+         mc.Setstatusmessage("Error : Enter Free");
+         return;
+     }else if(!isNumber(Free)){
+         mc.Setstatusmessage("Error : Quantity Should be Number");
+         return;
+     }
+     double dmrp = Double.parseDouble(Mrp);
+     double dqty=Double.parseDouble(Qty);
+     double dfree=Double.parseDouble(Free);
+     double dbatch=Double.parseDouble(Batch);
      try
      {
          String stmt ="INSERT INTO STOCK (Name,MRP,Quantity,Free)VALUES(?,?,?,?)";
@@ -60,7 +100,7 @@ public class GoodsReciptController implements Initializable{
          updatestock.setDouble(3, dqty);
          updatestock.setDouble(4, dfree);
          int executeUpdate = updatestock.executeUpdate();
-            System.out.println(executeUpdate+" Row Changed");
+         mc.Setstatusmessage("Update Success");
      }  catch (SQLException ex) {
             Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
      }
