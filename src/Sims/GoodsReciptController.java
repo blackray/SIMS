@@ -6,7 +6,11 @@
 package Sims;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,16 +35,36 @@ public class GoodsReciptController implements Initializable{
     @FXML private TextField product;
     @FXML private TextField mrp;
     @FXML private TextField batch;
-    @FXML private TextField expdt;
+    @FXML private DatePicker expdt;
     @FXML private TextField free;
     @FXML private TextField qty;
-    @FXML private Button add;
   
     
-    @FXML private void add(ActionEvent ev){
-        
-        
-    }  
+     @FXML private void add(ActionEvent ev){
+     String proname=product.getText();
+     String Mrp=mrp.getText();
+     String Batch=batch.getText();
+     String Qty=qty.getText();
+     String Free=free.getText();
+     double dmrp = Integer.parseInt(Mrp);
+     double dqty=Integer.parseInt(Qty);
+     double dfree=Integer.parseInt(Free);
+     double dbatch=Integer.parseInt(Batch);
+     System.out.println("fkjkfjsldkfjlksa");
+     try
+     {
+         String stmt ="INSERT INTO STOCK (Name,MRP,Quantity,Free)VALUES(?,?,?,?)";
+         PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
+         updatestock.setString(1, proname);
+         updatestock.setDouble(2, dmrp);
+         updatestock.setDouble(3, dqty);
+         updatestock.setDouble(4, dfree);
+         int executeUpdate = updatestock.executeUpdate();
+            System.out.println(executeUpdate+" Row Changed");
+     }  catch (SQLException ex) {
+            Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    }   
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

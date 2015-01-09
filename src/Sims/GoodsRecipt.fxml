@@ -14,13 +14,13 @@
                   <HBox alignment="CENTER" prefHeight="17.0" prefWidth="100.0" spacing="5.0">
                      <children>
                         <Label text="Recp.No:" />
-                        <TextField prefHeight="5.0" prefWidth="65.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="recpno" prefHeight="5.0" prefWidth="65.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="38.0" prefWidth="100.0" spacing="5.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="49.0" text="Date:" HBox.hgrow="ALWAYS" />
-                        <TextField prefHeight="25.0" prefWidth="84.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="recpdt" prefHeight="25.0" prefWidth="84.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children>
@@ -32,7 +32,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Compny:" />
-                  <TextArea prefHeight="96.0" prefWidth="239.0" HBox.hgrow="ALWAYS" />
+                  <TextArea fx:id="cmpaddr" prefHeight="96.0" prefWidth="239.0" HBox.hgrow="ALWAYS" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                </children>
             </HBox>
@@ -41,19 +41,19 @@
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
                         <Label text="TIN:" />
-                        <TextField prefHeight="25.0" prefWidth="64.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="tin" prefHeight="25.0" prefWidth="64.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
                         <Label text="Order No:" />
-                        <TextField prefHeight="25.0" prefWidth="60.0" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="ordno" prefHeight="25.0" prefWidth="60.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="54.0" text="Oder Dt:" />
-                        <DatePicker prefHeight="25.0" prefWidth="68.0" HBox.hgrow="ALWAYS" />
+                        <DatePicker fx:id="orddt" prefHeight="25.0" prefWidth="68.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children>
@@ -61,26 +61,23 @@
          </children>
       </HBox>
       <Separator prefWidth="200.0" />
-      <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn prefWidth="75.0" text="Product" />
-          <TableColumn prefWidth="75.0" text="B-Rate" />
-            <TableColumn prefWidth="75.0" text="S-Rate" />
-            <TableColumn prefWidth="75.0" text="M.R.P" />
-            <TableColumn prefWidth="75.0" text="Batch" />
-            <TableColumn prefWidth="64.0" text="Expiry" />
-            <TableColumn prefWidth="64.0" text="Qty" />
-            <TableColumn prefWidth="64.0" text="Free" />
+          <TableColumn prefWidth="177.0" resizable="false" text="Product" />
+          <TableColumn prefWidth="70.57244873046875" text="B-Rate" />
+            <TableColumn prefWidth="60.7314453125" text="S-Rate" />
+            <TableColumn prefWidth="55.68658447265625" text="M.R.P" />
+            <TableColumn prefWidth="67.20556640625" text="Batch" />
+            <TableColumn prefWidth="74.987060546875" text="Expiry" />
+            <TableColumn prefWidth="49.43963623046875" text="Qty" />
+            <TableColumn prefWidth="43.561279296875" text="Free" />
         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
       </TableView>
       <Separator prefWidth="200.0" />
       <HBox alignment="CENTER" prefHeight="6.0" prefWidth="600.0" spacing="1.0">
          <children>
             <Label prefHeight="17.0" prefWidth="53.0" text="Product" />
-            <TextField prefHeight="25.0" prefWidth="136.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="product" prefHeight="25.0" prefWidth="136.0" HBox.hgrow="ALWAYS">
                <padding>
                   <Insets right="5.0" />
                </padding>
@@ -89,31 +86,31 @@
                </HBox.margin>
             </TextField>
             <Label prefHeight="17.0" prefWidth="41.0" text="M.R.P:" />
-            <TextField layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="59.0">
+            <TextField fx:id="mrp" layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="59.0">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
             <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="51.0" text="Batch:" />
-            <TextField layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="69.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="69.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
             <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="43.0" text="Expiry" />
-            <DatePicker prefHeight="25.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
+            <DatePicker fx:id="expdt" prefHeight="25.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </DatePicker>
             <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="42.0" text="Qty" />
-            <TextField layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="42.0">
+            <TextField fx:id="qty" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="42.0">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
             <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="43.0" text="Free:" />
-            <TextField layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="53.0">
+            <TextField fx:id="free" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="53.0">
                <HBox.margin>
                   <Insets right="2.0" />
                </HBox.margin>
