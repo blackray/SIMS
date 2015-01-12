@@ -37,6 +37,21 @@ public class Customerentrycontroller implements Initializable{
         String Phone = phone.getText();
         String Area  = area.getValue();
         
+        MainDocumentController mc = Control.getInstance().getMainDocumentController();
+        if(Name.equals("")){
+            mc.Setstatusmessage("Error : Name Can't be null");
+            return;
+        }else if(Address.equals("")){
+            mc.Setstatusmessage("Error : Address Can't be null");
+            return;
+        }else if(Place.equals("")){
+            mc.Setstatusmessage("Error : Place Can't be null");
+            return;
+        }else if(Area.equals("")){
+            mc.Setstatusmessage("Error : Area Can't be null");
+            return;
+        }
+        
         ObservableList<String> data = area.getItems();
         
         System.out.println(Name + "\n"+Address+"\n"+Place+"\n"+Phone+"\n"+Area);
@@ -44,6 +59,9 @@ public class Customerentrycontroller implements Initializable{
                 + "('"+Name+"','"+Address+"','"+Place+"','"+Phone+"','"+Area+"')";
         Database db = Database.getInstance();
         boolean Update = db.Update(up);
+        if(!Update){
+            mc.Setstatusmessage("Error : Update Failed");
+        }
     }
 
     @Override

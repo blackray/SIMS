@@ -29,6 +29,10 @@ public class Areacontroller implements Initializable{
     
     @FXML
     private void AddAction(ActionEvent ev){
+        if(area_tf.getText().equals("")){
+            Control.getInstance().getMainDocumentController().Setstatusmessage("Error : Area Cant be Null");
+            return;
+        }
         ObservableList<Area> data = table.getItems();
         String query = "INSERT INTO AREA (Area) VALUES ('"+area_tf.getText()+"')";
         Database db = Database.getInstance();

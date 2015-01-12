@@ -33,8 +33,11 @@ public class GenericController implements Initializable{
     int count = 0;
 
     @FXML protected void addGenericNames(ActionEvent ev){
+        Control ctrl = Control.getInstance();
+        MainDocumentController mc =ctrl.getMainDocumentController();
         String n = entry.getText();
         if(n.equals("")){
+            mc.Setstatusmessage("Error : Generic Name Can't be Null");
             return;
         }
         count++;
@@ -44,9 +47,8 @@ public class GenericController implements Initializable{
         String q = "insert into GENERIC (generic_name) values ('"+entry.getText()+"')";
         if(Database.Update(q)){
             data.add(new GenericNames(c,entry.getText()));  
+            mc.Setstatusmessage("Update Successful");
         }else{
-            Control ctrl = Control.getInstance();
-            MainDocumentController mc =ctrl.getMainDocumentController();
             mc.Setstatusmessage("Database Updata Failed ... Value Exist");
         }
         entry.setText("");
@@ -55,7 +57,7 @@ public class GenericController implements Initializable{
     } 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.err.println("GenericDatabase entry screen Initiazer");
+        Control.getInstance().getMainDocumentController().Setstatusmessage("Status");
         ObservableList<GenericNames> data = table.getItems();
         String c;
         try {
