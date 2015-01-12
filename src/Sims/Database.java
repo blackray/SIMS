@@ -63,6 +63,11 @@ public class Database {
         }else{
             createStockDB();
         }
+        if(ifexist_table("PRODUCT")){
+            System.out.println("PRODUCT Table Found");
+        }else{
+            createProuductDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -108,6 +113,12 @@ public class Database {
         System.out.println("Creating STOCK Table");
         String str = "CREATE TABLE STOCK "
                 + "(Name VARCHAR(20) NOT NULL,MRP REAL,Quantity INTEGER,Free INTEGER)";
+        Update(str);
+    }
+    private static void createProuductDB(){
+        System.out.println("Creating PRODUCT Table" );
+        String str="CREATE TABLE PRODUCT"
+                +"(PName VARCHAR(20) NOT NULL,CName VARCHAR(20) NOT NULL,GName VARCHAR(20))";
         Update(str);
     }
 
