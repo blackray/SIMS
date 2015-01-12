@@ -27,12 +27,12 @@
                   <MenuItem mnemonicParsing="false" onAction="#MenuCompanyAction" text="Company" />
                   <MenuItem mnemonicParsing="false" onAction="#MenuCustomerAction" text="Customer" />
                 <MenuItem fx:id="Generic" mnemonicParsing="false" onAction="#MenuGenericAction" text="Generic" />
+                <MenuItem mnemonicParsing="false" onAction="#MenuProductAction" text="Product" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Bill">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#MenuGoodsReciptAction" text="Goods Recipt" />
-                <MenuItem mnemonicParsing="false" onAction="#MenuProductAction"   text="Product Master" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Help">
