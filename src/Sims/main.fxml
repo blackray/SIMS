@@ -35,6 +35,15 @@
                 <MenuItem mnemonicParsing="false" onAction="#MenuGoodsReciptAction" text="Goods Recipt" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+              <items>
+                  <Menu mnemonicParsing="false" text="Accounts">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#MenuForgotPaswordAction" text="Forgot Password" />
+                    </items>
+                  </Menu>
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />

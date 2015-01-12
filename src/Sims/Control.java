@@ -21,6 +21,7 @@ import javafx.stage.Stage;
  */
 public class Control {
     private Stage stage;
+    private String username;
     private boolean logedin;
     private static final Control Instance = new Control();
     private MainDocumentController maincontroller;
@@ -65,6 +66,7 @@ public class Control {
                 String s=Query.getString("PASSWORD");
                 System.out.println(s);
                 if(s.equals(password)){
+                    this.username = username;
                     logedin = true;
                     return true;
                 }
@@ -75,5 +77,8 @@ public class Control {
         }
         return false;
     }
-    
+    public String GetCurrentUser(){
+        return username;
+    }
 }
+
