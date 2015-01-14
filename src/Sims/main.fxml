@@ -39,6 +39,7 @@
               <items>
                   <Menu mnemonicParsing="false" text="Accounts">
                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#MenuAddAccountAction" text="Add Account" />
                       <MenuItem mnemonicParsing="false" onAction="#MenuForgotPaswordAction" text="Forgot Password" />
                     </items>
                   </Menu>

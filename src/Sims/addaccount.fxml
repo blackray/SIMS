@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label prefHeight="29.0" prefWidth="115.0" text="Add Account" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </Label>
+      <Separator prefHeight="0.0" prefWidth="600.0" />
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="15.0" prefWidth="90.0" text="Username">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
+            <TextField prefWidth="246.0" />
+         </children>
+         <VBox.margin>
+            <Insets top="50.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Label prefWidth="90.0" text="Password">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
+            <TextField prefWidth="246.0" />
+         </children>
+      </HBox>
+      <Button mnemonicParsing="false" text="ADD" />
+   </children>
+</VBox>

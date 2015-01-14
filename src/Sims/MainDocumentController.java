@@ -34,68 +34,45 @@ public class MainDocumentController implements Initializable {
     @FXML private Label status;
 
     @FXML
-    private void MenuGenericAction(ActionEvent ev) {
+    private void LoadFxml(String filename){
         displayarea.getChildren().clear();
         try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("GenericDatabase.fxml")));
+            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource(filename)));
         } catch (IOException ex) {
             Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+    }
+    @FXML
+    private void MenuGenericAction(ActionEvent ev) {
+        LoadFxml("GenericDatabase.fxml");
     }
     @FXML 
     private void MenuCustomerAction(ActionEvent ev){
-        displayarea.getChildren().clear();
-        try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("Customerdataentry.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        LoadFxml("Customerdataentry.fxml");
     }
     @FXML 
     private void MenuAreaAction(ActionEvent ev){
-        displayarea.getChildren().clear();
-        try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("AreaDocument.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        LoadFxml("AreaDocument.fxml");
     }
     @FXML 
     private void MenuCompanyAction(ActionEvent ev){
-        displayarea.getChildren().clear();
-        try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("Companydataentry.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        LoadFxml("Companydataentry.fxml");
     }
     @FXML
     private void MenuGoodsReciptAction(ActionEvent ev){
-        displayarea.getChildren().clear();
-        try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("GoodsRecipt.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        LoadFxml("GoodsRecipt.fxml");
     }
     @FXML
     private void MenuProductAction(ActionEvent ev){
-        displayarea.getChildren().clear();
-        try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("ProductMaster.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        LoadFxml("ProductMaster.fxml");
     }
     @FXML
     private void MenuForgotPaswordAction(ActionEvent ev){
-        displayarea.getChildren().clear();
-        try {
-            displayarea.getChildren().add(FXMLLoader.load(getClass().getResource("ChangePassword.fxml")));
-        } catch (IOException ex) {
-            Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        LoadFxml("ChangePassword.fxml");  
+    }
+    @FXML
+    private void MenuAddAccountAction(ActionEvent ev){
+        LoadFxml("addaccount.fxml");
     }
     public void Setstatusmessage(String str){
         status.setText(str);
