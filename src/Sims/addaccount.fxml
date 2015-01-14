@@ -24,7 +24,7 @@
                   <Insets right="20.0" />
                </padding>
             </Label>
-            <TextField fx:id="tf_username" prefWidth="246.0" />
+            <TextField fx:id="tf_username" prefWidth="246.0" promptText="Username" />
          </children>
          <VBox.margin>
             <Insets top="50.0" />
@@ -37,7 +37,7 @@
                   <Insets right="20.0" />
                </padding>
             </Label>
-            <TextField fx:id="tf_password" prefWidth="246.0" />
+            <PasswordField fx:id="tf_password" prefWidth="246.0" promptText="Password" />
          </children>
       </HBox>
       <Button mnemonicParsing="false" onAction="#AddAccountAction" text="ADD" />
