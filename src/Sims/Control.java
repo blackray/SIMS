@@ -56,7 +56,7 @@ public class Control {
         }
     }
     public boolean Authenticate(String username,String password){
-        ResultSet Query = Database.Query("select PASSWORD from LOGIN where USERNAME='"+username+"'");
+        ResultSet Query = Database.Query("select * from LOGIN where USERNAME='"+username+"'");
         if(Query == null){
             return false;
         }

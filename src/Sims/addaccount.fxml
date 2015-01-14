@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.AddAccountController">
    <children>
       <Label prefHeight="29.0" prefWidth="115.0" text="Add Account" textAlignment="CENTER">
          <font>
@@ -25,7 +24,7 @@
                   <Insets right="20.0" />
                </padding>
             </Label>
-            <TextField prefWidth="246.0" />
+            <TextField fx:id="tf_username" prefWidth="246.0" />
          </children>
          <VBox.margin>
             <Insets top="50.0" />
@@ -38,9 +37,9 @@
                   <Insets right="20.0" />
                </padding>
             </Label>
-            <TextField prefWidth="246.0" />
+            <TextField fx:id="tf_password" prefWidth="246.0" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="ADD" />
+      <Button mnemonicParsing="false" onAction="#AddAccountAction" text="ADD" />
    </children>
 </VBox>
