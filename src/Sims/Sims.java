@@ -35,7 +35,16 @@ public class Sims extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Database.connectDerby("sims");
+        Config c = Config.GetInstance();
+        c.Parse();
+        if(Config.Get_DB_Connection_type().equals("derby")){
+            Database.connectDerby("sims");
+        }else if(Config.Get_DB_Connection_type().equals("network")){
+            String address = Config.Get_DB_Connection_Address();
+            String username = Config.Get_DB_Connection_Username();
+            String password = Config.Get_DB_Connection_Password();
+            int connectmysql = Database.connectmysql(address,"test",username, password);
+        }
         Database.setupDatabase();
         launch(args);
     }

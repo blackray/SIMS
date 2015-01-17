@@ -81,8 +81,8 @@ public class Database {
     }
     private static void createGenericDB() {
         System.out.println("Creating Generic Table");
-        String str = "CREATE TABLE generic "
-                + "(generic_name VARCHAR(20) NOT NULL UNIQUE)";
+        String str = "CREATE TABLE GENERIC "
+                + "(NAME VARCHAR(20) NOT NULL UNIQUE)";
 
         Update(str);
     }
@@ -95,8 +95,8 @@ public class Database {
     }
     private static void createAreaDB() {
         System.out.println("Creating Area Table");
-        String str = "CREATE TABLE Area "
-                + "(Area VARCHAR(20) NOT NULL UNIQUE)";
+        String str = "CREATE TABLE AREA "
+                + "(AREA VARCHAR(20) NOT NULL UNIQUE)";
 
         Update(str);
     }
@@ -126,7 +126,7 @@ public class Database {
         return db;
     }
 
-    public static int connect(String address, String db, String user, String pass) {
+    public static int connectmysql(String address, String db, String user, String pass) {
         String URL = "jdbc:mysql://" + address + "/" + db;
         try {
             conn = DriverManager.getConnection(URL, user, pass);

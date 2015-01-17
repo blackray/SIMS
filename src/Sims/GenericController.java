@@ -44,7 +44,7 @@ public class GenericController implements Initializable{
         ObservableList<GenericNames> data = table.getItems();
         String c = count+"";
         
-        String q = "insert into GENERIC (generic_name) values ('"+entry.getText()+"')";
+        String q = "insert into GENERIC (NAME) values ('"+entry.getText()+"')";
         if(Database.Update(q)){
             data.add(new GenericNames(c,entry.getText()));  
             mc.Setstatusmessage("Update Successful");
@@ -61,12 +61,12 @@ public class GenericController implements Initializable{
         ObservableList<GenericNames> data = table.getItems();
         String c;
         try {
-            String query = "select * from generic";
+            String query = "select * from GENERIC";
             ResultSet res = Database.Query(query);
             while(res.next()){
                 count++;
                 c=count+"";
-                String out = res.getString("generic_name");
+                String out = res.getString("NAME");
                 data.add(new GenericNames(c,out));
             }
         } catch (SQLException ex) {
