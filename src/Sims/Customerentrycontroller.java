@@ -11,13 +11,14 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import np.com.ngopal.control.AutoFillTextBox;
 
 /**
  *
@@ -28,14 +29,14 @@ public class Customerentrycontroller implements Initializable{
     @FXML private TextArea address;
     @FXML private TextField place;
     @FXML private TextField phone;
-    @FXML private ComboBox<String> area ;
+    @FXML private AutoFillTextBox area ;
     
     @FXML protected void add(ActionEvent ev){
         String Name = name.getText();
         String Address = address.getText();
         String Place = place.getText();
         String Phone = phone.getText();
-        String Area  = area.getValue();
+        String Area  = area.getText();
         
         MainDocumentController mc = Control.getInstance().getMainDocumentController();
         if(Name.equals("")){
@@ -52,7 +53,7 @@ public class Customerentrycontroller implements Initializable{
             return;
         }
         
-        ObservableList<String> data = area.getItems();
+        
         
         System.out.println(Name + "\n"+Address+"\n"+Place+"\n"+Phone+"\n"+Area);
         String up = "insert into customer (Name,Address,Place,Phone,Area) values "
@@ -67,7 +68,7 @@ public class Customerentrycontroller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            ObservableList<String> data = area.getItems();
+            ObservableList<String> data = FXCollections.observableArrayList();
             
             String q = "SELECT * FROM AREA";
             ResultSet Query = Database.getInstance().Query(q);
@@ -75,6 +76,7 @@ public class Customerentrycontroller implements Initializable{
             while(Query.next()){
                 data.add(Query.getString("Area"));
             }
+            area.setData(data);
         } catch (SQLException ex) {
             Logger.getLogger(Customerentrycontroller.class.getName()).log(Level.SEVERE, null, ex);
         }

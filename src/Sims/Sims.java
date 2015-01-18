@@ -43,7 +43,11 @@ public class Sims extends Application {
             String address = Config.Get_DB_Connection_Address();
             String username = Config.Get_DB_Connection_Username();
             String password = Config.Get_DB_Connection_Password();
-            int connectmysql = Database.connectmysql(address,"test",username, password);
+            if(!Database.connectmysql(address,"test",username, password)){
+                System.out.println("Connect to mysql server failed \n"
+                        + "Using Internal DB");
+                Database.connectDerby("sims");
+            }
         }
         Database.setupDatabase();
         launch(args);

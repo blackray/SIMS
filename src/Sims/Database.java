@@ -126,14 +126,14 @@ public class Database {
         return db;
     }
 
-    public static int connectmysql(String address, String db, String user, String pass) {
+    public static boolean connectmysql(String address, String db, String user, String pass) {
         String URL = "jdbc:mysql://" + address + "/" + db;
         try {
             conn = DriverManager.getConnection(URL, user, pass);
         } catch (SQLException ex) {
-            return 1;
+            return false;
         }
-        return 0;
+        return true;
     }
 
     public static boolean ifexist_table(String dbname) {
