@@ -38,6 +38,7 @@ public class Areacontroller implements Initializable{
         Database db = Database.getInstance();
         if(db.Update(query)){
             Control.getInstance().getMainDocumentController().Setstatusmessage("Updated Successfully");
+            area_tf.clear();
             refresh();
         }else{
             Control.getInstance().getMainDocumentController().Setstatusmessage("Database Update Failed... Value Exist");
@@ -46,7 +47,6 @@ public class Areacontroller implements Initializable{
     
     private void refresh(){
         try {
-            System.out.println("Hereeeeeeeeeee");
             ObservableList<Area> data = table.getItems();
             data.clear();
             Database db = Database.getInstance();
