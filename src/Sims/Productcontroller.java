@@ -57,9 +57,9 @@ public class Productcontroller implements Initializable {
          if(executeUpdate == 0)
              mc.Setstatusmessage("Update Failed");
      }  catch (SQLException ex) {
-            Logger.getLogger(Productcontroller.class.getName()).log(Level.SEVERE, null, ex);
+            mc.Setstatusmessage(ex.getMessage());
      }
-     }
+}
     
     
     
