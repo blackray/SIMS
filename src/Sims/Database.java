@@ -134,7 +134,7 @@ public class Database {
     private static void createStockDB() {
         System.out.println("Creating STOCK Table");
         String str = "CREATE TABLE STOCK "
-                + "(PName VARCHAR(20) NOT NULL,"
+                + "(Product VARCHAR(20) NOT NULL,"
                 + "Batch VARCHAR(10) NOT NULL,"
                 + "MRP REAL NOT NULL,"
                 + "Expiry DATE NOT NULL,"
@@ -145,7 +145,7 @@ public class Database {
     private static void createProuductDB(){
         System.out.println("Creating PRODUCT Table" );
         String str="CREATE TABLE PRODUCT"
-                +"(Name VARCHAR(20) UNIQUE NOT NULL,Company VARCHAR(20) NOT NULL,Generic VARCHAR(20))";
+                +"(Name VARCHAR(20) PRIMARY KEY NOT NULL,Company VARCHAR(20) NOT NULL,Generic VARCHAR(20))";
         Update(str);
     }
     
@@ -153,7 +153,7 @@ public class Database {
         System.out.println("Creating PURCHASE Table" );
         String str="CREATE TABLE PURCHASE "
                 +"(COMPANY VARCHAR(20) NOT NULL,"
-                + "Orderno VARCHAR(10) NOT NULL,"
+                + "Orderno VARCHAR(10) NOT NULL PRIMARY KEY,"
                 + "Orderdate DATE)";
         Update(str);
     }
@@ -162,7 +162,8 @@ public class Database {
         String str="CREATE TABLE PURCHASEORDERPRODUCT "
                 +"(Orderno VARCHAR(10) NOT NULL,"
                 + "Product VARCHAR(20) NOT NULL,"
-                + "Quantity INTEGER)";
+                + "Quantity INTEGER,"
+                + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
         Update(str);
     }
     private static void createGoodsReciptDB(){
@@ -170,8 +171,9 @@ public class Database {
         String str="CREATE TABLE GOODSRECIPT "
                 +"(Company VARCHAR(20) NOT NULL,"
                 + "Orderno VARCHAR(10) NOT NULL,"
-                + "Reciptno VARCHAR(10) NOT NULL,"
-                + "Reciptdate DATE)";
+                + "Reciptno VARCHAR(10) NOT NULL PRIMARY KEY,"
+                + "Reciptdate DATE,"
+                + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
         Update(str);
     }
     private static void createGoodsReciptProductDB(){
@@ -184,7 +186,8 @@ public class Database {
                 + "Free INTEGER NOT NULL,"
                 + "MRP REAL NOT NULL,"
                 + "BRATE REAL NOT NULL,"
-                + "Expiry DATE)";
+                + "Expiry DATE,"
+                + "FOREIGN KEY(Reciptno) REFERENCES GOODSRECIPT(Reciptno))";
         Update(str);
     }
 
