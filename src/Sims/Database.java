@@ -145,7 +145,7 @@ public class Database {
     private static void createProuductDB(){
         System.out.println("Creating PRODUCT Table" );
         String str="CREATE TABLE PRODUCT"
-                +"(Name VARCHAR(20) NOT NULL,Company VARCHAR(20) NOT NULL,Generic VARCHAR(20))";
+                +"(Name VARCHAR(20) UNIQUE NOT NULL,Company VARCHAR(20) NOT NULL,Generic VARCHAR(20))";
         Update(str);
     }
     

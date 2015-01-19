@@ -46,13 +46,16 @@ public class Productcontroller implements Initializable {
      }
      try 
      {
-         String stmt="INSERT INTO PRODUCT (PName,CName,GName) VALUES(?,?,?)";
+         String stmt="INSERT INTO PRODUCT (Name,Company,Generic) VALUES(?,?,?)";
           PreparedStatement updateproduct = Database.GetPreparedStmt(stmt);
          updateproduct.setString(1, product);
          updateproduct.setString(2, company);
          updateproduct.setString(3, generic);
          int executeUpdate = updateproduct.executeUpdate();
-         mc.Setstatusmessage("Update Success");
+         if(executeUpdate == 1)
+            mc.Setstatusmessage("Update Success");
+         if(executeUpdate == 0)
+             mc.Setstatusmessage("Update Failed");
      }  catch (SQLException ex) {
             Logger.getLogger(Productcontroller.class.getName()).log(Level.SEVERE, null, ex);
      }
