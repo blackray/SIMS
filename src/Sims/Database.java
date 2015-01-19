@@ -95,7 +95,7 @@ public class Database {
     private static void createLoginDB() {
         System.out.println("Creating LOGIN Table");
         String str = "CREATE TABLE LOGIN "
-                + "(USERNAME VARCHAR(20) NOT NULL,"
+                + "(USERNAME VARCHAR(20) NOT NULL PRIMARY KEY,"
                 + "PASSWORD VARCHAR(20) NOT NULL)";
 
         Update(str);
@@ -104,7 +104,7 @@ public class Database {
     private static void createGenericDB() {
         System.out.println("Creating Generic Table");
         String str = "CREATE TABLE GENERIC "
-                + "(NAME VARCHAR(20) NOT NULL UNIQUE)";
+                + "(NAME VARCHAR(20) NOT NULL PRIMARY KEY)";
 
         Update(str);
     }
@@ -118,16 +118,18 @@ public class Database {
     private static void createAreaDB() {
         System.out.println("Creating Area Table");
         String str = "CREATE TABLE AREA "
-                + "(AREA VARCHAR(20) NOT NULL UNIQUE)";
+                + "(AREA VARCHAR(20) NOT NULL PRIMARY KEY)";
 
         Update(str);
     }
     private static void createCompanyDB() {
         System.out.println("Creating COMPANY Table");
         String str = "CREATE TABLE COMPANY "
-                + "(Name VARCHAR(20) NOT NULL,Address VARCHAR(100) NOT NULL,Place VARCHAR(50) NOT NULL,"
-                + "Phone VARCHAR(20) NOT NULL,DL VARCHAR(20),"
-                + "TIN VARCHAR(20) NOT NULL,CST VARCHAR(20))";
+                + "(Name VARCHAR(20) NOT NULL PRIMARY KEY,"
+                + "Address VARCHAR(100) NOT NULL,"
+                + "Place VARCHAR(50) NOT NULL,"
+                + "Phone VARCHAR(20) NOT NULL UNIQUE,DL VARCHAR(20),"
+                + "TIN VARCHAR(20) NOT NULL UNIQUE,CST VARCHAR(20))";
 
         Update(str);
     }
@@ -145,7 +147,10 @@ public class Database {
     private static void createProuductDB(){
         System.out.println("Creating PRODUCT Table" );
         String str="CREATE TABLE PRODUCT"
-                +"(Name VARCHAR(20) PRIMARY KEY NOT NULL,Company VARCHAR(20) NOT NULL,Generic VARCHAR(20))";
+                +"(Name VARCHAR(20) PRIMARY KEY NOT NULL,"
+                + "Company VARCHAR(20) NOT NULL,"
+                + "Generic VARCHAR(20),"
+                + "FOREIGN KEY(Company) REFERENCES COMPANY(Name))";
         Update(str);
     }
     
