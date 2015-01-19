@@ -68,6 +68,28 @@ public class Database {
         }else{
             createProuductDB();
         }
+        
+        
+        if(ifexist_table("PURCHASE")){
+            System.out.println("PURCHASE Table Found");
+        }else{
+            createPurchaseDB();
+        }
+        if(ifexist_table("PURCHASEORDERPRODUCT")){
+            System.out.println("PURCHASEORDERPRODUCT Table Found");
+        }else{
+            createPurchaseOrderProductDB();
+        }
+        if(ifexist_table("GOODSRECIPT")){
+            System.out.println("GOODSRECIPT Table Found");
+        }else{
+            createGoodsReciptDB();
+        }
+        if(ifexist_table("GOODSRECIPTPRODUCT")){
+            System.out.println("GOODSRECIPTPRODUCT Table Found");
+        }else{
+            createGoodsReciptProductDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -112,13 +134,57 @@ public class Database {
     private static void createStockDB() {
         System.out.println("Creating STOCK Table");
         String str = "CREATE TABLE STOCK "
-                + "(Name VARCHAR(20) NOT NULL,MRP REAL,Quantity INTEGER,Free INTEGER)";
+                + "(PName VARCHAR(20) NOT NULL,"
+                + "Batch VARCHAR(10) NOT NULL,"
+                + "MRP REAL NOT NULL,"
+                + "Expiry DATE NOT NULL,"
+                + "Quantity INTEGER,"
+                + "Free INTEGER)";
         Update(str);
     }
     private static void createProuductDB(){
         System.out.println("Creating PRODUCT Table" );
         String str="CREATE TABLE PRODUCT"
-                +"(PName VARCHAR(20) NOT NULL,CName VARCHAR(20) NOT NULL,GName VARCHAR(20))";
+                +"(Name VARCHAR(20) NOT NULL,Company VARCHAR(20) NOT NULL,Generic VARCHAR(20))";
+        Update(str);
+    }
+    
+    private static void createPurchaseDB(){
+        System.out.println("Creating PURCHASE Table" );
+        String str="CREATE TABLE PURCHASE "
+                +"(COMPANY VARCHAR(20) NOT NULL,"
+                + "Orderno VARCHAR(10) NOT NULL,"
+                + "Orderdate DATE)";
+        Update(str);
+    }
+    private static void createPurchaseOrderProductDB(){
+        System.out.println("Creating PURCHASEORDERPRODUCT Table" );
+        String str="CREATE TABLE PURCHASEORDERPRODUCT "
+                +"(Orderno VARCHAR(10) NOT NULL,"
+                + "Product VARCHAR(20) NOT NULL,"
+                + "Quantity INTEGER)";
+        Update(str);
+    }
+    private static void createGoodsReciptDB(){
+        System.out.println("Creating GOODSRECIPT Table" );
+        String str="CREATE TABLE GOODSRECIPT "
+                +"(Company VARCHAR(20) NOT NULL,"
+                + "Orderno VARCHAR(10) NOT NULL,"
+                + "Reciptno VARCHAR(10) NOT NULL,"
+                + "Reciptdate DATE)";
+        Update(str);
+    }
+    private static void createGoodsReciptProductDB(){
+        System.out.println("Creating GOODSRECIPTPRODUCT Table" );
+        String str="CREATE TABLE GOODSRECIPTPRODUCT "
+                +"(Product VARCHAR(20) NOT NULL,"
+                + "Reciptno VARCHAR(10) NOT NULL,"
+                + "Batch VARCHAR(10) NOT NULL,"
+                + "Quantity INTEGER NOT NULL,"
+                + "Free INTEGER NOT NULL,"
+                + "MRP REAL NOT NULL,"
+                + "BRATE REAL NOT NULL,"
+                + "Expiry DATE)";
         Update(str);
     }
 
