@@ -6,6 +6,7 @@
 package Sims;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -53,15 +54,20 @@ public class Customerentrycontroller implements Initializable{
             return;
         }
         
-        
-        
-        System.out.println(Name + "\n"+Address+"\n"+Place+"\n"+Phone+"\n"+Area);
-        String up = "insert into customer (Name,Address,Place,Phone,Area) values "
-                + "('"+Name+"','"+Address+"','"+Place+"','"+Phone+"','"+Area+"')";
-        Database db = Database.getInstance();
-        boolean Update = db.Update(up);
-        if(!Update){
-            mc.Setstatusmessage("Error : Update Failed");
+        try{
+            String stmnt = "INSERT INTO CUSTOMER (Name,Address,Place,Phone,Area) "
+                    + "VALUES (?,?,?,?,?)";
+            PreparedStatement updatestmnt = Database.GetPreparedStmt(stmnt);
+            updatestmnt.setString(1, Name);
+            updatestmnt.setString(2, Address);
+            updatestmnt.setString(3, Place);
+            updatestmnt.setString(4, Phone);
+            updatestmnt.setString(5, Area);
+            int executeUpdate = updatestmnt.executeUpdate();
+            System.out.println(executeUpdate+" Rows Changed");
+            Control.getInstance().getMainDocumentController().Setstatusmessage("Update Success");
+        }catch(SQLException ex){
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }
 

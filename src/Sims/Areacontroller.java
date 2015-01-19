@@ -6,6 +6,7 @@
 package Sims;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -22,30 +23,35 @@ import javafx.scene.control.TextField;
  *
  * @author amalcs
  */
-public class Areacontroller implements Initializable{
+public class Areacontroller implements Initializable {
 
-    @FXML private TableView<Area> table;
-    @FXML private TextField area_tf;
-    
     @FXML
-    private void AddAction(ActionEvent ev){
-        if(area_tf.getText().equals("")){
+    private TableView<Area> table;
+    @FXML
+    private TextField area_tf;
+
+    @FXML
+    private void AddAction(ActionEvent ev) {
+        if (area_tf.getText().equals("")) {
             Control.getInstance().getMainDocumentController().Setstatusmessage("Error : Area Cant be Null");
             return;
         }
         ObservableList<Area> data = table.getItems();
-        String query = "INSERT INTO AREA (Area) VALUES ('"+area_tf.getText()+"')";
-        Database db = Database.getInstance();
-        if(db.Update(query)){
+        try {
+            String stmnt = "INSERT INTO AREA (Area) VALUES (?)";
+            PreparedStatement updatearea = Database.GetPreparedStmt(stmnt);
+            updatearea.setString(1, area_tf.getText());
+            int executeUpdate = updatearea.executeUpdate();
+            System.out.println(executeUpdate + " Row Changed");
             Control.getInstance().getMainDocumentController().Setstatusmessage("Updated Successfully");
             area_tf.clear();
             refresh();
-        }else{
-            Control.getInstance().getMainDocumentController().Setstatusmessage("Database Update Failed... Value Exist");
+        } catch (SQLException ex) {
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }
-    
-    private void refresh(){
+
+    private void refresh() {
         try {
             ObservableList<Area> data = table.getItems();
             data.clear();
@@ -53,7 +59,7 @@ public class Areacontroller implements Initializable{
             String query = "Select * from AREA";
             ResultSet Query;
             Query = Database.Query(query);
-            while(Query.next()){
+            while (Query.next()) {
                 String st = Query.getString("Area");
                 data.add(new Area(st));
             }
@@ -61,11 +67,10 @@ public class Areacontroller implements Initializable{
             Logger.getLogger(Areacontroller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         refresh();
     }
-    
-    
+
 }

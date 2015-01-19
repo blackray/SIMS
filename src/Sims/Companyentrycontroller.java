@@ -96,7 +96,7 @@ public class Companyentrycontroller implements Initializable{
             tin.clear();
             cst.clear();
         } catch (SQLException ex) {
-            Logger.getLogger(Companyentrycontroller.class.getName()).log(Level.SEVERE, null, ex);
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }
     @Override

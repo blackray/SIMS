@@ -6,6 +6,7 @@
 package Sims;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -15,7 +16,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -44,14 +44,17 @@ public class GenericController implements Initializable{
         ObservableList<GenericNames> data = table.getItems();
         String c = count+"";
         
-        String q = "insert into GENERIC (NAME) values ('"+entry.getText()+"')";
-        if(Database.Update(q)){
-            data.add(new GenericNames(c,entry.getText()));  
-            mc.Setstatusmessage("Update Successful");
-        }else{
-            mc.Setstatusmessage("Database Updata Failed ... Value Exist");
+        try{
+            String stmnt = "INSERT INTO GENERIC (NAME) VALUES(?)";
+            PreparedStatement pstmnt = Database.GetPreparedStmt(stmnt);
+            pstmnt.setString(1, entry.getText());
+            int executeUpdate = pstmnt.executeUpdate();
+            System.out.println(executeUpdate+" Rows Changed");
+            data.add(new GenericNames(c,entry.getText()));
+            entry.clear();
+        }catch(SQLException ex){
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
-        entry.setText("");
     }
     public GenericController() {
     } 
