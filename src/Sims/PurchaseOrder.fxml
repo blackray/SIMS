@@ -6,8 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity"  prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.PurchaseOrderController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="600.0">
          <children>
@@ -24,19 +23,19 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Address : " />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="163.7822265625" HBox.hgrow="ALWAYS" />
+                  <Text fx:id="fxaddress" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="163.7822265625" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="309.0">
                      <children>
-                        <Label prefWidth="70.0" text="DATE">
+                        <Label prefWidth="40.0" text="DATE">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
                         </Label>
-                        <Label prefWidth="70.0">
+                        <Label fx:id="fxdate" prefWidth="100.0">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
@@ -46,7 +45,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label prefWidth="70.0">
+                        <Label fx:id="fxorderno" prefWidth="70.0">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
@@ -56,7 +55,7 @@
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label prefWidth="70.0" text="TIN" textAlignment="RIGHT" />
-                        <Label prefWidth="70.0">
+                        <Label fx:id="fxtin" prefWidth="70.0">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
