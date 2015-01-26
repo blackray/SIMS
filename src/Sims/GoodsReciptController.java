@@ -8,14 +8,12 @@ package Sims;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -61,9 +59,11 @@ public class GoodsReciptController implements Initializable {
         String Batch = batch.getText();
         String Qty = qty.getText();
         String Free = free.getText();
+        LocalDate date = expdt.getValue();
         double dmrp = Integer.parseInt(Mrp);
         double dqty = Integer.parseInt(Qty);
         double dfree = Integer.parseInt(Free);
+        
 
         ObservableList<Goodsreciptdata> data = table.getItems();
         try {
@@ -72,12 +72,12 @@ public class GoodsReciptController implements Initializable {
             updatestock.setString(1, proname);
             updatestock.setString(2, Batch);
             updatestock.setDouble(3, dmrp);
-            updatestock.setString(4, "1992-10-19");
+            updatestock.setString(4, date.toString());
             updatestock.setDouble(5, dqty);
             updatestock.setDouble(6, dfree);
             int executeUpdate = updatestock.executeUpdate();
             System.out.println(executeUpdate + " Row Changed");
-            data.add(new Goodsreciptdata(proname, "","", dmrp+"", Batch,"", Qty+"", Free+""));
+            data.add(new Goodsreciptdata(proname, "","", Mrp, Batch,date.toString(), Qty, Free));
         } catch (SQLException ex) {
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
