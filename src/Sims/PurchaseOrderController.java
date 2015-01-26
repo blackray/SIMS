@@ -15,8 +15,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
@@ -34,6 +37,8 @@ public class PurchaseOrderController implements Initializable {
     Label fxorderno;
     @FXML
     Label fxtin;
+    @FXML
+    ComboBox fxcompany;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,9 +61,22 @@ public class PurchaseOrderController implements Initializable {
                 val++;
             }
             fxorderno.setText(val + "");
+            
+            stmnt = "SELECT Name FROM COMPANY";
+            GetPreparedStmt = Database.GetPreparedStmt(stmnt);
+            executeQuery = GetPreparedStmt.executeQuery();
+            ObservableList<String> comp = FXCollections.observableArrayList();
+            String cname;
+            while(executeQuery.next()){
+                cname = executeQuery.getString(1);
+                comp.add(cname);
+            }
+            fxcompany.setItems(comp);
+            
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
 }
