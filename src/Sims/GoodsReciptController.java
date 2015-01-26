@@ -6,10 +6,16 @@
 package Sims;
 
 import java.net.URL;
+import java.util.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,6 +91,27 @@ public class GoodsReciptController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            String stmnt = "SELECT MAX(Reciptno) from GOODSRECIPTPRODUCT";
+            PreparedStatement Query = Database.GetPreparedStmt(stmnt);
+            ResultSet executeQuery = Query.executeQuery();
+            while(executeQuery.next()){
+                String s = executeQuery.getString(1);
+                int val;
+                if(s!=null)
+                 val= Integer.parseInt(s);
+                else
+                    val=0;
+                val++;
+                recpno.setText(val+"");
+            }
+            DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+            Date d= new Date();
+            recpdt.setText(dateformat.format(d));
+        } catch (SQLException ex) {
+           System.out.println("Execption in Goodsrecipt Initialize");
+           // Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }
