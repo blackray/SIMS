@@ -5,8 +5,8 @@
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.cell.*?> 
-<?import javafx.collections.*?> 
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.GoodsReciptController">
    <children>
@@ -66,7 +66,7 @@
       <Separator prefWidth="200.0" />
       <TableView fx:id="table" editable="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="Product" prefWidth="177.0" resizable="false" text="Product" >
+          <TableColumn fx:id="Product" prefWidth="177.0" resizable="false" text="Product">
               <cellValueFactory>
                   <PropertyValueFactory property="Product" />
               </cellValueFactory>
@@ -119,6 +119,16 @@
                <padding>
                   <Insets right="5.0" />
                </padding>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Label text="Brate">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="brate" onAction="#add">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>

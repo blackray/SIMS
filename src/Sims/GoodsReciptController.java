@@ -56,6 +56,8 @@ public class GoodsReciptController implements Initializable {
     @FXML
     private TextField qty;
     @FXML
+    private TextField brate;
+    @FXML
     private TableView<Goodsreciptdata> table;
 
     @FXML
@@ -65,10 +67,12 @@ public class GoodsReciptController implements Initializable {
         String Batch = batch.getText();
         String Qty = qty.getText();
         String Free = free.getText();
+        String Brate = brate.getText();
         LocalDate date = expdt.getValue();
-        double dmrp = Integer.parseInt(Mrp);
+        double dmrp = Double.parseDouble(Mrp);
         double dqty = Integer.parseInt(Qty);
         double dfree = Integer.parseInt(Free);
+        double dbrate = Double.parseDouble(Brate);
         
 
         ObservableList<Goodsreciptdata> data = table.getItems();
@@ -83,7 +87,7 @@ public class GoodsReciptController implements Initializable {
             updatestock.setDouble(6, dfree);
             int executeUpdate = updatestock.executeUpdate();
             System.out.println(executeUpdate + " Row Changed");
-            data.add(new Goodsreciptdata(proname, "","", Mrp, Batch,date.toString(), Qty, Free));
+            data.add(new Goodsreciptdata(proname, Brate,"", Mrp, Batch,date.toString(), Qty, Free));
         } catch (SQLException ex) {
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
