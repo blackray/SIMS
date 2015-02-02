@@ -63,6 +63,8 @@ public class GoodsReciptController implements Initializable {
     @FXML
     private void add(ActionEvent ev) {
         String proname = product.getText();
+        String Recptno = recpno.getText();
+        String recdate = recpdt.getText();
         String Mrp = mrp.getText();
         String Batch = batch.getText();
         String Qty = qty.getText();
@@ -109,7 +111,7 @@ public class GoodsReciptController implements Initializable {
                 val++;
                 recpno.setText(val+"");
             }
-            DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+            DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
             Date d= new Date();
             recpdt.setText(dateformat.format(d));
         } catch (SQLException ex) {

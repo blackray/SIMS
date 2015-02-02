@@ -17,10 +17,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 /**
@@ -38,7 +44,38 @@ public class PurchaseOrderController implements Initializable {
     @FXML
     Label fxtin;
     @FXML
-    ComboBox fxcompany;
+    TextField fxcompany;
+    @FXML
+    ChoiceBox fxcompbox;
+    
+    @FXML
+    public void updateCombo(KeyEvent ev){
+        try {
+            String stmnt = "SELECT Name FROM COMPANY WHERE Name LIKE '%"+fxcompany.getText()+"%'";
+            ResultSet Query = Database.Query(stmnt);
+            String cname = null;
+            ObservableList<String> comp= fxcompbox.getItems();
+            comp.clear();
+            while(Query.next()){
+                cname = Query.getString(1);
+                comp.add(cname);
+            }
+            fxcompbox.setItems(comp);
+            if(ev.getCode()==KeyCode.ENTER){
+                String name=fxcompbox.getValue().toString();
+                fxcompany.setText(name);            
+            }
+            else
+                fxcompbox.show();
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    @FXML
+    public void Choiceboxaction(ActionEvent ev){
+        String name = fxcompbox.getValue().toString();
+        fxcompany.setText(name);
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,7 +108,7 @@ public class PurchaseOrderController implements Initializable {
                 cname = executeQuery.getString(1);
                 comp.add(cname);
             }
-            fxcompany.setItems(comp);
+            fxcompbox.setItems(comp);
             
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);

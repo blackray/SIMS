@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -17,7 +18,12 @@
                         <Insets left="50.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="fxcompany" editable="true" prefHeight="25.0" prefWidth="160.0" />
+                  <TextField fx:id="fxcompany" onKeyReleased="#updateCombo" prefWidth="125.0" />
+                  <ChoiceBox fx:id="fxcompbox" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#Choiceboxaction" prefHeight="25.0" prefWidth="0.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </ChoiceBox>
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
