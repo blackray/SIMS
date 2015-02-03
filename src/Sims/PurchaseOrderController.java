@@ -28,6 +28,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import np.com.ngopal.control.AutoFillTextBox;
 
 /**
  *
@@ -44,37 +46,54 @@ public class PurchaseOrderController implements Initializable {
     @FXML
     Label fxtin;
     @FXML
-    TextField fxcompany;
+    ComboBox<String> fxcompname;
     @FXML
-    ChoiceBox fxcompbox;
+    ComboBox<String> fxprodname;
     
+    /*
     @FXML
-    public void updateCombo(KeyEvent ev){
+    public void updateCompany(KeyEvent ev){
+        System.out.println("Hello Here");
         try {
-            String stmnt = "SELECT Name FROM COMPANY WHERE Name LIKE '%"+fxcompany.getText()+"%'";
+            String stmnt = "SELECT Name FROM COMPANY WHERE Name LIKE '%"+fxcompname.getText()+"%'";
             ResultSet Query = Database.Query(stmnt);
             String cname = null;
-            ObservableList<String> comp= fxcompbox.getItems();
+            ObservableList<String> comp= fxcompname.getData();
             comp.clear();
             while(Query.next()){
                 cname = Query.getString(1);
                 comp.add(cname);
             }
-            fxcompbox.setItems(comp);
-            if(ev.getCode()==KeyCode.ENTER){
-                String name=fxcompbox.getValue().toString();
-                fxcompany.setText(name);            
-            }
-            else
-                fxcompbox.show();
+            fxcompname.setData(comp);
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
+    
     @FXML
-    public void Choiceboxaction(ActionEvent ev){
-        String name = fxcompbox.getValue().toString();
-        fxcompany.setText(name);
+    public void CompanyAction(ActionEvent ev){
+        try {
+            String stmnt = "SELECT Address,TIN FROM COMPANY WHERE Name='"+fxcompname.getValue()+"'";
+            ResultSet Query = Database.Query(stmnt);
+            if(Query.next()){
+                fxaddress.setText(Query.getString("Address"));
+                fxtin.setText(Query.getString("TIN"));
+                stmnt="SELECT Name FROM PRODUCT WHERE Company='"+fxcompname.getValue()+"'";
+                ResultSet q = Database.Query(stmnt);
+                ObservableList<String> prod = FXCollections.observableArrayList();
+                String pname;
+                while(q.next()){
+                    pname = q.getString("Name");
+                    System.out.println(pname);
+                    prod.add(pname);
+                }
+                fxprodname.setItems(prod);
+            }else{
+                System.out.println("No Company Found");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -108,7 +127,7 @@ public class PurchaseOrderController implements Initializable {
                 cname = executeQuery.getString(1);
                 comp.add(cname);
             }
-            fxcompbox.setItems(comp);
+            fxcompname.setItems(comp);
             
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);

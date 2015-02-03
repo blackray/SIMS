@@ -74,6 +74,7 @@ public class Customerentrycontroller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            area.setFilterMode(true);
             ObservableList<String> data = FXCollections.observableArrayList();
             
             String q = "SELECT * FROM AREA";
