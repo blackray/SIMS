@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -49,26 +50,9 @@ public class PurchaseOrderController implements Initializable {
     ComboBox<String> fxcompname;
     @FXML
     ComboBox<String> fxprodname;
+    @FXML TableView<PurchaseOrderData> table;
+    @FXML TextField fxquantity;
     
-    /*
-    @FXML
-    public void updateCompany(KeyEvent ev){
-        System.out.println("Hello Here");
-        try {
-            String stmnt = "SELECT Name FROM COMPANY WHERE Name LIKE '%"+fxcompname.getText()+"%'";
-            ResultSet Query = Database.Query(stmnt);
-            String cname = null;
-            ObservableList<String> comp= fxcompname.getData();
-            comp.clear();
-            while(Query.next()){
-                cname = Query.getString(1);
-                comp.add(cname);
-            }
-            fxcompname.setData(comp);
-        } catch (SQLException ex) {
-            Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
     
     @FXML
     public void CompanyAction(ActionEvent ev){
@@ -94,6 +78,13 @@ public class PurchaseOrderController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @FXML
+    public void SubmitAction(ActionEvent ev){
+        ObservableList<PurchaseOrderData> data=table.getItems();
+        data.add(new PurchaseOrderData(fxprodname.getValue(),fxquantity.getText() ));
+        
     }
 
     @Override

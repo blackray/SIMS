@@ -8,6 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import np.com.ngopal.control.*?>
 
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@control.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.PurchaseOrderController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="600.0">
@@ -81,18 +84,26 @@
                   <Insets left="50.0" right="10.0" />
                </HBox.margin>
             </Label>
-            <TextField />
-            <Button mnemonicParsing="false" text="SUBMIT">
+            <TextField fx:id="fxquantity" />
+            <Button mnemonicParsing="false" onAction="#SubmitAction" text="SUBMIT">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn prefWidth="103.0" text="PRODUCT" />
-          <TableColumn prefWidth="99.0" text="QUANTITY" />
+          <TableColumn fx:id="Product" prefWidth="103.0" text="PRODUCT">
+              <cellValueFactory>
+                   <PropertyValueFactory property="Product" /> 
+              </cellValueFactory>
+          </TableColumn>
+          <TableColumn fx:id="Quantity" prefWidth="99.0" text="QUANTITY">
+              <cellValueFactory>
+                   <PropertyValueFactory property="Quantity" /> 
+              </cellValueFactory>
+          </TableColumn>
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
