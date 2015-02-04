@@ -28,8 +28,8 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0">
          <children>
-            <Label lineSpacing="2.0" prefHeight="17.0" prefWidth="124.0" text="Company Name" />
-            <TextField fx:id="compname" prefHeight="25.0" prefWidth="256.0" />
+            <Label lineSpacing="2.0" prefHeight="17.0" prefWidth="124.0" text="Generic Name" />
+            <ComboBox fx:id="genname" editable="true" prefWidth="256.0" promptText="Generic Name" />
          </children>
          <opaqueInsets>
             <Insets left="10.0" />
@@ -37,8 +37,8 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="124.0" text="Generic Name" />
-            <TextField fx:id="gnercname" prefHeight="25.0" prefWidth="256.0" />
+            <Label prefHeight="17.0" prefWidth="124.0" text="Company Name" />
+            <ComboBox fx:id="compname" editable="true" prefWidth="256.0" promptText="Company Name" />
          </children>
          <opaqueInsets>
             <Insets left="10.0" />
