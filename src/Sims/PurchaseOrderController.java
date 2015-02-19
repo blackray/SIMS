@@ -86,6 +86,10 @@ public class PurchaseOrderController implements Initializable {
         data.add(new PurchaseOrderData(fxprodname.getValue(),fxquantity.getText() ));
         
     }
+    @FXML
+    public void PlaceorderAction(ActionEvent ev){
+        System.out.println("Order Placed");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

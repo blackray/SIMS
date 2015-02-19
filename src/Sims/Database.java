@@ -177,7 +177,7 @@ public class Database {
         Update(str);
     }
     private static void createGoodsReciptDB(){
-        System.out.println("Creating GOODSRECIPT Table" );
+        System.out.println("Creating GOODSRECIPT Table");
         String str="CREATE TABLE GOODSRECIPT "
                 +"(Company VARCHAR(20) NOT NULL,"
                 + "Orderno VARCHAR(10) NOT NULL,"
