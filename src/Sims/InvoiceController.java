@@ -5,7 +5,6 @@
  */
 package Sims;
 
-import java.awt.TextField;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 /**
@@ -53,6 +53,6 @@ public class InvoiceController implements Initializable{
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-            }
+    }
     
 }

@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@control.css"fx:controller="Sims.InvoiceController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@control.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.InvoiceController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="600.0">
          <children>
@@ -88,7 +88,7 @@
             </TextField>
             <Label text="Free" />
             <TextField fx:id="free" prefHeight="25.0" prefWidth="97.0" />
-            <Button mnemonicParsing="false" onAction="#add" text="SUBMIT">
+            <Button mnemonicParsing="false" text="SUBMIT">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
