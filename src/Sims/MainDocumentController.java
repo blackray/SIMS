@@ -78,6 +78,10 @@ public class MainDocumentController implements Initializable {
     private void MenuPurchaseOrderAction(ActionEvent ev){
         LoadFxml("PurchaseOrder.fxml");
     }
+    @FXML
+    private void MenuBillAction(ActionEvent ev){
+        LoadFxml("Invoice.fxml");
+    }
     public void Setstatusmessage(String str){
         status.setText(str);
     }
