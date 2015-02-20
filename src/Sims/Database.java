@@ -95,6 +95,12 @@ public class Database {
         }else{
             createInvoiceDB();
         }
+        
+        if(ifexist_table("INVOICEPRODUCT")){
+            System.out.println("INVOICEPRODUCT Table Found");
+        }else{
+            createInvoiceProductDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -193,6 +199,18 @@ public class Database {
                 +"CNAME VARCHAR(20) NOT NULL,"
                 +"INVOICEDATE DATE,"
                 +"FOREIGN KEY(CNAME) REFERENCES CUSTOMER(Name))";
+        Update(str);
+    }
+    private static void createInvoiceProductDB(){
+        System.out.println("Creating INVOICE Product Table");
+        String str = "CREATE TABLE INVOICEPRODUCT "
+                +"(INVOICENO INTEGER NOT NULL PRIMARY KEY,"
+                +"PNAME VARCHAR(20) UNIQUE NOT NULL,"
+                +"BATCH VARCHAR(10) NOT NULL,"
+                +"QUANTITY INTEGER NOT NULL,"
+                +"FREE INTEGER NOT NULL,"
+                +"FOREIGN KEY(INVOICENO) REFERENCES INVOICE(INVOICENO),"
+                +"FOREIGN KEY(PNAME) REFERENCES PRODUCT(Name))";
         Update(str);
     }
     private static void createGoodsReciptProductDB(){
