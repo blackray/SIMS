@@ -17,7 +17,7 @@
                         <Insets left="50.0" />
                      </HBox.margin>
                   </Label>
-                  <ComboBox fx:id="customer" editable="true" prefHeight="25.0" prefWidth="160.0" promptText="Customer" />
+                  <ComboBox fx:id="customer" editable="true" onAction="#CustomerAction" prefHeight="25.0" prefWidth="160.0" promptText="Customer" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
