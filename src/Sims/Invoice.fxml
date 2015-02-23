@@ -45,7 +45,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label prefWidth="70.0">
+                        <Label fx:id="fxinvoiceno" prefWidth="70.0">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
@@ -73,13 +73,13 @@
                   <Insets left="50.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="fxproduct" editable="true" prefWidth="160.0" promptText="Product name" />
+            <ComboBox fx:id="product" editable="true" prefWidth="160.0" promptText="Product name" />
             <Label text="Batch">
                <HBox.margin>
                   <Insets left="2.0" />
                </HBox.margin>
             </Label>
-            <TextField fx:id="batch" prefHeight="25.0" prefWidth="105.0" />
+            <ComboBox fx:id="batch" editable="true" layoutX="446.0" layoutY="23.0" prefWidth="160.0" promptText="Batch number" />
             <Label text="Quantity" />
             <TextField fx:id="qty" prefHeight="25.0" prefWidth="86.0">
                <HBox.margin>

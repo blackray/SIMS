@@ -148,7 +148,7 @@ public class Database {
         System.out.println("Creating STOCK Table");
         String str = "CREATE TABLE STOCK "
                 + "(Product VARCHAR(20) NOT NULL,"
-                + "Batch VARCHAR(10) NOT NULL,"
+                + "Batch INTEGER NOT NULL,"
                 + "MRP REAL NOT NULL,"
                 + "Expiry DATE NOT NULL,"
                 + "Quantity INTEGER,"
