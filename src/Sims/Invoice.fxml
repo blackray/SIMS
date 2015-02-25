@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@control.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.InvoiceController">
    <children>
@@ -73,7 +75,7 @@
                   <Insets left="50.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="product" editable="true" onAction="#CustomerAction" prefWidth="160.0" promptText="Product name" />
+            <ComboBox fx:id="product" editable="true" onAction="#Productcomboboxaction" prefWidth="160.0" promptText="Product name" />
             <Label text="Batch">
                <HBox.margin>
                   <Insets left="2.0" />
@@ -88,7 +90,7 @@
             </TextField>
             <Label text="Free" />
             <TextField fx:id="free" prefHeight="25.0" prefWidth="97.0" />
-            <Button mnemonicParsing="false" text="SUBMIT">
+            <Button mnemonicParsing="false" onAction="#calculation" text="SUBMIT">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
@@ -100,19 +102,71 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
          <columns>
-            <TableColumn prefWidth="177.0" text="Product Name" />
-            <TableColumn prefWidth="75.0" text="Batch" />
-            <TableColumn prefWidth="75.0" text="Exp Date" />
-            <TableColumn prefWidth="75.0" text="Free Qty" />
-            <TableColumn prefWidth="75.0" text="Billed Qty" />
-            <TableColumn prefWidth="75.0" text="Rate" />
-            <TableColumn prefWidth="75.0" text="PTR" />
-            <TableColumn prefWidth="75.0" text="PTS" />
-            <TableColumn prefWidth="75.0" text="MRP" />
-            <TableColumn prefWidth="75.0" text="Tax %" />
-            <TableColumn prefWidth="75.0" text="Tax Amt" />
-            <TableColumn prefWidth="75.0" text="Product Value" />
-            <TableColumn prefWidth="75.0" text="MRP Value" />
+            <TableColumn prefWidth="177.0" text="Product Name">
+                <cellValueFactory>
+                  <PropertyValueFactory property="Product" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Batch">
+                   <cellValueFactory>
+                  <PropertyValueFactory property="Batch" />
+              </cellValueFactory>
+          </TableColumn> 
+            <TableColumn prefWidth="75.0" text="Exp Date">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Expdat" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Free Qty">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Free" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Billed Qty">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Billed" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Rate">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Rate" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="PTR">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Ptr" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="PTS">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Pts" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="MRP">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Mrp" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Tax %">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Tax" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Tax Amt">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Taxamt" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="Product Value">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Pdvalue" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn prefWidth="75.0" text="MRP Value">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Mrpvalue" />
+              </cellValueFactory>
+          </TableColumn>
          </columns>
       </TableView>
    </children>
