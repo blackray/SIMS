@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -88,7 +89,37 @@ public class PurchaseOrderController implements Initializable {
     }
     @FXML
     public void PlaceorderAction(ActionEvent ev){
-        System.out.println("Order Placed");
+        DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        try {
+            System.out.println("Order Placed");
+            String stmnt = "INSERT INTO PURCHASE (COMPANY,Orderno,Orderdate)"
+                    +"VALUES(?,?,?)";
+            PreparedStatement updatestmnt = Database.GetPreparedStmt(stmnt);
+            updatestmnt.setString(1,fxcompname.getValue());
+            updatestmnt.setString(2,fxorderno.getText());
+            updatestmnt.setString(3,dateformat.format(d));
+            int executeUpdate = updatestmnt.executeUpdate();
+            System.out.println(executeUpdate + " Row Changed");
+            
+            //Code to enter data to purchaseorderproducts
+            
+            stmnt = "INSERT INTO PURCHASEORDERPRODUCT (Orderno,Product,Quantity)"
+                    +"VALUES(?,?,?)";
+            
+            ObservableList<PurchaseOrderData> data=table.getItems();
+            for(PurchaseOrderData pdata : data){
+                updatestmnt = Database.GetPreparedStmt(stmnt);
+                updatestmnt.setString(1, fxorderno.getText());
+                updatestmnt.setString(2, pdata.getProduct());
+                updatestmnt.setInt(3, Integer.parseInt(pdata.getQuantity()));
+                
+                executeUpdate = updatestmnt.executeUpdate();
+                System.out.println(executeUpdate + " Row Changed");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

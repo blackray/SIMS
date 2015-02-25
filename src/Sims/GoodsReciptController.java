@@ -16,14 +16,18 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  *
@@ -32,13 +36,13 @@ import javafx.scene.control.TextField;
 public class GoodsReciptController implements Initializable {
 
     @FXML
-    private TextField recpno;
+    private Label recpno;
     @FXML
-    private TextField recpdt;
+    private Label recpdt;
     @FXML
-    private TextArea cmpaddr;
+    private Text cmpaddr;
     @FXML
-    private TextField tin;
+    private Label tin;
     @FXML
     private TextField ordno;
     @FXML
@@ -56,7 +60,13 @@ public class GoodsReciptController implements Initializable {
     @FXML
     private TextField qty;
     @FXML
+    private Label fxtin;
+    @FXML
     private TextField brate;
+    @FXML
+    private Text fxaddress;
+    @FXML
+    private ComboBox<String> fxcompname;
     @FXML
     private TableView<Goodsreciptdata> table;
 
@@ -94,6 +104,31 @@ public class GoodsReciptController implements Initializable {
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }
+    
+    @FXML
+    public void CompanyComboboxaction(ActionEvent ev){
+          try {
+            String stmnt = "SELECT Address,TIN FROM COMPANY WHERE Name='"+fxcompname.getValue()+"'";
+            ResultSet Query = Database.Query(stmnt);
+            if(Query.next()){
+                fxaddress.setText(Query.getString("Address"));
+                fxtin.setText(Query.getString("TIN"));
+                stmnt="SELECT Name FROM PRODUCT WHERE Company='"+fxcompname.getValue()+"'";
+                ResultSet q = Database.Query(stmnt);
+                ObservableList<String> prod = FXCollections.observableArrayList();
+                String pname;
+                while(q.next()){
+                    pname = q.getString("Name");
+                    System.out.println(pname);
+                    prod.add(pname);
+                }
+            }else{
+                System.out.println("No Company Found");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -111,9 +146,21 @@ public class GoodsReciptController implements Initializable {
                 val++;
                 recpno.setText(val+"");
             }
-            DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
             Date d= new Date();
             recpdt.setText(dateformat.format(d));
+            
+            
+             stmnt = "SELECT Name FROM COMPANY";
+            Query = Database.GetPreparedStmt(stmnt);
+            executeQuery = Query.executeQuery();
+            ObservableList<String> comp = FXCollections.observableArrayList();
+            String cname;
+            while(executeQuery.next()){
+                cname = executeQuery.getString(1);
+                comp.add(cname);
+            }
+            fxcompname.setItems(comp);
         } catch (SQLException ex) {
            System.out.println("Execption in Goodsrecipt Initialize");
            // Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
