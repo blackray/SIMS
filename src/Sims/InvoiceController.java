@@ -42,17 +42,17 @@ public class InvoiceController implements Initializable{
     Label fxdate;
 @FXML
     Label fxtin;
-@FXML TableView<PurchaseOrderData> table;
-   
+@FXML TableView<InvoiceData> table;
+String expdate;   
 
 @FXML
     public void CustomerAction(ActionEvent ev){
         try {
-            String stmnt = "SELECT Address FROM CUSTOMER WHERE Name='"+customer.getValue()+"'";
+            String stmnt = "SELECT Address,Tin FROM CUSTOMER WHERE Name='"+customer.getValue()+"'";
             ResultSet Query = Database.Query(stmnt);
             if(Query.next()){
                 address.setText(Query.getString("Address"));
-                //fxtin.setText(Query.getString("TIN"));
+                fxtin.setText(Query.getString("Tin"));
                 stmnt="SELECT Batch FROM STOCK WHERE Product='"+product.getValue()+"'";
                 ResultSet q = Database.Query(stmnt);
                 ObservableList<String> prod = FXCollections.observableArrayList();
@@ -63,6 +63,10 @@ public class InvoiceController implements Initializable{
                     prod.add(pname);
                 }
                 batch.setItems(prod);
+                stmnt="SELECT Expiry FROM STOCK WHERE Batch='"+batch.getValue()+"'";
+                ResultSet p=Database.Query(stmnt);
+                expdate=p.getString("Expiry");
+                
             }else{
                 System.out.println("No Product Found");
             }
@@ -73,6 +77,13 @@ public class InvoiceController implements Initializable{
         Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
     }
        
+    }
+    @FXML
+    public void SubmitAction(ActionEvent ev){
+        ObservableList<InvoiceData> data=table.getItems();
+        
+        data.add(new InvoiceData(product.getValue(),batch.getValue()),expdate,free.getText(),qty.getText(),,,,,,,,);
+        
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

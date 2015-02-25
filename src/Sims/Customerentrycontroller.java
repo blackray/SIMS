@@ -31,6 +31,7 @@ public class Customerentrycontroller implements Initializable{
     @FXML private TextField place;
     @FXML private TextField phone;
     @FXML private AutoFillTextBox area ;
+    @FXML private TextField tin;
     
     @FXML protected void add(ActionEvent ev){
         String Name = name.getText();
@@ -38,6 +39,7 @@ public class Customerentrycontroller implements Initializable{
         String Place = place.getText();
         String Phone = phone.getText();
         String Area  = area.getText();
+        String Tin=tin.getText();
         
         MainDocumentController mc = Control.getInstance().getMainDocumentController();
         if(Name.equals("")){
@@ -53,16 +55,21 @@ public class Customerentrycontroller implements Initializable{
             mc.Setstatusmessage("Error : Area Can't be null");
             return;
         }
+        else if(Tin.equals("")){
+            mc.Setstatusmessage("Error : Tin Can't be null");
+            return;
+        }
         
         try{
-            String stmnt = "INSERT INTO CUSTOMER (Name,Address,Place,Phone,Area) "
-                    + "VALUES (?,?,?,?,?)";
+            String stmnt = "INSERT INTO CUSTOMER (Name,Address,Place,Phone,Area,Tin) "
+                    + "VALUES (?,?,?,?,?,?)";
             PreparedStatement updatestmnt = Database.GetPreparedStmt(stmnt);
             updatestmnt.setString(1, Name);
             updatestmnt.setString(2, Address);
             updatestmnt.setString(3, Place);
             updatestmnt.setString(4, Phone);
             updatestmnt.setString(5, Area);
+            updatestmnt.setString(6, Tin);
             int executeUpdate = updatestmnt.executeUpdate();
             System.out.println(executeUpdate+" Rows Changed");
             Control.getInstance().getMainDocumentController().Setstatusmessage("Update Success");

@@ -122,7 +122,7 @@ public class Database {
     private static void createCustomerDB() {
         System.out.println("Creating Customer Table");
         String str = "CREATE TABLE CUSTOMER "
-                + "(Name VARCHAR(20) NOT NULL PRIMARY KEY,Address VARCHAR(100) NOT NULL,Place VARCHAR(50) NOT NULL,Phone VARCHAR(20) NOT NULL,Area VARCHAR(20) NOT NULL)";
+                + "(Name VARCHAR(20) NOT NULL PRIMARY KEY,Address VARCHAR(100) NOT NULL,Place VARCHAR(50) NOT NULL,Phone VARCHAR(20) NOT NULL,Area VARCHAR(20) NOT NULL,Tin VARCHAR(20) NOT NULL)";
 
         Update(str);
     }
