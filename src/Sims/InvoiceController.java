@@ -43,7 +43,7 @@ public class InvoiceController implements Initializable{
 @FXML
     Label fxtin;
 @FXML TableView<InvoiceData> table;
-String expdate;   
+   
 
 @FXML
     public void CustomerAction(ActionEvent ev){
@@ -63,10 +63,6 @@ String expdate;
                     prod.add(pname);
                 }
                 batch.setItems(prod);
-                stmnt="SELECT Expiry FROM STOCK WHERE Batch='"+batch.getValue()+"'";
-                ResultSet p=Database.Query(stmnt);
-                expdate=p.getString("Expiry");
-                
             }else{
                 System.out.println("No Product Found");
             }
@@ -81,8 +77,7 @@ String expdate;
     @FXML
     public void SubmitAction(ActionEvent ev){
         ObservableList<InvoiceData> data=table.getItems();
-        
-        data.add(new InvoiceData(product.getValue(),batch.getValue()),expdate,free.getText(),qty.getText(),,,,,,,,);
+        data.add(new InvoiceData(product.getValue(),batch.getValue()));
         
     }
     @Override
