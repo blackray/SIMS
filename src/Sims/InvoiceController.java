@@ -43,7 +43,7 @@ public class InvoiceController implements Initializable{
 @FXML
     Label fxtin;
 @FXML TableView<InvoiceData> table;
-   
+ String expdate,PTR,PTS,mrp,Tax,Taxamt,Pdvalue,Mrpvalue,Rate;  
 
 @FXML
     public void CustomerAction(ActionEvent ev){
@@ -66,18 +66,40 @@ public class InvoiceController implements Initializable{
             }else{
                 System.out.println("No Product Found");
             }
-            
-        
+            stmnt="SELECT Expiry FROM STOCK WHERE Batch='"+batch.getValue()+"'";
+            ResultSet Q=Database.Query(stmnt);
+            expdate=Q.getString("Expiry");
+    calculation();
         } 
         catch (SQLException ex) {
         Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
     }
        
     }
+    public void calculation() throws SQLException{
+        
+        double Mrp,Ptr,Pts,temp,taxamt;
+       String stmnt = "SELECT MRP FROM STOCK WHERE Batch='"+batch.getValue()+"'";
+            ResultSet QB = Database.Query(stmnt);
+            mrp=QB.getString("MRP");
+            Mrp=Double.parseDouble(mrp);
+            temp=((Mrp/105)*100);
+            Ptr=(temp-((temp*20)/100));
+            Pts=(Ptr-((Ptr*10)/100));
+           PTR=Double.toString(Ptr);
+           PTS=Double.toString(Pts);
+           Tax="5%";
+           taxamt=((Mrp*4.76)/100);
+           Taxamt=Double.toString(taxamt);
+           Pdvalue="";
+           Mrpvalue="";
+           Rate="";
+    }
+    
     @FXML
     public void SubmitAction(ActionEvent ev){
         ObservableList<InvoiceData> data=table.getItems();
-        data.add(new InvoiceData(product.getValue(),batch.getValue()));
+        data.add(new InvoiceData(product.getValue(),batch.getValue(),expdate,free.getText(),qty.getText(),Rate,PTR,PTS,mrp,Tax,Taxamt,Pdvalue,Mrpvalue));
         
     }
     @Override
