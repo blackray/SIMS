@@ -111,7 +111,7 @@ public class GoodsReciptController implements Initializable {
                 val++;
                 recpno.setText(val+"");
             }
-            DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
             Date d= new Date();
             recpdt.setText(dateformat.format(d));
         } catch (SQLException ex) {
