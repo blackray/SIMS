@@ -95,9 +95,10 @@ public class InvoiceController implements Initializable {
     }
     @FXML
     public void calculation(){
-
+        /*
         double Mrp=0, Ptr, Pts, temp, taxamt;
-        String stmnt = "SELECT MRP,Expiry FROM STOCK WHERE Batch=" + batch.getValue();
+        String stmnt = "SELECT MRP,Expiry FROM STOCK WHERE Batch=" + batch.getValue()+
+                " AND Product='"+product.getValue()+"'";
         ResultSet QB = Database.Query(stmnt);
         Date d = null;
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
@@ -122,15 +123,23 @@ public class InvoiceController implements Initializable {
         Rate = "";
         mrp = Mrp+"";
         System.out.println(df.format(d));
+                */
+        Invoiceproductcalculator ipc = new Invoiceproductcalculator();
+        String pname = product.getValue();
+        String bat = batch.getValue();
+        Double Qty = Double.parseDouble(qty.getText());
+        Double Free= Double.parseDouble(free.getText());
+        InvoiceProductdata pd = ipc.calculate(product.getValue(),batch.getValue(), Qty,Free);
         ObservableList<InvoiceData> data = table.getItems();
-        data.add(new InvoiceData(product.getValue(), batch.getValue(),
-                df.format(d), free.getText(),qty.getText(), Rate, PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
+        data.add(new InvoiceData(pd.getName(), pd.getBatch(),
+                pd.getExpdat(),pd.getFree(),pd.getBilled(),pd.getPtr(),pd.getPts(),
+                pd.getMrp(),pd.getTax(),pd.getTaxamt(),pd.getPdvalue(),pd.getMrpvalue()));
     }
 
     @FXML
     public void SubmitAction(ActionEvent ev) {
         ObservableList<InvoiceData> data = table.getItems();
-        data.add(new InvoiceData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), Rate, PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
+        data.add(new InvoiceData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
 
     }
 

@@ -18,7 +18,6 @@ public class InvoiceData {
     private SimpleStringProperty Expdat =new SimpleStringProperty("");
     private SimpleStringProperty Free =new SimpleStringProperty("");
     private SimpleStringProperty Billed =new SimpleStringProperty("");
-    private SimpleStringProperty Rate =new SimpleStringProperty("");
     private SimpleStringProperty Ptr =new SimpleStringProperty("");
     private SimpleStringProperty Pts =new SimpleStringProperty("");
     private SimpleStringProperty Mrp =new SimpleStringProperty("");
@@ -27,17 +26,16 @@ public class InvoiceData {
     private SimpleStringProperty Pdvalue =new SimpleStringProperty("");
     private SimpleStringProperty Mrpvalue =new SimpleStringProperty("");
     public InvoiceData(){
-        this("","","","","","","","","","","","","");
+        this("","","","","","","","","","","","");
     }
     public InvoiceData(String product,String batch,String expdat,
-            String free,String billed,String rate,String ptr,String pts,
+            String free,String billed,String ptr,String pts,
             String mrp,String tax,String taxamt,String pdvalue,String mrpvalue ){
         setProduct(product);
         setBatch(batch);
         setExpdat(expdat);
         setFree(free);
         setBilled(billed);
-        setRate(rate);
         setPtr(ptr);
         setPts(pts);
         setMrp(mrp);
@@ -77,12 +75,6 @@ public class InvoiceData {
     }
     public String getBilled(){
         return Billed.get();
-    }
-     public void setRate(String rate){
-        Rate.set(rate);
-    }
-    public String getRate(){
-        return Rate.get();
     }
      public void setPtr(String ptr){
         Ptr.set(ptr);

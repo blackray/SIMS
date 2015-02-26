@@ -127,11 +127,6 @@
                   <PropertyValueFactory property="Billed" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Rate">
-                    <cellValueFactory>
-                  <PropertyValueFactory property="Rate" />
-              </cellValueFactory>
-          </TableColumn>
             <TableColumn prefWidth="75.0" text="PTR">
                     <cellValueFactory>
                   <PropertyValueFactory property="Ptr" />
