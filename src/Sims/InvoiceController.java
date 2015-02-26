@@ -97,11 +97,14 @@ public class InvoiceController implements Initializable {
     public void calculation(){
 
         double Mrp=0, Ptr, Pts, temp, taxamt;
-        String stmnt = "SELECT MRP FROM STOCK WHERE Batch=" + batch.getValue();
+        String stmnt = "SELECT MRP,Expiry FROM STOCK WHERE Batch=" + batch.getValue();
         ResultSet QB = Database.Query(stmnt);
+        Date d = null;
+        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
         try {
             while(QB.next()){
                 Mrp = QB.getDouble("MRP");
+                d = QB.getDate("Expiry");
             }
         } catch (SQLException ex) {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
@@ -118,9 +121,10 @@ public class InvoiceController implements Initializable {
         Mrpvalue = "";
         Rate = "";
         mrp = Mrp+"";
+        System.out.println(df.format(d));
         ObservableList<InvoiceData> data = table.getItems();
         data.add(new InvoiceData(product.getValue(), batch.getValue(),
-                "", free.getText(),qty.getText(), Rate, PTR, PTR, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
+                df.format(d), free.getText(),qty.getText(), Rate, PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
     }
 
     @FXML

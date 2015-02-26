@@ -34,7 +34,7 @@ public class InvoiceData {
             String mrp,String tax,String taxamt,String pdvalue,String mrpvalue ){
         setProduct(product);
         setBatch(batch);
-        setExp(expdat);
+        setExpdat(expdat);
         setFree(free);
         setBilled(billed);
         setRate(rate);
@@ -60,10 +60,10 @@ public class InvoiceData {
     public String getBatch(){
         return Batch.get();
     }
-    public void setExp(String expdat){
+    public void setExpdat(String expdat){
         Expdat.set(expdat);
     }
-    public String getExp(){
+    public String getExpdat(){
         return Expdat.get();
     }
      public void setFree(String free){
