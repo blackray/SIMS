@@ -95,6 +95,11 @@
                   <Insets left="100.0" />
                </HBox.margin>
             </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#Print" text="Print" />
+               </children>
+            </HBox>
          </children>
       </HBox>
       <TableView fx:id="table" editable="true" prefHeight="249.0" prefWidth="1366.0" VBox.vgrow="ALWAYS">

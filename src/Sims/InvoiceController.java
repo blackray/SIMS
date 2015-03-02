@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.jasper.jaspercontroller;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -141,6 +143,23 @@ public class InvoiceController implements Initializable {
         ObservableList<InvoiceData> data = table.getItems();
         data.add(new InvoiceData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
 
+    }
+    @FXML
+    public void Print(ActionEvent ev){
+        jaspercontroller jc = new jaspercontroller();
+        String[] ColumnNames={"SL","ITEM","MRP"};
+        ObservableList<InvoiceData> id = table.getItems();
+        int i =0;
+        int size = id.size();
+        String[][] Data = new String[size][3];
+        for(InvoiceData idata : id){
+            Data[i][0]=i+"";
+            Data[i][1]=idata.getProduct();
+            Data[i][2]=idata.getBilled();
+            i++;
+        }
+        jc.printInvoice(ColumnNames, Data);
+  
     }
 
     @Override
