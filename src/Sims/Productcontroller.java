@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,19 +39,23 @@ public class Productcontroller implements Initializable {
 
     @FXML
     private void add(ActionEvent ev) {
+        Messagebox mb = Messagebox.getInstance();
         String product = proname.getText();
         MainDocumentController mc = Control.getInstance().getMainDocumentController();
         if (product.equals("")) {
+            mb.messageerror("Enter Product Name");
             mc.Setstatusmessage("Error : Enter Product Name");
             return;
         }
         String company = compname.getValue();
-        if (company.equals("")) {
+        if (company == null) {
+            mb.messageerror("Enter Company Name");
             mc.Setstatusmessage("Error : Select Company");
             return;
         }
         String generic = genname.getValue();
-        if (generic.equals("")) {
+        if (generic == null) {
+            mb.messageerror("Enter Generic Name");
             mc.Setstatusmessage("Error : Select Generic");
             return;
         }
@@ -65,9 +70,11 @@ public class Productcontroller implements Initializable {
                 mc.Setstatusmessage("Update Success");
             }
             if (executeUpdate == 0) {
+                mb.messageerror("Database Update Failed");
                 mc.Setstatusmessage("Update Failed");
             }
         } catch (SQLException ex) {
+            mb.message("Database Error",ex.getMessage());
             mc.Setstatusmessage(ex.getMessage());
         }
     }

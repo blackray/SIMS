@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,6 +34,7 @@ public class Areacontroller implements Initializable {
     @FXML
     private void AddAction(ActionEvent ev) {
         if (area_tf.getText().equals("")) {
+            Messagebox.getInstance().message("Error", "Area Can't be null");
             Control.getInstance().getMainDocumentController().Setstatusmessage("Error : Area Cant be Null");
             return;
         }

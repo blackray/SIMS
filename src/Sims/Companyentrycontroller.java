@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -33,43 +34,51 @@ public class Companyentrycontroller implements Initializable{
     @FXML private void add(ActionEvent ev){
         MainDocumentController mc = Control.getInstance().getMainDocumentController();
         String Name = name.getText();
+        Messagebox mb = Messagebox.getInstance();
         if(Name.equals("")){
+            mb.messageerror("Update Failed : Enter Name");
             mc.Setstatusmessage("Update Failed : Enter Name");
             return;
         }
         
         String Area = area.getText();
         if(Area.equals("")){
+            mb.messageerror("Update Failed : Enter Address");
             mc.Setstatusmessage("Update Failed : Enter Address");
             return;
         }
         
         String Place = place.getText();
         if(Place.equals("")){
+            mb.messageerror("Update Failed : Enter Place");
             mc.Setstatusmessage("Update Failed : Enter Place");
             return;
         }
         
         String Phone = phone.getText();
         if(Phone.equals("")){
+            mb.messageerror("Update Failed : Enter Phone Number");
             mc.Setstatusmessage("Update Failed : Enter Phone No");
             return;
         }
         
         String DL = dl.getText();
         if(DL.equals("")){
+            mb.messageerror("Update Failed : Enter DL No");
             mc.Setstatusmessage("Update Failed : Enter DL No");
             return;
         }
         
         String TIN = tin.getText();
         if(TIN.equals("")){
+            mb.messageerror("Update Failed : Enter TIN No");
             mc.Setstatusmessage("Update Failed : Enter TIN No");
             return;
         }
         
         String CST = cst.getText();
         if(CST.equals("")){
+            mb.messageerror("Update Failed : Enter CST No");
             mc.Setstatusmessage("Update Failed : Enter CST No");
             return;
         }
@@ -97,6 +106,7 @@ public class Companyentrycontroller implements Initializable{
             cst.clear();
         } catch (SQLException ex) {
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+            mb.message("Database Entry Error", ex.getMessage());
         }
     }
     @Override

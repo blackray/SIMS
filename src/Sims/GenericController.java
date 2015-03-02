@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +37,9 @@ public class GenericController implements Initializable{
         Control ctrl = Control.getInstance();
         MainDocumentController mc =ctrl.getMainDocumentController();
         String n = entry.getText();
+        Messagebox mb = Messagebox.getInstance();
         if(n.equals("")){
+            mb.messageerror("Generic Name Can't be blank");
             mc.Setstatusmessage("Error : Generic Name Can't be Null");
             return;
         }
@@ -53,6 +56,7 @@ public class GenericController implements Initializable{
             data.add(new GenericNames(c,entry.getText()));
             entry.clear();
         }catch(SQLException ex){
+            mb.message("Database Error", ex.getMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }

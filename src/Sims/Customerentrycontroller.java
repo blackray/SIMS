@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,21 +42,27 @@ public class Customerentrycontroller implements Initializable{
         String Area  = area.getText();
         String Tin=tin.getText();
         
+        Messagebox mb = Messagebox.getInstance();
         MainDocumentController mc = Control.getInstance().getMainDocumentController();
         if(Name.equals("")){
+            mb.messageerror("Name Can't be blank");
             mc.Setstatusmessage("Error : Name Can't be null");
             return;
         }else if(Address.equals("")){
+            mb.messageerror("Address can't be blank");
             mc.Setstatusmessage("Error : Address Can't be null");
             return;
         }else if(Place.equals("")){
+            mb.messageerror("Place Can't be blank");
             mc.Setstatusmessage("Error : Place Can't be null");
             return;
         }else if(Area.equals("")){
+            mb.messageerror("Area Can't be blank");
             mc.Setstatusmessage("Error : Area Can't be null");
             return;
         }
         else if(Tin.equals("")){
+            mb.messageerror("Tin Can't be null");
             mc.Setstatusmessage("Error : Tin Can't be null");
             return;
         }
@@ -74,6 +81,7 @@ public class Customerentrycontroller implements Initializable{
             System.out.println(executeUpdate+" Rows Changed");
             Control.getInstance().getMainDocumentController().Setstatusmessage("Update Success");
         }catch(SQLException ex){
+            mb.message("Database Entry Error", ex.getLocalizedMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }

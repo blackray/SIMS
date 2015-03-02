@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -101,6 +102,7 @@ public class GoodsReciptController implements Initializable {
             System.out.println(executeUpdate + " Row Changed");
             data.add(new Goodsreciptdata(proname, Brate,"", Mrp, Batch,date.toString(), Qty, Free));
         } catch (SQLException ex) {
+            Messagebox.getInstance().message("Error", ex.getMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }
