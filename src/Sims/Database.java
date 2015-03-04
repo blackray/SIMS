@@ -235,8 +235,14 @@ public class Database {
     public static boolean connectmysql(String address, String db, String user, String pass) {
         String URL = "jdbc:mysql://" + address + "/" + db;
         try {
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
             conn = DriverManager.getConnection(URL, user, pass);
         } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
             return false;
         }
         return true;
