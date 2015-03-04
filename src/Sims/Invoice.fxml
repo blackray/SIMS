@@ -102,67 +102,67 @@
             </HBox>
          </children>
       </HBox>
-      <TableView fx:id="table" editable="true" prefHeight="249.0" prefWidth="1366.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="table" editable="true" prefHeight="249.0" prefWidth="1366.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
          <columns>
-            <TableColumn prefWidth="177.0" text="Product Name">
+            <TableColumn fx:id="productcell" editable="true" onEditCommit="#productcellcommit" prefWidth="177.0" text="Product Name">
                 <cellValueFactory>
                   <PropertyValueFactory property="Product" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Batch">
+            <TableColumn editable="true" prefWidth="75.0" text="Batch">
                    <cellValueFactory>
                   <PropertyValueFactory property="Batch" />
               </cellValueFactory>
           </TableColumn> 
-            <TableColumn prefWidth="75.0" text="Exp Date">
+            <TableColumn editable="true" prefWidth="75.0" text="Exp Date">
                     <cellValueFactory>
                   <PropertyValueFactory property="Expdat" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Free Qty">
+            <TableColumn editable="true" prefWidth="75.0" text="Free Qty">
                     <cellValueFactory>
                   <PropertyValueFactory property="Free" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Billed Qty">
+            <TableColumn editable="true" prefWidth="75.0" text="Billed Qty">
                     <cellValueFactory>
                   <PropertyValueFactory property="Billed" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="PTR">
+            <TableColumn editable="true" prefWidth="75.0" text="PTR">
                     <cellValueFactory>
                   <PropertyValueFactory property="Ptr" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="PTS">
+            <TableColumn editable="true" prefWidth="75.0" text="PTS">
                     <cellValueFactory>
                   <PropertyValueFactory property="Pts" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="MRP">
+            <TableColumn editable="true" prefWidth="75.0" text="MRP">
                     <cellValueFactory>
                   <PropertyValueFactory property="Mrp" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Tax %">
+            <TableColumn editable="true" prefWidth="75.0" text="Tax %">
                     <cellValueFactory>
                   <PropertyValueFactory property="Tax" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Tax Amt">
+            <TableColumn editable="true" prefWidth="75.0" text="Tax Amt">
                     <cellValueFactory>
                   <PropertyValueFactory property="Taxamt" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="Product Value">
+            <TableColumn editable="true" prefWidth="75.0" text="Product Value">
                     <cellValueFactory>
                   <PropertyValueFactory property="Pdvalue" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn prefWidth="75.0" text="MRP Value">
+            <TableColumn editable="true" prefWidth="75.0" text="MRP Value">
                     <cellValueFactory>
                   <PropertyValueFactory property="Mrpvalue" />
               </cellValueFactory>

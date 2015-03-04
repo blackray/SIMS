@@ -6,6 +6,8 @@
 package Sims.com.jasper;
 
 import java.util.HashMap;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -31,10 +33,11 @@ public class jaspercontroller {
             JasperCompileManager.compileReportToFile("report1.jrxml");
             jasperprint = JasperFillManager.fillReport("report name.jasper", new HashMap(),
                     new JRTableModelDataSource(tableModel));
-JasperExportManager.exportReportToPdfFile(jasperprint,
-                  "invoice.pdf");            
-//JasperViewer jasperviewer = new JasperViewer(jasperprint);
-            //jasperviewer.setVisible(true);
+            //JasperExportManager.exportReportToPdfFile(jasperprint,
+              //    "invoice.pdf");            
+            JasperViewer jasperviewer = new JasperViewer(jasperprint,false);
+            jasperviewer.setVisible(true);
+            jasperviewer.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         } catch (JRException ex) {
             System.out.println(ex.getMessage());
         }

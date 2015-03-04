@@ -23,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -34,6 +35,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InvoiceController implements Initializable {
 
+    @FXML
+    private TableColumn productcell;
     @FXML
     private ComboBox<String> customer;
     @FXML
@@ -142,7 +145,12 @@ public class InvoiceController implements Initializable {
     public void SubmitAction(ActionEvent ev) {
         ObservableList<InvoiceData> data = table.getItems();
         data.add(new InvoiceData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
-
+        
+        
+    }
+    @FXML 
+    public void productcellcommit(ActionEvent ev){
+        System.out.println("dfghj");
     }
     @FXML
     public void Print(ActionEvent ev){
@@ -153,7 +161,7 @@ public class InvoiceController implements Initializable {
         int size = id.size();
         String[][] Data = new String[size][3];
         for(InvoiceData idata : id){
-            Data[i][0]=i+"";
+            Data[i][0]=(i+1)+"";
             Data[i][1]=idata.getProduct();
             Data[i][2]=idata.getBilled();
             i++;
@@ -164,7 +172,8 @@ public class InvoiceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        table.setEditable(true);
+        productcell.setEditable(true);
         DateFormat d = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
         fxdate.setText(d.format(date));
