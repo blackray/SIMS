@@ -163,7 +163,7 @@ public class InvoiceController implements Initializable {
         for(InvoiceData idata : id){
             Data[i][0]=(i+1)+"";
             Data[i][1]=idata.getProduct();
-            Data[i][2]=idata.getBilled();
+            Data[i][2]=idata.getMrp();
             i++;
         }
         jc.printInvoice(ColumnNames, Data);

@@ -36,13 +36,15 @@ public class Invoiceproductcalculator {
         Double temp = ((Mrp / 105) * 100);
         Double Ptr = (temp - ((temp * 20) / 100));
         Double Pts = (Ptr - ((Ptr * 10) / 100));
+        Double Mrpvalue=qty*Mrp;
+        Double Pdvalue=qty*Pts;
         pd.setPtr(Double.toString(Ptr));
         pd.setPts(Double.toString(Pts));
         pd.setTax("5%");
-        double taxamt = ((Mrp * 4.76) / 100);
+        double taxamt = qty*((Mrp * 4.76) / 100);
         pd.setTaxamt(Double.toString(taxamt));
-        pd.setPdvalue("");
-        pd.setMrpvalue("");
+        pd.setPdvalue(Double.toString(Pdvalue));
+        pd.setMrpvalue(Double.toString(Mrpvalue));
         pd.setMrp(Mrp+"");
         pd.setExpdat(df.format(d));
         pd.setBilled(qty+"");
