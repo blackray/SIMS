@@ -150,6 +150,7 @@ public class Database {
                 + "(Product VARCHAR(20) NOT NULL,"
                 + "Batch INTEGER NOT NULL,"
                 + "MRP REAL NOT NULL,"
+                + "Brate REAL NOT NULL,"
                 + "Expiry DATE NOT NULL,"
                 + "Quantity INTEGER,"
                 + "Free INTEGER)";

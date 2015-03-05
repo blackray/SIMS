@@ -14,18 +14,16 @@ import javafx.beans.property.SimpleStringProperty;
 public class Goodsreciptdata {
     private SimpleStringProperty Product = new SimpleStringProperty("");
     private SimpleStringProperty B_Rate = new SimpleStringProperty("");
-    private SimpleStringProperty S_Rate = new SimpleStringProperty("");
     private SimpleStringProperty MRP = new SimpleStringProperty("");
     private SimpleStringProperty Batch = new SimpleStringProperty("");
     private SimpleStringProperty Expiry = new SimpleStringProperty("");
     private SimpleStringProperty Qty = new SimpleStringProperty("");
     private SimpleStringProperty Free = new SimpleStringProperty("");
     
-    public Goodsreciptdata(String pro,String Brate,String Srate,String mrp,
+    public Goodsreciptdata(String pro,String Brate,String mrp,
             String batch,String expiry,String Qty,String Free){
         setProduct(pro);
         setB_Rate(Brate);
-        setS_Rate(Srate);
         setMRP(mrp);
         setBatch(batch);
         setExpiry(expiry);
@@ -41,9 +39,7 @@ public class Goodsreciptdata {
         this.B_Rate.set(B_Rate);
     }
 
-    public void setS_Rate(String S_Rate) {
-        this.S_Rate.set(S_Rate);
-    }
+   
 
     public void setMRP(String MRP) {
         this.MRP.set(MRP);
@@ -73,9 +69,7 @@ public class Goodsreciptdata {
         return B_Rate.get();
     }
 
-    public String getS_Rate() {
-        return S_Rate.get();
-    }
+   
 
     public String getMRP() {
         return MRP.get();

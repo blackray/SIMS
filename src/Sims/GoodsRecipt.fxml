@@ -77,11 +77,6 @@
                   <PropertyValueFactory property="B_Rate" />
               </cellValueFactory>
           </TableColumn>
-            <TableColumn fx:id="S_Rate" prefWidth="60.7314453125" text="S_Rate">
-            <cellValueFactory>
-                  <PropertyValueFactory property="S_Rate" />
-              </cellValueFactory>
-          </TableColumn>
             <TableColumn fx:id="MRP" prefWidth="55.68658447265625" text="MRP">
             <cellValueFactory>
                   <PropertyValueFactory property="MRP" />
@@ -116,14 +111,7 @@
       <HBox alignment="CENTER" prefHeight="6.0" prefWidth="600.0" spacing="1.0">
          <children>
             <Label prefHeight="17.0" prefWidth="53.0" text="Product" />
-            <TextField fx:id="product" prefHeight="25.0" prefWidth="136.0" HBox.hgrow="ALWAYS">
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
+            <ComboBox fx:id="product" editable="true" onAction="#CompanyComboboxaction" prefHeight="25.0" prefWidth="160.0" promptText="Product name" />
             <Label text="Brate">
                <HBox.margin>
                   <Insets right="5.0" />

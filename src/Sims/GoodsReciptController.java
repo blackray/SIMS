@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import static Sims.Database.GetPreparedStmt;
 import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
 import java.util.Date;
@@ -49,7 +50,7 @@ public class GoodsReciptController implements Initializable {
     @FXML
     private DatePicker orddt;
     @FXML
-    private TextField product;
+    private ComboBox<String> product;
     @FXML
     private TextField mrp;
     @FXML
@@ -73,7 +74,7 @@ public class GoodsReciptController implements Initializable {
 
     @FXML
     private void add(ActionEvent ev) {
-        String proname = product.getText();
+        String proname = product.getValue();
         String Recptno = recpno.getText();
         String recdate = recpdt.getText();
         String Mrp = mrp.getText();
@@ -90,17 +91,18 @@ public class GoodsReciptController implements Initializable {
 
         ObservableList<Goodsreciptdata> data = table.getItems();
         try {
-            String stmt = "INSERT INTO STOCK (Product,Batch,MRP,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?)";
+            String stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
             PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
             updatestock.setString(1, proname);
             updatestock.setString(2, Batch);
             updatestock.setDouble(3, dmrp);
-            updatestock.setString(4, date.toString());
-            updatestock.setDouble(5, dqty);
-            updatestock.setDouble(6, dfree);
+            updatestock.setDouble(4, dbrate);
+            updatestock.setString(5, date.toString());
+            updatestock.setDouble(6, dqty);
+            updatestock.setDouble(7, dfree);
             int executeUpdate = updatestock.executeUpdate();
             System.out.println(executeUpdate + " Row Changed");
-            data.add(new Goodsreciptdata(proname, Brate,"", Mrp, Batch,date.toString(), Qty, Free));
+            data.add(new Goodsreciptdata(proname, Brate,Mrp, Batch,date.toString(), Qty, Free));
         } catch (SQLException ex) {
             Messagebox.getInstance().message("Error", ex.getMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
@@ -163,6 +165,16 @@ public class GoodsReciptController implements Initializable {
                 comp.add(cname);
             }
             fxcompname.setItems(comp);
+            stmnt="SELECT Name FROM PRODUCT WHERE Company='"+fxcompname.getValue()+"'";
+                ResultSet q = Database.Query(stmnt);
+                ObservableList<String> prod = FXCollections.observableArrayList();
+                String pname;
+                while(q.next()){
+                    pname = q.getString("Name");
+                    System.out.println(pname);
+                    prod.add(pname);
+                }
+                product.setItems(prod);
         } catch (SQLException ex) {
            System.out.println("Execption in Goodsrecipt Initialize");
            // Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
