@@ -33,8 +33,8 @@
 	<title>
 		<band height="31" splitType="Stretch">
 			<staticText>
-				<reportElement x="214" y="0" width="116" height="30" uuid="b5babae4-79f2-492b-9160-88ce353f5225"/>
-				<textElement>
+				<reportElement x="199" y="0" width="152" height="31" uuid="b5babae4-79f2-492b-9160-88ce353f5225"/>
+				<textElement textAlignment="Center">
 					<font size="24" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[INVOICE]]></text>
@@ -48,7 +48,7 @@
 		<band height="34" splitType="Stretch">
 			<staticText>
 				<reportElement x="26" y="7" width="100" height="20" uuid="4ac67493-a6e1-46b4-8d01-0f9d169cefae"/>
-				<text><![CDATA[SL]]></text>
+				<text><![CDATA[SL No.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="214" y="7" width="100" height="20" uuid="124397de-5c42-437d-a03d-46c5d825326d"/>

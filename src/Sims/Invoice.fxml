@@ -18,49 +18,76 @@
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Label>
                   <ComboBox fx:id="customer" editable="true" onAction="#CustomerAction" prefHeight="25.0" prefWidth="160.0" promptText="Customer" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label text="Address : " />
-                  <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="163.7822265625" HBox.hgrow="ALWAYS" />
+                  <Label text="Address : ">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="193.7822265625" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Text>
                </children>
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="309.0">
                      <children>
-                        <Label prefWidth="40.0" text="DATE">
+                        <Label prefWidth="40.0" text="Date:">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="fxdate" prefWidth="100.0">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </Label>
-                        <Label prefWidth="70.0" text="Invoice No">
+                        <Label prefWidth="70.0" text="Invoice No:">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                         <Label fx:id="fxinvoiceno" prefWidth="70.0">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefWidth="70.0" text="TIN" textAlignment="RIGHT" />
-                        <Label fx:id="fxtin" prefWidth="70.0">
+                        <Label prefWidth="70.0" text="TIN" textAlignment="RIGHT">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="fxtin" prefHeight="17.0" prefWidth="71.0">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
                         </Label>
                      </children>
                   </HBox>
@@ -70,34 +97,40 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
-            <Label prefHeight="17.0" prefWidth="61.0" text="PRODUCT">
+            <Label prefHeight="15.0" prefWidth="80.0" text="Product:">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="product" editable="true" onAction="#Productcomboboxaction" prefWidth="160.0" promptText="Product name" />
-            <Label text="Batch">
+            <ComboBox fx:id="product" editable="true" onAction="#Productcomboboxaction" prefHeight="25.0" prefWidth="160.0" promptText="Product name" />
+            <Label text="Batch:">
                <HBox.margin>
-                  <Insets left="2.0" />
+                  <Insets left="5.0" />
                </HBox.margin>
             </Label>
-            <ComboBox fx:id="batch" editable="true" layoutX="446.0" layoutY="23.0" onAction="#CustomerAction" prefWidth="160.0" promptText="Batch number" />
-            <Label text="Quantity" />
-            <TextField fx:id="qty" prefHeight="25.0" prefWidth="86.0">
+            <ComboBox fx:id="batch" editable="true" layoutX="446.0" layoutY="23.0" onAction="#CustomerAction" prefHeight="25.0" prefWidth="160.0" promptText="Batch number" />
+            <Label text="Quantity:">
+               <padding>
+                  <Insets left="5.0" />
+               </padding></Label>
+            <TextField fx:id="qty" prefHeight="25.0" prefWidth="85.0">
                <HBox.margin>
                   <Insets left="4.0" />
                </HBox.margin>
             </TextField>
-            <Label text="Free" />
-            <TextField fx:id="free" prefHeight="25.0" prefWidth="97.0" />
-            <Button mnemonicParsing="false" onAction="#calculation" text="SUBMIT">
+            <Label text="Free:">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin></Label>
+            <TextField fx:id="free" prefHeight="25.0" prefWidth="85.0" />
+            <Button mnemonicParsing="false" onAction="#calculation" prefWidth="60.0" text="SUBMIT">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
             </Button>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" onAction="#Print" text="Print" />
+                  <Button mnemonicParsing="false" onAction="#Print" prefWidth="60.0" text="Print" />
                </children>
             </HBox>
          </children>
@@ -169,15 +202,23 @@
           </TableColumn>
          </columns>
       </TableView>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="57.0" prefWidth="1366.0">
+      <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="1366.0">
          <children>
-            <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="TOTAL:" textAlignment="RIGHT">
+            <Label alignment="CENTER" prefHeight="65.0" prefWidth="116.0" text="TOTAL:" textAlignment="CENTER">
                <font>
-                  <Font name="Aparajita" size="36.0" />
+                  <Font name="Arial Black" size="24.0" />
                </font>
             </Label>
-            <TextField prefHeight="58.0" prefWidth="116.0" />
-            <TextField layoutX="1260.0" layoutY="10.0" prefHeight="58.0" prefWidth="116.0" />
+            <Label fx:id="Tpvalue" layoutX="10.0" layoutY="10.0" prefHeight="65.0" prefWidth="116.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="Tmvalue" layoutX="10.0" layoutY="10.0" prefHeight="65.0" prefWidth="116.0">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
    </children>

@@ -34,6 +34,9 @@ import javax.swing.table.DefaultTableModel;
  * @author jesuit
  */
 public class InvoiceController implements Initializable {
+    
+    Double tpdvalue;
+    Double tmvalue;
 
     @FXML
     private TableColumn productcell;
@@ -53,6 +56,8 @@ public class InvoiceController implements Initializable {
     private ComboBox<String> batch;
     @FXML
     Label fxdate;
+    @FXML Label Tpvalue;
+    @FXML Label Tmvalue;
     @FXML
     Label fxtin;
     @FXML
@@ -139,12 +144,23 @@ public class InvoiceController implements Initializable {
         data.add(new InvoiceData(pd.getName(), pd.getBatch(),
                 pd.getExpdat(),pd.getFree(),pd.getBilled(),pd.getPtr(),pd.getPts(),
                 pd.getMrp(),pd.getTax(),pd.getTaxamt(),pd.getPdvalue(),pd.getMrpvalue()));
+        
+        tpdvalue=(tpdvalue+(Double.parseDouble(pd.getPdvalue())));
+        tpdvalue=Math.round(100*tpdvalue)/100d;
+        Tpvalue.setText(tpdvalue+"");
+        tmvalue=(tmvalue+(Double.parseDouble(pd.getMrpvalue())));
+        tmvalue=Math.round(100*tmvalue)/100d;
+        Tmvalue.setText(tmvalue+"");
+        
     }
 
     @FXML
     public void SubmitAction(ActionEvent ev) {
         ObservableList<InvoiceData> data = table.getItems();
         data.add(new InvoiceData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
+        
+        
+        
         
         
     }
@@ -172,6 +188,8 @@ public class InvoiceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        tpdvalue =0.0;
+        tmvalue=0.0;
         table.setEditable(true);
         productcell.setEditable(true);
         DateFormat d = new SimpleDateFormat("dd-MM-yyyy");

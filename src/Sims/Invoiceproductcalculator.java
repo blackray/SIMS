@@ -25,6 +25,7 @@ public class Invoiceproductcalculator {
         Date d = null;
         Double Mrp=0.0;
         DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        
         try {
             while(QB.next()){
                 Mrp = QB.getDouble("MRP");
@@ -33,15 +34,20 @@ public class Invoiceproductcalculator {
         } catch (SQLException ex) {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         Double temp = ((Mrp / 105) * 100);
         Double Ptr = (temp - ((temp * 20) / 100));
+        Ptr=Math.round(100*Ptr)/100d;
         Double Pts = (Ptr - ((Ptr * 10) / 100));
+        Pts=Math.round(100*Pts)/100d;
         Double Mrpvalue=qty*Mrp;
         Double Pdvalue=qty*Pts;
+        Pdvalue=Math.round(100*Pdvalue)/100d;
         pd.setPtr(Double.toString(Ptr));
         pd.setPts(Double.toString(Pts));
         pd.setTax("5%");
         double taxamt = qty*((Mrp * 4.76) / 100);
+        taxamt=Math.round(100*taxamt)/100d;
         pd.setTaxamt(Double.toString(taxamt));
         pd.setPdvalue(Double.toString(Pdvalue));
         pd.setMrpvalue(Double.toString(Mrpvalue));
