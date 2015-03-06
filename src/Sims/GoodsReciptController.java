@@ -122,10 +122,11 @@ public class GoodsReciptController implements Initializable {
                 ObservableList<String> prod = FXCollections.observableArrayList();
                 String pname;
                 while(q.next()){
-                    pname = q.getString("Name");
+                    pname = q.getString(1);
                     System.out.println(pname);
                     prod.add(pname);
                 }
+                product.setItems(prod);
             }else{
                 System.out.println("No Company Found");
             }
