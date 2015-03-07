@@ -145,22 +145,31 @@ public class InvoiceController implements Initializable {
         
     }
 
-    @FXML
-    public void SubmitAction(ActionEvent ev) {
-        ObservableList<InvoiceData> data = table.getItems();
-        data.add(new InvoiceData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
-        
-        
-        
-        
-        
-    }
     @FXML 
     public void productcellcommit(ActionEvent ev){
         System.out.println("dfghj");
     }
     @FXML
     public void Print(ActionEvent ev){
+        //Update INVOICE Database
+        int invoiceno = Integer.parseInt(fxinvoiceno.getText());
+        
+        String stmnt = "INSERT INTO INVOICE VALUES(?,?,?,?,?)";
+        PreparedStatement pstmnt = Database.GetPreparedStmt(stmnt);
+        DateFormat fd = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = new Date();
+        try {
+            pstmnt.setInt(1, invoiceno);
+            pstmnt.setString(2, customer.getValue());
+            pstmnt.setString(3,fd.format(d));
+            pstmnt.setDouble(4,Double.parseDouble(Tpvalue.getText()));
+            pstmnt.setDouble(5,Double.parseDouble(Tmvalue.getText()));
+            int executeUpdate = pstmnt.executeUpdate();
+            System.out.println(executeUpdate+" Row Changed");
+        } catch (SQLException ex) {
+            Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Printing Using Jasper
         jaspercontroller jc = new jaspercontroller();
         String[] ColumnNames={"SL","ITEM","MRP"};
         ObservableList<InvoiceData> id = table.getItems();

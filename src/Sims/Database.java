@@ -199,6 +199,8 @@ public class Database {
                 +"(INVOICENO INTEGER NOT NULL PRIMARY KEY,"
                 +"CNAME VARCHAR(20) NOT NULL,"
                 +"INVOICEDATE DATE,"
+                +"PDVALUE REAL,"
+                +"MRPVALUE REAL,"
                 +"FOREIGN KEY(CNAME) REFERENCES CUSTOMER(Name))";
         Update(str);
     }
