@@ -10,7 +10,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.GoodsReciptController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="113.0" prefWidth="1366.0">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -33,7 +33,17 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                <children>
-                  <ComboBox fx:id="fxcompname" onAction="#CompanyComboboxaction" prefHeight="25.0" prefWidth="136.0" promptText="Company" VBox.vgrow="ALWAYS" />
+                  <Label text="Company:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="fxcompname" onAction="#CompanyComboboxaction" prefHeight="43.0" prefWidth="155.0" promptText="Company" VBox.vgrow="ALWAYS" />
+                  <Label text="Address:">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
                   <Text fx:id="fxaddress" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="501.7294921875" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
@@ -62,6 +72,53 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="6.0" prefWidth="600.0" spacing="1.0">
+         <children>
+            <Label prefHeight="17.0" prefWidth="53.0" text="Product" />
+            <ComboBox fx:id="product" editable="true" onAction="#CompanyComboboxaction" prefHeight="25.0" prefWidth="160.0" promptText="Product name" />
+            <Label text="Brate">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="brate" onAction="#add">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Label prefHeight="17.0" prefWidth="41.0" text="M.R.P:" />
+            <TextField fx:id="mrp" layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="59.0">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="51.0" text="Batch:" />
+            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="280.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="43.0" text="Expiry" />
+            <DatePicker fx:id="expdt" prefHeight="25.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </DatePicker>
+            <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="42.0" text="Qty" />
+            <TextField fx:id="qty" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="42.0">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="43.0" text="Free:" />
+            <TextField fx:id="free" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="53.0">
+               <HBox.margin>
+                  <Insets right="2.0" />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="133.0" text="Add" />
          </children>
       </HBox>
       <Separator prefWidth="200.0" />
@@ -107,54 +164,6 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Separator prefWidth="200.0" />
-      <HBox alignment="CENTER" prefHeight="6.0" prefWidth="600.0" spacing="1.0">
-         <children>
-            <Label prefHeight="17.0" prefWidth="53.0" text="Product" />
-            <ComboBox fx:id="product" editable="true" onAction="#CompanyComboboxaction" prefHeight="25.0" prefWidth="160.0" promptText="Product name" />
-            <Label text="Brate">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </Label>
-            <TextField fx:id="brate" onAction="#add">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-            <Label prefHeight="17.0" prefWidth="41.0" text="M.R.P:" />
-            <TextField fx:id="mrp" layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="59.0">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-            <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="51.0" text="Batch:" />
-            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="69.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-            <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="43.0" text="Expiry" />
-            <DatePicker fx:id="expdt" prefHeight="25.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </DatePicker>
-            <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="42.0" text="Qty" />
-            <TextField fx:id="qty" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="42.0">
-               <HBox.margin>
-                  <Insets right="5.0" />
-               </HBox.margin>
-            </TextField>
-            <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="43.0" text="Free:" />
-            <TextField fx:id="free" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="53.0">
-               <HBox.margin>
-                  <Insets right="2.0" />
-               </HBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="133.0" text="Add" />
-         </children>
-      </HBox>
    </children>
    <padding>
       <Insets bottom="2.0" />

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@control.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.CreditSController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="600.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="346.0">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="80.0" text="Customer:">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="customer" editable="true" onAction="#CustomerAction" prefHeight="25.0" prefWidth="160.0" promptText="Customer" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="Address : ">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Label>
+                  <Text fx:id="address" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="193.7822265625" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Text>
+               </children>
+            </HBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="309.0">
+                     <children>
+                        <Label prefWidth="40.0" text="Date:">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fxdate" prefWidth="100.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="50.0" text="Cr No:">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fxinvoiceno" prefWidth="70.0">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label prefWidth="70.0" text="TIN:" textAlignment="RIGHT">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="fxtin" prefHeight="17.0" prefWidth="71.0">
+                           <HBox.margin>
+                              <Insets right="50.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="15.0" prefWidth="80.0" text="Product:">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="product" editable="true" onAction="#Productcomboboxaction" prefHeight="25.0" prefWidth="160.0" promptText="Product name" />
+            <Label text="Batch:">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox fx:id="batch" editable="true" layoutX="446.0" layoutY="23.0" onAction="#CustomerAction" prefHeight="25.0" prefWidth="160.0" promptText="Batch number" />
+            <Label text="Quantity:">
+               <padding>
+                  <Insets left="5.0" />
+               </padding></Label>
+            <TextField fx:id="qty" prefHeight="25.0" prefWidth="85.0">
+               <HBox.margin>
+                  <Insets left="4.0" />
+               </HBox.margin>
+            </TextField>
+            <Label text="Free:">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin></Label>
+            <TextField fx:id="free" prefHeight="25.0" prefWidth="85.0" />
+            <Button mnemonicParsing="false" onAction="#calculation" prefWidth="60.0" text="SUBMIT">
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#Print" prefWidth="60.0" text="Print" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <TableView fx:id="table" editable="true" prefHeight="249.0" prefWidth="1366.0" tableMenuButtonVisible="true" VBox.vgrow="ALWAYS">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <columns>
+            <TableColumn fx:id="productcell" editable="true" onEditCommit="#productcellcommit" prefWidth="177.0" text="Product Name">
+                <cellValueFactory>
+                  <PropertyValueFactory property="Product" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Batch">
+                   <cellValueFactory>
+                  <PropertyValueFactory property="Batch" />
+              </cellValueFactory>
+          </TableColumn> 
+            <TableColumn editable="true" prefWidth="75.0" text="Exp Date">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Expdat" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Free Qty">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Free" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Billed Qty">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Billed" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="PTR">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Ptr" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="PTS">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Pts" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="MRP">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Mrp" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Tax %">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Tax" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Tax Amt">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Taxamt" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="Product Value">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Pdvalue" />
+              </cellValueFactory>
+          </TableColumn>
+            <TableColumn editable="true" prefWidth="75.0" text="MRP Value">
+                    <cellValueFactory>
+                  <PropertyValueFactory property="Mrpvalue" />
+              </cellValueFactory>
+          </TableColumn>
+         </columns>
+      </TableView>
+      <HBox alignment="CENTER_RIGHT" prefHeight="66.0" prefWidth="1366.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="65.0" prefWidth="116.0" text="TOTAL:" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="Tpvalue" layoutX="10.0" layoutY="10.0" prefHeight="65.0" prefWidth="116.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="Tmvalue" layoutX="10.0" layoutY="10.0" prefHeight="65.0" prefWidth="116.0">
+               <font>
+                  <Font name="Arial Black" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -30,12 +30,12 @@
                 <MenuItem mnemonicParsing="false" onAction="#MenuProductAction" text="Product" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Bill">
+            <Menu mnemonicParsing="false" text="Activities">
               <items>
-                 
+                <MenuItem mnemonicParsing="false" onAction="#MenuPurchaseOrderAction" text="Purchase Order" /> 
                 <MenuItem mnemonicParsing="false" onAction="#MenuGoodsReciptAction" text="Goods Recipt" />
                 <MenuItem mnemonicParsing="false" onAction="#MenuBillAction" text="Billing" />
-                  <MenuItem mnemonicParsing="false" onAction="#MenuPurchaseOrderAction" text="Purchase Order" />
+                 <MenuItem mnemonicParsing="false" onAction="#MenuCreditSRAction" text="Creditnote S.R" /> 
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Settings">
