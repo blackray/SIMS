@@ -101,6 +101,17 @@ public class Database {
         }else{
             createInvoiceProductDB();
         }
+        if(ifexist_table("CREDITNOTESR")){
+            System.out.println("CREDINOTESR Table Found");
+        }else{
+            createCreditnoteSRDB();
+        }
+        
+        if(ifexist_table("CREDITNOTESRPRODUCT")){
+            System.out.println("CREDITNOTESRPRODUCT Table Found");
+        }else{
+            createCreditnoteSRPdtDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -211,6 +222,27 @@ public class Database {
                 +"QUANTITY INTEGER NOT NULL,"
                 +"FREE INTEGER NOT NULL,"
                 +"FOREIGN KEY(INVOICENO) REFERENCES INVOICE(INVOICENO),"
+                +"FOREIGN KEY(PNAME) REFERENCES PRODUCT(Name))";
+        Update(str);
+    }
+    private static void createCreditnoteSRDB(){
+        System.out.println("Creating CREDITNOTESR Table");
+        String str = "CREATE TABLE CREDITNOTESR "
+                +"(CRNO INTEGER NOT NULL PRIMARY KEY,"
+                +"CNAME VARCHAR(20) NOT NULL,"
+                +"INVOICEDATE DATE,"
+                +"FOREIGN KEY(CNAME) REFERENCES CUSTOMER(Name))";
+        Update(str);
+    }
+    private static void createCreditnoteSRPdtDB(){
+        System.out.println("Creating CREDITNOTESR Product Table");
+        String str = "CREATE TABLE CREDITNOTESRPDT "
+                +"(CRNO INTEGER NOT NULL PRIMARY KEY,"
+                +"PNAME VARCHAR(20) UNIQUE NOT NULL,"
+                +"BATCH VARCHAR(10) NOT NULL,"
+                +"QUANTITY INTEGER NOT NULL,"
+                +"FREE INTEGER NOT NULL,"
+                +"FOREIGN KEY(INVOICENO) REFERENCES CREDITNOTESR(CRNO),"
                 +"FOREIGN KEY(PNAME) REFERENCES PRODUCT(Name))";
         Update(str);
     }
