@@ -5,6 +5,7 @@
  */
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import Sims.com.jasper.jaspercontroller;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -113,6 +114,20 @@ public class InvoiceController implements Initializable {
         for(InvoiceData d : data){
             if(d.getProduct() == pname)
                 return;
+        }
+        //Check stock balance
+        String stmnt = "SELECT Quantity FROM STOCK";
+        ResultSet Query = Database.Query(stmnt);
+        try {
+            if(Query.next()){
+                int stock_quantity = Query.getInt("Quantity");
+                if(stock_quantity < Qty){
+                    Messagebox.getInstance().message("Check Quantity", "Entered Quantity is less than Stock Quantity");
+                    return;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Invoiceproductcalculator ipc = new Invoiceproductcalculator();
         InvoiceProductdata pd = ipc.calculate(product.getValue(),batch.getValue(), Qty,Free);
