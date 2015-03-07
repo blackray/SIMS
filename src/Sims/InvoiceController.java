@@ -27,7 +27,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -105,42 +104,19 @@ public class InvoiceController implements Initializable {
     }
     @FXML
     public void calculation(){
-        /*
-        double Mrp=0, Ptr, Pts, temp, taxamt;
-        String stmnt = "SELECT MRP,Expiry FROM STOCK WHERE Batch=" + batch.getValue()+
-                " AND Product='"+product.getValue()+"'";
-        ResultSet QB = Database.Query(stmnt);
-        Date d = null;
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            while(QB.next()){
-                Mrp = QB.getDouble("MRP");
-                d = QB.getDate("Expiry");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        temp = ((Mrp / 105) * 100);
-        Ptr = (temp - ((temp * 20) / 100));
-        Pts = (Ptr - ((Ptr * 10) / 100));
-        PTR = Double.toString(Ptr);
-        PTS = Double.toString(Pts);
-        Tax = "5%";
-        taxamt = ((Mrp * 4.76) / 100);
-        Taxamt = Double.toString(taxamt);
-        Pdvalue = "";
-        Mrpvalue = "";
-        Rate = "";
-        mrp = Mrp+"";
-        System.out.println(df.format(d));
-                */
-        Invoiceproductcalculator ipc = new Invoiceproductcalculator();
+        
         String pname = product.getValue();
         String bat = batch.getValue();
         Double Qty = Double.parseDouble(qty.getText());
         Double Free= Double.parseDouble(free.getText());
-        InvoiceProductdata pd = ipc.calculate(product.getValue(),batch.getValue(), Qty,Free);
         ObservableList<InvoiceData> data = table.getItems();
+        for(InvoiceData d : data){
+            if(d.getProduct() == pname)
+                return;
+        }
+        Invoiceproductcalculator ipc = new Invoiceproductcalculator();
+        InvoiceProductdata pd = ipc.calculate(product.getValue(),batch.getValue(), Qty,Free);
+        
         data.add(new InvoiceData(pd.getName(), pd.getBatch(),
                 pd.getExpdat(),pd.getFree(),pd.getBilled(),pd.getPtr(),pd.getPts(),
                 pd.getMrp(),pd.getTax(),pd.getTaxamt(),pd.getPdvalue(),pd.getMrpvalue()));
