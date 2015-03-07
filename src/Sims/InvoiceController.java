@@ -34,7 +34,7 @@ import javafx.scene.text.Text;
  * @author jesuit
  */
 public class InvoiceController implements Initializable {
-    
+
     Double tpdvalue;
     Double tmvalue;
 
@@ -56,8 +56,10 @@ public class InvoiceController implements Initializable {
     private ComboBox<String> batch;
     @FXML
     Label fxdate;
-    @FXML Label Tpvalue;
-    @FXML Label Tmvalue;
+    @FXML
+    Label Tpvalue;
+    @FXML
+    Label Tmvalue;
     @FXML
     Label fxtin;
     @FXML
@@ -72,7 +74,7 @@ public class InvoiceController implements Initializable {
             if (Query.next()) {
                 address.setText(Query.getString("Address"));
                 fxtin.setText(Query.getString("Tin"));
-                
+
             } else {
                 System.out.println("No Product Found");
             }
@@ -85,8 +87,9 @@ public class InvoiceController implements Initializable {
         }
 
     }
+
     @FXML
-    public void Productcomboboxaction(ActionEvent ev){
+    public void Productcomboboxaction(ActionEvent ev) {
         try {
             String stmnt;
             stmnt = "SELECT Batch FROM STOCK WHERE Product='" + product.getValue() + "'";
@@ -103,25 +106,27 @@ public class InvoiceController implements Initializable {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
-    public void calculation(){
-        
+    public void calculation() {
+
         String pname = product.getValue();
         String bat = batch.getValue();
         Double Qty = Double.parseDouble(qty.getText());
-        Double Free= Double.parseDouble(free.getText());
+        Double Free = Double.parseDouble(free.getText());
         ObservableList<InvoiceData> data = table.getItems();
-        for(InvoiceData d : data){
-            if(d.getProduct() == pname)
+        for (InvoiceData d : data) {
+            if (d.getProduct() == pname) {
                 return;
+            }
         }
         //Check stock balance
         String stmnt = "SELECT Quantity FROM STOCK";
         ResultSet Query = Database.Query(stmnt);
         try {
-            if(Query.next()){
+            if (Query.next()) {
                 int stock_quantity = Query.getInt("Quantity");
-                if(stock_quantity < Qty){
+                if (stock_quantity < Qty) {
                     Messagebox.getInstance().message("Check Quantity", "Entered Quantity is less than Stock Quantity");
                     return;
                 }
@@ -130,30 +135,31 @@ public class InvoiceController implements Initializable {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         }
         Invoiceproductcalculator ipc = new Invoiceproductcalculator();
-        InvoiceProductdata pd = ipc.calculate(product.getValue(),batch.getValue(), Qty,Free);
-        
+        InvoiceProductdata pd = ipc.calculate(product.getValue(), batch.getValue(), Qty, Free);
+
         data.add(new InvoiceData(pd.getName(), pd.getBatch(),
-                pd.getExpdat(),pd.getFree(),pd.getBilled(),pd.getPtr(),pd.getPts(),
-                pd.getMrp(),pd.getTax(),pd.getTaxamt(),pd.getPdvalue(),pd.getMrpvalue()));
-        
-        tpdvalue=(tpdvalue+(Double.parseDouble(pd.getPdvalue())));
-        tpdvalue=Math.round(100*tpdvalue)/100d;
-        Tpvalue.setText(tpdvalue+"");
-        tmvalue=(tmvalue+(Double.parseDouble(pd.getMrpvalue())));
-        tmvalue=Math.round(100*tmvalue)/100d;
-        Tmvalue.setText(tmvalue+"");
-        
+                pd.getExpdat(), pd.getFree(), pd.getBilled(), pd.getPtr(), pd.getPts(),
+                pd.getMrp(), pd.getTax(), pd.getTaxamt(), pd.getPdvalue(), pd.getMrpvalue()));
+
+        tpdvalue = (tpdvalue + (Double.parseDouble(pd.getPdvalue())));
+        tpdvalue = Math.round(100 * tpdvalue) / 100d;
+        Tpvalue.setText(tpdvalue + "");
+        tmvalue = (tmvalue + (Double.parseDouble(pd.getMrpvalue())));
+        tmvalue = Math.round(100 * tmvalue) / 100d;
+        Tmvalue.setText(tmvalue + "");
+
     }
 
-    @FXML 
-    public void productcellcommit(ActionEvent ev){
+    @FXML
+    public void productcellcommit(ActionEvent ev) {
         System.out.println("dfghj");
     }
+
     @FXML
-    public void Print(ActionEvent ev){
+    public void Print(ActionEvent ev) {
         //Update INVOICE Database
         int invoiceno = Integer.parseInt(fxinvoiceno.getText());
-        
+
         String stmnt = "INSERT INTO INVOICE VALUES(?,?,?,?,?)";
         PreparedStatement pstmnt = Database.GetPreparedStmt(stmnt);
         DateFormat fd = new SimpleDateFormat("yyyy-MM-dd");
@@ -161,35 +167,55 @@ public class InvoiceController implements Initializable {
         try {
             pstmnt.setInt(1, invoiceno);
             pstmnt.setString(2, customer.getValue());
-            pstmnt.setString(3,fd.format(d));
-            pstmnt.setDouble(4,Double.parseDouble(Tpvalue.getText()));
-            pstmnt.setDouble(5,Double.parseDouble(Tmvalue.getText()));
+            pstmnt.setString(3, fd.format(d));
+            pstmnt.setDouble(4, Double.parseDouble(Tpvalue.getText()));
+            pstmnt.setDouble(5, Double.parseDouble(Tmvalue.getText()));
             int executeUpdate = pstmnt.executeUpdate();
-            System.out.println(executeUpdate+" Row Changed");
+            System.out.println(executeUpdate + " Row Changed");
         } catch (SQLException ex) {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        //Updating Stock
+        ObservableList<InvoiceData> id = table.getItems();
+        ResultSet Query;
+        for (InvoiceData data : id) {
+            try {
+                stmnt = "SELECT Quantity FROM STOCK WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                Query = Database.Query(stmnt);
+                if (Query.next()) {
+                    int newval = (int) (Query.getInt(1) - Double.parseDouble(data.getBilled()));
+                    String updstmnt = "UPDATE STOCK SET Quantity="+newval+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                    boolean Update = Database.Update(updstmnt);
+                    if(Update){
+                        System.out.println("Update Success");
+                    }
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
         //Printing Using Jasper
         jaspercontroller jc = new jaspercontroller();
-        String[] ColumnNames={"SL","ITEM","MRP"};
-        ObservableList<InvoiceData> id = table.getItems();
-        int i =0;
+        String[] ColumnNames = {"SL", "ITEM", "MRP"};
+        int i = 0;
         int size = id.size();
         String[][] Data = new String[size][3];
-        for(InvoiceData idata : id){
-            Data[i][0]=(i+1)+"";
-            Data[i][1]=idata.getProduct();
-            Data[i][2]=idata.getMrp();
+        for (InvoiceData idata : id) {
+            Data[i][0] = (i + 1) + "";
+            Data[i][1] = idata.getProduct();
+            Data[i][2] = idata.getMrp();
             i++;
         }
         jc.printInvoice(ColumnNames, Data);
-  
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tpdvalue =0.0;
-        tmvalue=0.0;
+        tpdvalue = 0.0;
+        tmvalue = 0.0;
         table.setEditable(true);
         productcell.setEditable(true);
         DateFormat d = new SimpleDateFormat("dd-MM-yyyy");
