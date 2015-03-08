@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 public class Control {
     private Stage stage;
     private String username;
+    private Scene scene;
     private boolean logedin;
     private static final Control Instance = new Control();
     private MainDocumentController maincontroller;
@@ -41,15 +42,21 @@ public class Control {
     public void SetStage(Stage stage){
         this.stage = stage;
     }
+    public Stage getStage(){
+        return stage;
+    }
     public void Maximizewindow(){
         stage.setMaximized(true);
+    }
+    public Scene getScene(){
+        return scene;
     }
     public void SetPane(String s){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
             if(s.equals("main")){
                 stage.close();
-                Scene scene = new Scene(root);
+                scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Netbill");
                 Maximizewindow();

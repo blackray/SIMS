@@ -121,7 +121,7 @@ public class InvoiceController implements Initializable {
             }
         }
         //Check stock balance
-        String stmnt = "SELECT Quantity FROM STOCK";
+        String stmnt = "SELECT Quantity FROM STOCK WHERE Product='"+pname+"' AND Batch="+bat;
         ResultSet Query = Database.Query(stmnt);
         try {
             if (Query.next()) {
@@ -185,7 +185,9 @@ public class InvoiceController implements Initializable {
                 Query = Database.Query(stmnt);
                 if (Query.next()) {
                     int newval = (int) (Query.getInt(1) - Double.parseDouble(data.getBilled()));
-                    String updstmnt = "UPDATE STOCK SET Quantity="+newval+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                    String updstmnt;
+                    updstmnt = "UPDATE STOCK SET Quantity="+newval+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                   
                     boolean Update = Database.Update(updstmnt);
                     if(Update){
                         System.out.println("Update Success");

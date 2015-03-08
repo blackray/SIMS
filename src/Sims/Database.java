@@ -164,7 +164,8 @@ public class Database {
                 + "Brate REAL NOT NULL,"
                 + "Expiry DATE NOT NULL,"
                 + "Quantity INTEGER,"
-                + "Free INTEGER)";
+                + "Free INTEGER,"
+                + "FOREIGN KEY(Product) REFERENCES PRODUCT(Name))";
         Update(str);
     }
     private static void createProuductDB(){

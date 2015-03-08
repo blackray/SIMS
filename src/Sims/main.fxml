@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.input.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.MainDocumentController">
    <children>
@@ -26,7 +27,8 @@
                 <MenuItem mnemonicParsing="false" onAction="#MenuPurchaseOrderAction" text="Purchase Order" /> 
                 <MenuItem mnemonicParsing="false" onAction="#MenuGoodsReciptAction" text="Goods Recipt" />
                 <MenuItem mnemonicParsing="false" onAction="#MenuBillAction" text="Billing" />
-                 <MenuItem mnemonicParsing="false" onAction="#MenuCreditSRAction" text="Creditnote S.R" /> 
+                 <MenuItem mnemonicParsing="false" onAction="#MenuCreditSRAction" text="Creditnote S.R" />
+                  <MenuItem mnemonicParsing="false" onAction="#MenuStocklistAction" text="Stock List" /> 
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Settings">
@@ -69,11 +71,23 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="stocktable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <columns>
-                      <TableColumn prefWidth="136.0" text="Product Name" />
-                      <TableColumn prefWidth="105.0" text="Batch" />
-                        <TableColumn prefWidth="75.0" text="Quantity" />
+                      <TableColumn fx:id="Productname" prefWidth="136.0" text="Product Name">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Productname" />
+                        </cellValueFactory>
+                        </TableColumn>
+                      <TableColumn fx:id="Batch" prefWidth="136.0" text="Batch">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Batch" />
+                        </cellValueFactory>
+                        </TableColumn>
+                      <TableColumn fx:id="Quantity" prefWidth="136.0" text="Quantity">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="Quantity" />
+                        </cellValueFactory>
+                        </TableColumn>
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
