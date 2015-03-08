@@ -186,8 +186,11 @@ public class InvoiceController implements Initializable {
                 if (Query.next()) {
                     int newval = (int) (Query.getInt(1) - Double.parseDouble(data.getBilled()));
                     String updstmnt;
-                    updstmnt = "UPDATE STOCK SET Quantity="+newval+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
-                   
+                    if(newval == 0){
+                        updstmnt = "DELETE FROM STOCK WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                    }else{
+                        updstmnt = "UPDATE STOCK SET Quantity="+newval+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                    }
                     boolean Update = Database.Update(updstmnt);
                     if(Update){
                         System.out.println("Update Success");
