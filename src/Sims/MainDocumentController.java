@@ -98,7 +98,7 @@ public class MainDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Control ctrl = Control.getInstance();
         ctrl.SetMainDocumentController(this);
-        status.setText("Buhaha");
+        status.setText("Status");
         
                 
     }

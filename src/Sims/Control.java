@@ -41,6 +41,9 @@ public class Control {
     public void SetStage(Stage stage){
         this.stage = stage;
     }
+    public void Maximizewindow(){
+        stage.setMaximized(true);
+    }
     public void SetPane(String s){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
@@ -49,6 +52,7 @@ public class Control {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Netbill");
+                Maximizewindow();
                 stage.show();
             }
         } catch (IOException ex) {
