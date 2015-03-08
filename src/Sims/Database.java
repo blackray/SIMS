@@ -107,8 +107,8 @@ public class Database {
             createCreditnoteSRDB();
         }
         
-        if(ifexist_table("CREDITNOTESRPRODUCT")){
-            System.out.println("CREDITNOTESRPRODUCT Table Found");
+        if(ifexist_table("CREDITNOTESRPDT")){
+            System.out.println("CREDITNOTESRPDT Table Found");
         }else{
             createCreditnoteSRPdtDB();
         }
@@ -232,7 +232,7 @@ public class Database {
         String str = "CREATE TABLE CREDITNOTESR "
                 +"(CRNO INTEGER NOT NULL PRIMARY KEY,"
                 +"CNAME VARCHAR(20) NOT NULL,"
-                +"INVOICEDATE DATE,"
+                +"CRDATE DATE,"
                 +"FOREIGN KEY(CNAME) REFERENCES CUSTOMER(Name))";
         Update(str);
     }
@@ -244,7 +244,7 @@ public class Database {
                 +"BATCH VARCHAR(10) NOT NULL,"
                 +"QUANTITY INTEGER NOT NULL,"
                 +"FREE INTEGER NOT NULL,"
-                +"FOREIGN KEY(INVOICENO) REFERENCES CREDITNOTESR(CRNO),"
+                +"FOREIGN KEY(CRNO) REFERENCES CREDITNOTESR(CRNO),"
                 +"FOREIGN KEY(PNAME) REFERENCES PRODUCT(Name))";
         Update(str);
     }

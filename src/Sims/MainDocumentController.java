@@ -86,6 +86,10 @@ public class MainDocumentController implements Initializable {
     private void MenuCreditSRAction(ActionEvent ev){
         LoadFxml("CreditnoteSR.fxml");
     }
+    @FXML
+    private void MenuAboutAction(ActionEvent ev){
+        LoadFxml("About.fxml");
+    }
     public void Setstatusmessage(String str){
         status.setText(str);
     }

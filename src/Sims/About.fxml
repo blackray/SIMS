@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT" textAlignment="CENTER" underline="true" wrappingWidth="276.13671875">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="364.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER" prefHeight="327.0" prefWidth="275.0" spacing="5.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="103.0" prefWidth="248.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DEVELOPERS" underline="true" wrappingWidth="138.09375">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="AMAL C S" underline="true" wrappingWidth="130.13671875" />
+                  <Text layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="amal4cs@gmail.com" wrappingWidth="130.13671875" />
+                  <Text layoutX="10.0" layoutY="40.0" lineSpacing="10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="JOMON K THOMAS" underline="true" wrappingWidth="130.13671875" />
+                  <Text layoutX="10.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="joekthomas@gmail.com" wrappingWidth="130.13671875" />
+                  <Text layoutX="10.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HAMY ASAINAR" underline="true" wrappingWidth="130.13671875" />
+                  <Text layoutX="10.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hamyasainar@gmail.com" wrappingWidth="137.13671875" />
+                  <Text layoutX="10.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DILSHA C R" underline="true" wrappingWidth="130.13671875" />
+                  <Text layoutX="10.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dilshadcr@gmail.com" wrappingWidth="130.13671875" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="332.0" prefWidth="320.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="76.0" prefWidth="352.0">
+                     <children>
+                        <Label text="NETBILL" underline="true">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Text fill="#1a6bd9" focusTraversable="true" pickOnBounds="true" strokeType="OUTSIDE" strokeWidth="0.0" text="NETBILL is a Sales and Inventory management system.&#10;The software is build as a part of academic project during &#10;the B.Tech Computer Science and Enginering.&#10;The soul ownership of this release relies with &#10;NETSOUL SOFTWARE SOLUTIONS.&#10;Any sort of copiying or porting this program to another&#10; computer language without prior permission of&#10; NETSOUL SOFTWARE SOLUTIONS is punishable&#10; under copywright act. " textAlignment="CENTER" wrappingWidth="351.16650390625">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="42.0" prefWidth="248.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="27.0" prefWidth="558.0" text="Feel free to contact us for any assistance Thank you for purchasing " textFill="#2b7de3" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>

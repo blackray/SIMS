@@ -194,7 +194,7 @@ public class CreditSController implements Initializable{
         Date date = new Date();
         fxdate.setText(d.format(date));
         try {
-            String stmnt = "SELECT MAX(INVOICENO) FROM INVOICE";
+            String stmnt = "SELECT MAX(CRNO) FROM CREDITNOTESR";
             PreparedStatement GetPreparedStmt = Database.GetPreparedStmt(stmnt);
             ResultSet executeQuery = GetPreparedStmt.executeQuery();
             int val = 0;

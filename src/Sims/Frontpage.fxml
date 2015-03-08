@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="42.0" prefWidth="600.0">
+         <children>
+            <Label text="Product Name : " HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Label>
+            <TextField prefHeight="25.0" prefWidth="405.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Search" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="600.0">
+         <children>
+            <Label text="Batch : " HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="74.0" />
+            <Label text="Quantity : " HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label layoutX="312.0" layoutY="14.0" prefHeight="17.0" prefWidth="74.0" />
+            <Label text="Batch : " HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label layoutX="386.0" layoutY="14.0" prefHeight="17.0" prefWidth="74.0" />
+            <Label text="Quantity : " HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label layoutX="59.0" layoutY="14.0" prefHeight="17.0" prefWidth="74.0" />
+         </children>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </HBox>
+      <Separator prefWidth="200.0">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Separator>
+      <TableView editable="true" prefHeight="321.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn prefWidth="255.0" text="Product Name" />
+          <TableColumn minWidth="5.0" prefWidth="96.0" text="Batch" />
+            <TableColumn prefWidth="75.0" text="Quantity" />
+            <TableColumn prefWidth="99.0" text="Batch" />
+            <TableColumn prefWidth="75.0" text="Quantity" />
+        </columns>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</VBox>
