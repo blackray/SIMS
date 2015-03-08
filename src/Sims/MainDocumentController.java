@@ -122,18 +122,18 @@ public class MainDocumentController implements Initializable {
     @FXML
     private void SearchbuttonAction(ActionEvent ev){
         String s = tfsearchentry.getText();
-        String stmnt = "SELECT Product,Batch,Quantity FROM STOCK";
-        ResultSet Query = Database.Query(stmnt);
+        if(s.equals("")){
+            filltable("");
+            return;
+        }
+        String stmnt = "SELECT Product,Batch,Quantity FROM STOCK WHERE Product='"+s+"'";
+        filltable(stmnt);
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        Control ctrl = Control.getInstance();
-        ctrl.SetMainDocumentController(this);
-        status.setText("Status");
-        
+    
+    private void filltable(String stmnt){
+        if(stmnt.equals(""))
+            stmnt = "SELECT Product,Batch,Quantity FROM STOCK ORDER BY Quantity";
         ObservableList<Stockdata> data = FXCollections.observableArrayList();
-        String stmnt = "SELECT Product,Batch,Quantity FROM STOCK ORDER BY Quantity";
         ResultSet Query = Database.Query(stmnt);
         try {
             while(Query.next()){
@@ -146,7 +146,15 @@ public class MainDocumentController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(MainDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        Control ctrl = Control.getInstance();
+        ctrl.SetMainDocumentController(this);
+        status.setText("Status");
         
-                
+        String stmnt = "SELECT Product,Batch,Quantity FROM STOCK ORDER BY Quantity";
+        filltable(stmnt);                
     }
 }

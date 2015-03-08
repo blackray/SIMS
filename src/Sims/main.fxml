@@ -59,12 +59,12 @@
                               <Insets left="5.0" />
                            </HBox.margin>
                         </Label>
-                        <TextField prefHeight="25.0" prefWidth="405.0" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="tfsearchentry" onAction="#SearchbuttonAction" prefHeight="25.0" prefWidth="405.0" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </TextField>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Search" HBox.hgrow="ALWAYS">
+                        <Button mnemonicParsing="false" onAction="#SearchbuttonAction" prefHeight="25.0" prefWidth="80.0" text="Search" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="10.0" right="20.0" />
                            </HBox.margin>
