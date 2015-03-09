@@ -12,6 +12,15 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" stylesheets="@control.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.PurchaseOrderController">
    <children>
+      <HBox alignment="CENTER" prefHeight="44.0" prefWidth="1366.0">
+         <children>
+            <Label text="PURCHASE ORDER" underline="true">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="600.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="346.0">

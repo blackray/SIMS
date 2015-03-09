@@ -28,6 +28,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#MenuGoodsReciptAction" text="Goods Recipt" />
                 <MenuItem mnemonicParsing="false" onAction="#MenuBillAction" text="Billing" />
                  <MenuItem mnemonicParsing="false" onAction="#MenuCreditSRAction" text="Creditnote S.R" />
+                 <MenuItem mnemonicParsing="false" onAction="#MenuDebitAction" text="Debitnote P.R" /> 
                   <MenuItem mnemonicParsing="false" onAction="#MenuStocklistAction" text="Stock List" /> 
               </items>
             </Menu>

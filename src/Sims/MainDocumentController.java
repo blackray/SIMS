@@ -101,6 +101,10 @@ public class MainDocumentController implements Initializable {
         LoadFxml("About.fxml");
     }
     @FXML
+    private void MenuDebitAction(ActionEvent ev){
+        LoadFxml("Debitnote.fxml");
+    }
+    @FXML
     private void MenuStocklistAction(ActionEvent ev){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));

@@ -10,9 +10,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.GoodsReciptController">
    <children>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1366.0">
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="1366.0">
          <children>
-            <Label text="GOODS RECIPT" underline="true">
+            <Label text="DEBIT NOTE" underline="true">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -104,7 +104,7 @@
                </HBox.margin>
             </TextField>
             <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="51.0" text="Batch:" />
-            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="280.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="169.0">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -127,7 +127,15 @@
                   <Insets right="2.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="133.0" text="Add" />
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="100.0" text="Add">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+            <Button lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Print">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <Separator prefWidth="200.0" />
