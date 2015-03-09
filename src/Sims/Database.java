@@ -279,10 +279,10 @@ public class Database {
         System.out.println("Creating DEBITNOTEPR Table");
         String str="CREATE TABLE DEBITNOTEPR "
                 +"(Company VARCHAR(20) NOT NULL,"
-                + "Reciptno VARCHAR(10) NOT NULL,"
+               
                 + "Dbno VARCHAR(10) NOT NULL PRIMARY KEY,"
-                + "Reciptdate DATE,"
-                + "FOREIGN KEY(Reciptno) REFERENCES GOODSRECIPT(Reciptno))";
+                + "Reciptdate DATE,)";
+                
         Update(str);
     }
     private static void createDebitnotePRPdtDB(){
