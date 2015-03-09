@@ -87,47 +87,100 @@ public class GoodsReciptController implements Initializable {
         double dqty = Integer.parseInt(Qty);
         double dfree = Integer.parseInt(Free);
         double dbrate = Double.parseDouble(Brate);
-        
 
         ObservableList<Goodsreciptdata> data = table.getItems();
+
+        data.add(new Goodsreciptdata(proname, Brate, Mrp, Batch, date.toString(), Qty, Free));
+
+    }
+
+    @FXML
+    public void Submitaction(ActionEvent ev) {
+        ObservableList<Goodsreciptdata> data = table.getItems();
+
+        String stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
         try {
-            String stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
             PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
-            updatestock.setString(1, proname);
-            updatestock.setString(2, Batch);
-            updatestock.setDouble(3, dmrp);
-            updatestock.setDouble(4, dbrate);
-            updatestock.setString(5, date.toString());
-            updatestock.setDouble(6, dqty);
-            updatestock.setDouble(7, dfree);
-            int executeUpdate = updatestock.executeUpdate();
-            System.out.println(executeUpdate + " Row Changed");
-            data.add(new Goodsreciptdata(proname, Brate,Mrp, Batch,date.toString(), Qty, Free));
+            for (Goodsreciptdata d : data) {
+                updatestock.setString(1, d.getProduct());
+                updatestock.setString(2, d.getBatch());
+                updatestock.setString(3, d.getMRP());
+                updatestock.setString(4, d.getB_Rate());
+                updatestock.setString(5, d.getExpiry());
+                updatestock.setString(6, d.getQty());
+                updatestock.setString(7, d.getFree());
+
+                int executeUpdate = updatestock.executeUpdate();
+                System.out.println(executeUpdate + " Row Changed");
+            }
         } catch (SQLException ex) {
+
+            Messagebox.getInstance().message("Error", ex.getMessage());
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+        }
+
+        //Update Goodsrecipt
+        try {
+            stmt = "INSERT INTO GOODSRECIPT (Company,Orderno,Reciptno,Reciptdate) VALUES(?,?,?,?)";
+            Date d = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            PreparedStatement updatestmnt = Database.GetPreparedStmt(stmt);
+            updatestmnt.setString(1, fxcompname.getValue());
+            updatestmnt.setString(2, ordno.getText());
+            updatestmnt.setString(3, recpno.getText());
+            updatestmnt.setString(4, df.format(d));
+            int executeUpdate = updatestmnt.executeUpdate();
+            System.out.println(executeUpdate + " Row Changed");
+        } catch (SQLException ex) {
+
+            Messagebox.getInstance().message("Error", ex.getMessage());
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+        }
+
+        //Update Goods Recipt Product
+        stmt = "INSERT INTO GOODSRECIPTPRODUCT (Product,Reciptno,Batch,Quantity,Free,MRP,BRATE,Expiry) VALUES(?,?,?,?,?,?,?,?)";
+
+        try {
+            PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
+            for (Goodsreciptdata d : data) {
+                updatestock.setString(1, d.getProduct());
+                updatestock.setString(2, recpno.getText());
+                updatestock.setString(3, d.getBatch());
+                updatestock.setString(4, d.getQty());
+                updatestock.setString(5, d.getFree());
+                updatestock.setString(6, d.getMRP());
+                updatestock.setString(7, d.getB_Rate());
+                updatestock.setString(8, d.getExpiry());
+
+                int executeUpdate = updatestock.executeUpdate();
+                System.out.println(executeUpdate + " Row Changed");
+            }
+        } catch (SQLException ex) {
+
             Messagebox.getInstance().message("Error", ex.getMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
     }
-    
+
     @FXML
-    public void CompanyComboboxaction(ActionEvent ev){
-          try {
-            String stmnt = "SELECT Address,TIN FROM COMPANY WHERE Name='"+fxcompname.getValue()+"'";
+    public void CompanyComboboxaction(ActionEvent ev) {
+        try {
+            String stmnt = "SELECT Address,TIN FROM COMPANY WHERE Name='" + fxcompname.getValue() + "'";
             ResultSet Query = Database.Query(stmnt);
-            if(Query.next()){
+            if (Query.next()) {
                 fxaddress.setText(Query.getString("Address"));
                 fxtin.setText(Query.getString("TIN"));
-                stmnt="SELECT Name FROM PRODUCT WHERE Company='"+fxcompname.getValue()+"'";
+                stmnt = "SELECT Name FROM PRODUCT WHERE Company='" + fxcompname.getValue() + "'";
                 ResultSet q = Database.Query(stmnt);
                 ObservableList<String> prod = FXCollections.observableArrayList();
                 String pname;
-                while(q.next()){
+                while (q.next()) {
                     pname = q.getString(1);
                     System.out.println(pname);
                     prod.add(pname);
                 }
                 product.setItems(prod);
-            }else{
+            } else {
                 System.out.println("No Company Found");
             }
         } catch (SQLException ex) {
@@ -141,44 +194,44 @@ public class GoodsReciptController implements Initializable {
             String stmnt = "SELECT MAX(Reciptno) from GOODSRECIPTPRODUCT";
             PreparedStatement Query = Database.GetPreparedStmt(stmnt);
             ResultSet executeQuery = Query.executeQuery();
-            while(executeQuery.next()){
+            while (executeQuery.next()) {
                 String s = executeQuery.getString(1);
                 int val;
-                if(s!=null)
-                 val= Integer.parseInt(s);
-                else
-                    val=0;
+                if (s != null) {
+                    val = Integer.parseInt(s);
+                } else {
+                    val = 0;
+                }
                 val++;
-                recpno.setText(val+"");
+                recpno.setText(val + "");
             }
             DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
-            Date d= new Date();
+            Date d = new Date();
             recpdt.setText(dateformat.format(d));
-            
-            
-             stmnt = "SELECT Name FROM COMPANY";
+
+            stmnt = "SELECT Name FROM COMPANY";
             Query = Database.GetPreparedStmt(stmnt);
             executeQuery = Query.executeQuery();
             ObservableList<String> comp = FXCollections.observableArrayList();
             String cname;
-            while(executeQuery.next()){
+            while (executeQuery.next()) {
                 cname = executeQuery.getString(1);
                 comp.add(cname);
             }
             fxcompname.setItems(comp);
-            stmnt="SELECT Name FROM PRODUCT WHERE Company='"+fxcompname.getValue()+"'";
-                ResultSet q = Database.Query(stmnt);
-                ObservableList<String> prod = FXCollections.observableArrayList();
-                String pname;
-                while(q.next()){
-                    pname = q.getString("Name");
-                    System.out.println(pname);
-                    prod.add(pname);
-                }
-                product.setItems(prod);
+            stmnt = "SELECT Name FROM PRODUCT WHERE Company='" + fxcompname.getValue() + "'";
+            ResultSet q = Database.Query(stmnt);
+            ObservableList<String> prod = FXCollections.observableArrayList();
+            String pname;
+            while (q.next()) {
+                pname = q.getString("Name");
+                System.out.println(pname);
+                prod.add(pname);
+            }
+            product.setItems(prod);
         } catch (SQLException ex) {
-           System.out.println("Execption in Goodsrecipt Initialize");
-           // Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Execption in Goodsrecipt Initialize");
+            // Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
