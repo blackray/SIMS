@@ -104,35 +104,6 @@ public class CreditSController implements Initializable{
     }
     @FXML
     public void calculation(){
-        /*
-        double Mrp=0, Ptr, Pts, temp, taxamt;
-        String stmnt = "SELECT MRP,Expiry FROM STOCK WHERE Batch=" + batch.getValue()+
-                " AND Product='"+product.getValue()+"'";
-        ResultSet QB = Database.Query(stmnt);
-        Date d = null;
-        DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            while(QB.next()){
-                Mrp = QB.getDouble("MRP");
-                d = QB.getDate("Expiry");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        temp = ((Mrp / 105) * 100);
-        Ptr = (temp - ((temp * 20) / 100));
-        Pts = (Ptr - ((Ptr * 10) / 100));
-        PTR = Double.toString(Ptr);
-        PTS = Double.toString(Pts);
-        Tax = "5%";
-        taxamt = ((Mrp * 4.76) / 100);
-        Taxamt = Double.toString(taxamt);
-        Pdvalue = "";
-        Mrpvalue = "";
-        Rate = "";
-        mrp = Mrp+"";
-        System.out.println(df.format(d));
-                */
         CreditSprodcutcalc ipc = new CreditSprodcutcalc();
         String pname = product.getValue();
         String bat = batch.getValue();
@@ -151,16 +122,25 @@ public class CreditSController implements Initializable{
         tmvalue=Math.round(100*tmvalue)/100d;
         Tmvalue.setText(tmvalue+"");
         
+        //Update Stock
+        String stmnt = "SELECT Quantity,Free FROM STOCK WHERE Product='"+pname+"' AND Batch="+bat;
+        ResultSet Query = Database.Query(stmnt);
+        try {
+            if(Query.next()){
+                int newval =(int) (Query.getInt("Quantity")+Qty);
+                int newfree = (int)(Query.getInt("Free")+Free);
+                String updstmnt = "UPDATE STOCK SET Quantity="+newval+",Free="+newfree+" WHERE Product='" + pname + "' AND Batch=" + bat;
+                Database.Update(updstmnt);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CreditSController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
     public void SubmitAction(ActionEvent ev) {
         ObservableList<CreditSrData> data = table.getItems();
         data.add(new CreditSrData(product.getValue(), batch.getValue(), expdate, free.getText(), qty.getText(), PTR, PTS, mrp, Tax, Taxamt, Pdvalue, Mrpvalue));
-        
-        
-        
-        
         
     }
     @FXML 
