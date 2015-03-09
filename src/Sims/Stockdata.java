@@ -15,6 +15,7 @@ public class Stockdata {
     private SimpleStringProperty Productname = new SimpleStringProperty("");
     private SimpleStringProperty Batch = new SimpleStringProperty("");
     private SimpleStringProperty Quantity = new SimpleStringProperty("");
+    private SimpleStringProperty Free = new SimpleStringProperty("");
 
     public String getProductname() {
         return Productname.get();
@@ -22,6 +23,14 @@ public class Stockdata {
 
     public void setProductname(String Productname) {
         this.Productname.set(Productname);
+    }
+    
+    public String getFree() {
+        return Free.get();
+    }
+
+    public void setFree(String Free) {
+        this.Free.set(Free);
     }
 
     public String getBatch() {
@@ -41,12 +50,13 @@ public class Stockdata {
     }
 
     public Stockdata() {
-        this("","","");
+        this("","","","");
     }
-    public Stockdata(String p,String b,String q){
+    public Stockdata(String p,String b,String q,String f){
         setProductname(p);
         setBatch(b);
         setQuantity(q);
+        setFree(f);
     }
     
 }
