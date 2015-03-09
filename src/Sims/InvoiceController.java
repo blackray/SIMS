@@ -190,6 +190,7 @@ public class InvoiceController implements Initializable {
                     if(newval == 0){
                         updstmnt = "DELETE FROM STOCK WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
                     }else{
+
                         updstmnt = "UPDATE STOCK SET Quantity="+newval+",Free="+newfree+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
                     }
                     boolean Update = Database.Update(updstmnt);

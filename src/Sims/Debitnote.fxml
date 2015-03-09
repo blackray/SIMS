@@ -10,9 +10,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" spacing="2.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Sims.GoodsReciptController">
    <children>
-      <HBox alignment="CENTER" prefHeight="45.0" prefWidth="1366.0">
+      <HBox alignment="CENTER" prefHeight="43.0" prefWidth="1366.0">
          <children>
-            <Label text="GOODS RECIPT" underline="true">
+            <Label text="DEBIT NOTE" underline="true">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -83,11 +83,11 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="6.0" prefWidth="600.0" spacing="5.0">
+      <HBox alignment="CENTER" prefHeight="6.0" prefWidth="600.0" spacing="1.0">
          <children>
             <Label prefHeight="17.0" prefWidth="53.0" text="Product" />
             <ComboBox fx:id="product" editable="true" onAction="#CompanyComboboxaction" prefHeight="25.0" prefWidth="160.0" promptText="Product name" />
-            <Label prefWidth="40.0" text="Brate">
+            <Label text="Brate">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -97,14 +97,14 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="45.0" text="M.R.P:" />
+            <Label prefHeight="17.0" prefWidth="41.0" text="M.R.P:" />
             <TextField fx:id="mrp" layoutX="38.0" layoutY="10.0" prefHeight="25.0" prefWidth="59.0">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </TextField>
-            <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="45.0" text="Batch:" />
-            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+            <Label layoutX="187.0" layoutY="10.0" prefHeight="17.0" prefWidth="51.0" text="Batch:" />
+            <TextField fx:id="batch" layoutX="215.0" layoutY="10.0" prefHeight="25.0" prefWidth="169.0">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -115,7 +115,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </DatePicker>
-            <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="35.0" text="Qty" />
+            <Label layoutX="274.0" layoutY="10.0" prefHeight="17.0" prefWidth="42.0" text="Qty" />
             <TextField fx:id="qty" layoutX="302.0" layoutY="10.0" prefHeight="25.0" prefWidth="42.0">
                <HBox.margin>
                   <Insets right="5.0" />
@@ -127,8 +127,15 @@
                   <Insets right="2.0" />
                </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="100.0" text="Add" />
-            <Button mnemonicParsing="false" onAction="#Submitaction" prefWidth="100.0" text="Submit" />
+            <Button mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="100.0" text="Add">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+            <Button lineSpacing="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Print">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <Separator prefWidth="200.0" />

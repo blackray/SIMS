@@ -112,6 +112,17 @@ public class Database {
         }else{
             createCreditnoteSRPdtDB();
         }
+         if(ifexist_table("DEBITNOTEPR")){
+            System.out.println("DEBITNOTEPR Table Found");
+        }else{
+            createDebitnotePRDB();
+        }
+        
+        if(ifexist_table("DEBITNOTEPRPDT")){
+            System.out.println("DEBITNOTEPRPDT Table Found");
+        }else{
+            createDebitnotePRPdtDB();
+        }
     }
 
     private static void createLoginDB() {
@@ -195,16 +206,7 @@ public class Database {
                 + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
         Update(str);
     }
-    private static void createGoodsReciptDB(){
-        System.out.println("Creating GOODSRECIPT Table");
-        String str="CREATE TABLE GOODSRECIPT "
-                +"(Company VARCHAR(20) NOT NULL,"
-                + "Orderno VARCHAR(10) NOT NULL,"
-                + "Reciptno VARCHAR(10) NOT NULL PRIMARY KEY,"
-                + "Reciptdate DATE,"
-                + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
-        Update(str);
-    }
+   
     private static void createInvoiceDB(){
         System.out.println("Creating INVOICE Table");
         String str = "CREATE TABLE INVOICE "
@@ -249,6 +251,16 @@ public class Database {
                 +"FOREIGN KEY(PNAME) REFERENCES PRODUCT(Name))";
         Update(str);
     }
+     private static void createGoodsReciptDB(){
+        System.out.println("Creating GOODSRECIPT Table");
+        String str="CREATE TABLE GOODSRECIPT "
+                +"(Company VARCHAR(20) NOT NULL,"
+                + "Orderno VARCHAR(10) NOT NULL,"
+                + "Reciptno VARCHAR(10) NOT NULL PRIMARY KEY,"
+                + "Reciptdate DATE,"
+                + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
+        Update(str);
+    }
     private static void createGoodsReciptProductDB(){
         System.out.println("Creating GOODSRECIPTPRODUCT Table" );
         String str="CREATE TABLE GOODSRECIPTPRODUCT "
@@ -261,6 +273,30 @@ public class Database {
                 + "BRATE REAL NOT NULL,"
                 + "Expiry DATE,"
                 + "FOREIGN KEY(Reciptno) REFERENCES GOODSRECIPT(Reciptno))";
+        Update(str);
+    }
+    private static void createDebitnotePRDB(){
+        System.out.println("Creating DEBITNOTEPR Table");
+        String str="CREATE TABLE DEBITNOTEPR "
+                +"(Company VARCHAR(20) NOT NULL,"
+                + "Reciptno VARCHAR(10) NOT NULL,"
+                + "Dbno VARCHAR(10) NOT NULL PRIMARY KEY,"
+                + "Reciptdate DATE,"
+                + "FOREIGN KEY(Reciptno) REFERENCES GOODSRECIPT(Reciptno))";
+        Update(str);
+    }
+    private static void createDebitnotePRPdtDB(){
+        System.out.println("Creating DEBITNOTEPRODUCT Table" );
+        String str="CREATE TABLE DEBITNOTEPRPDT "
+                +"(Product VARCHAR(20) NOT NULL,"
+                + "Dbno VARCHAR(10) NOT NULL,"
+                + "Batch VARCHAR(10) NOT NULL,"
+                + "Quantity INTEGER NOT NULL,"
+                + "Free INTEGER NOT NULL,"
+                + "MRP REAL NOT NULL,"
+                + "BRATE REAL NOT NULL,"
+                + "Expiry DATE,"
+                + "FOREIGN KEY(Dbno) REFERENCES DEBITNOTEPR(Dbno))";
         Update(str);
     }
 

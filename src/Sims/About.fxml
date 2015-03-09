@@ -18,9 +18,52 @@
             </Text>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="364.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+      <HBox>
          <children>
-            <VBox alignment="CENTER" prefHeight="327.0" prefWidth="275.0" spacing="5.0">
+            <VBox alignment="CENTER" prefHeight="327.0" prefWidth="465.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" text="GUIDED BY" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dr.Sudheep Elayimadom" textAlignment="CENTER" wrappingWidth="223.8701171875">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Associate professor.">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="School Of Engineering .">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="CUSAT">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label text="NETBILL" underline="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Text fill="#1a6bd9" focusTraversable="true" pickOnBounds="true" strokeType="OUTSIDE" strokeWidth="0.0" text="NETBILL is a Sales and Inventory management system.&#10;The software is build as a part of academic project during &#10;the B.Tech Computer Science and Enginering.&#10;The soul ownership of this release relies with &#10;NETSOUL SOFTWARE SOLUTIONS.&#10; " textAlignment="CENTER" wrappingWidth="351.16650390625">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="327.0" prefWidth="516.0" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <HBox alignment="CENTER" prefHeight="103.0" prefWidth="248.0">
                      <children>
@@ -41,37 +84,6 @@
                   <Text layoutX="10.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dilshadcr@gmail.com" wrappingWidth="130.13671875" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefHeight="332.0" prefWidth="320.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="76.0" prefWidth="352.0">
-                     <children>
-                        <Label text="NETBILL" underline="true">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Text fill="#1a6bd9" focusTraversable="true" pickOnBounds="true" strokeType="OUTSIDE" strokeWidth="0.0" text="NETBILL is a Sales and Inventory management system.&#10;The software is build as a part of academic project during &#10;the B.Tech Computer Science and Enginering.&#10;The soul ownership of this release relies with &#10;NETSOUL SOFTWARE SOLUTIONS.&#10;Any sort of copiying or porting this program to another&#10; computer language without prior permission of&#10; NETSOUL SOFTWARE SOLUTIONS is punishable&#10; under copywright act. " textAlignment="CENTER" wrappingWidth="351.16650390625">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="42.0" prefWidth="248.0">
-         <children>
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="558.0" text="Feel free to contact us for any assistance Thank you for purchasing " textFill="#2b7de3" underline="true">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
          </children>
       </HBox>
    </children>
