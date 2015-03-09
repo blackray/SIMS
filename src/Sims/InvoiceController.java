@@ -185,11 +185,13 @@ public class InvoiceController implements Initializable {
                 Query = Database.Query(stmnt);
                 if (Query.next()) {
                     int newval = (int) (Query.getInt(1) - Double.parseDouble(data.getBilled()));
+                    int newfree = (int) (Query.getInt("Free") - Double.parseDouble(data.getFree()));
                     String updstmnt;
                     if(newval == 0){
                         updstmnt = "DELETE FROM STOCK WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
                     }else{
-                        updstmnt = "UPDATE STOCK SET Quantity="+newval+"Free="+data.getFree()+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+
+                        updstmnt = "UPDATE STOCK SET Quantity="+newval+",Free="+newfree+" WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
                     }
                     boolean Update = Database.Update(updstmnt);
                     if(Update){

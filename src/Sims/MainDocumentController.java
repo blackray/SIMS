@@ -130,13 +130,13 @@ public class MainDocumentController implements Initializable {
             filltable("");
             return;
         }
-        String stmnt = "SELECT Product,Batch,Quantity FROM STOCK WHERE Product='"+s+"'";
+        String stmnt = "SELECT Product,Batch,Quantity,Free FROM STOCK WHERE Product LIKE'"+s+"%'";
         filltable(stmnt);
     }
     
     private void filltable(String stmnt){
         if(stmnt.equals(""))
-            stmnt = "SELECT Product,Batch,Quantity FROM STOCK ORDER BY Quantity";
+            stmnt = "SELECT Product,Batch,Quantity,Free FROM STOCK ORDER BY Quantity";
         ObservableList<Stockdata> data = FXCollections.observableArrayList();
         ResultSet Query = Database.Query(stmnt);
         try {
@@ -144,7 +144,8 @@ public class MainDocumentController implements Initializable {
                 String pname = Query.getString(1);
                 String batch = Query.getString(2);
                 String quantity = Query.getString(3);
-                data.add(new Stockdata(pname, batch, quantity));
+                String free = Query.getString(4);
+                data.add(new Stockdata(pname, batch, quantity,free));
             }
             stocktable.setItems(data);
         } catch (SQLException ex) {
@@ -158,7 +159,7 @@ public class MainDocumentController implements Initializable {
         ctrl.SetMainDocumentController(this);
         status.setText("Status");
         
-        String stmnt = "SELECT Product,Batch,Quantity FROM STOCK ORDER BY Quantity";
+        String stmnt = "SELECT Product,Batch,Quantity,Free FROM STOCK ORDER BY Quantity";
         filltable(stmnt);                
     }
 }
