@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2e9c7da7-8c4e-43e0-9489-620dcffd0f9e">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.7715610000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="505"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -24,70 +24,204 @@
 		</box>
 	</style>
 	<subDataset name="Table Dataset 1" uuid="6b3027e6-a3cd-4cd8-9e2e-6fd3a437bee1"/>
-	<field name="COLUMN_0" class="java.lang.String"/>
-	<field name="COLUMN_1" class="java.lang.String"/>
-	<field name="COLUMN_2" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/amalcs/Project/SIMS/src/Sims/com/invoice/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from CUSTOMER]]>
+	</queryString>
+	<field name="Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Place" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Phone" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Area" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="31" splitType="Stretch">
+		<band height="13" splitType="Stretch">
 			<staticText>
-				<reportElement x="199" y="0" width="152" height="31" uuid="b5babae4-79f2-492b-9160-88ce353f5225"/>
+				<reportElement x="126" y="0" width="300" height="13" uuid="b5babae4-79f2-492b-9160-88ce353f5225"/>
 				<textElement textAlignment="Center">
-					<font size="24" isBold="true" isUnderline="true"/>
+					<font size="10" isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[INVOICE]]></text>
+				<text><![CDATA[FORM 80-H-INVOICE]]></text>
 			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="41" splitType="Stretch"/>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="3a589ff9-be43-4edf-8126-806c9b409c4b"/>
+			</line>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="34" splitType="Stretch">
-			<staticText>
-				<reportElement x="26" y="7" width="100" height="20" uuid="4ac67493-a6e1-46b4-8d01-0f9d169cefae"/>
-				<text><![CDATA[SL No.]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="214" y="7" width="100" height="20" uuid="124397de-5c42-437d-a03d-46c5d825326d"/>
-				<textElement verticalAlignment="Middle">
-					<font isStrikeThrough="false"/>
-				</textElement>
-				<text><![CDATA[ITEM]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="426" y="7" width="100" height="20" uuid="d6225503-b9a1-44be-a826-04f4f5d8cea1"/>
-				<text><![CDATA[MRP]]></text>
-			</staticText>
-		</band>
+		<band height="8" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="17" splitType="Stretch">
+		<band height="112" splitType="Stretch">
 			<elementGroup>
 				<textField>
-					<reportElement x="26" y="0" width="90" height="17" uuid="ca96dd14-4304-41f9-93d1-68993ff6001b"/>
-					<textFieldExpression><![CDATA[$F{COLUMN_0}]]></textFieldExpression>
-				</textField>
-				<textField pattern="¤ #,##0.00">
-					<reportElement x="426" y="0" width="100" height="17" uuid="e94762f6-f9d2-4e8a-bc7b-5757cda7a58d"/>
-					<textFieldExpression><![CDATA[$F{COLUMN_2}]]></textFieldExpression>
+					<reportElement x="281" y="20" width="66" height="17" uuid="ca96dd14-4304-41f9-93d1-68993ff6001b"/>
+					<textFieldExpression><![CDATA[ $F{Name}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="214" y="0" width="100" height="17" uuid="b8155743-1299-4af6-bd39-f266c14efefd"/>
-					<textFieldExpression><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
+					<reportElement x="281" y="37" width="100" height="20" uuid="a897b2bc-1e7a-4405-b9a3-aaa116f41515"/>
+					<textFieldExpression><![CDATA[ $F{Address}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="329" y="57" width="100" height="20" uuid="646491fe-8e22-49bf-a287-ddeac2410a61"/>
+					<textFieldExpression><![CDATA[$F{Tin}]]></textFieldExpression>
 				</textField>
 			</elementGroup>
+			<textField>
+				<reportElement x="329" y="77" width="100" height="20" uuid="45cf22a8-df3e-40d6-b36a-6e4c2ab8a8c2"/>
+				<textFieldExpression><![CDATA[$F{Phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="57" width="48" height="20" uuid="5d139fb5-962d-4ad4-9b08-3edc602881b2"/>
+				<text><![CDATA[ Tin    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="77" width="48" height="20" uuid="0e805fb5-55c4-41c8-bfad-6738a64c3454"/>
+				<text><![CDATA[ Phone :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="9" y="111" width="529" height="1" uuid="c6ccc93c-6c92-4662-a82d-6fdd10cc39e2"/>
+			</line>
+			<frame>
+				<reportElement x="281" y="0" width="257" height="111" uuid="7e14fbe2-27bc-4d11-bb1b-99b7170f70e1"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="48" height="20" uuid="4ac67493-a6e1-46b4-8d01-0f9d169cefae"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[ To]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="9" y="0" width="48" height="20" uuid="cf2b10e0-44d8-4c6d-8f51-291928409713"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="20" width="100" height="17" uuid="9327e2f1-540e-49e1-88d7-ad12d1ac32ff"/>
+				<text><![CDATA[ ALERT AGENCIES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="37" width="260" height="10" uuid="35020a36-aecd-4850-bb6b-00e04d81b794"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[  67/9397-B GOLALAPRABHU ROAD, ERNAKULAM,]]></text>
+			</staticText>
+			<elementGroup>
+				<staticText>
+					<reportElement x="9" y="47" width="260" height="10" uuid="2c4354f7-6a4b-4b15-af46-9dfb11b46ec3"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[  KOCHI,PIN-682035 KERALA,ERNAKULAM-682035]]></text>
+				</staticText>
+			</elementGroup>
+			<staticText>
+				<reportElement x="9" y="77" width="272" height="10" uuid="9106e956-05b1-4685-9612-5b877a763afd"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[  VAT TIN.No       : 32071720702         CST TIN.NO   :  320717207020]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="87" width="272" height="20" uuid="8fb661cd-7efa-4bf3-84c8-f3092e175d32"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[  DL.No                : KL-EKM-104932 ,  KL-EKM-104933]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="9" y="0" width="272" height="111" uuid="e6ca73d0-6e12-48a0-b897-75d33fbe5592"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+			</frame>
+		</band>
+		<band height="26">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="9" y="12" width="145" height="14" uuid="93efa852-6994-4f15-b05a-d997fc6b4c5b"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="405" y="12" width="133" height="14" uuid="2ee40271-5a94-48fe-96f2-29f0406671e5"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "INVOICENO.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="34">
+			<subreport>
+				<reportElement x="9" y="0" width="529" height="12" uuid="5a62e4ac-b951-4758-8aa3-76c9246091d0"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Productlist.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement x="281" y="0" width="257" height="22" uuid="4ebbab79-1010-4387-bac6-514b85da15a2"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Total pdvalue.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="47" splitType="Stretch"/>
+		<band height="77" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="52" splitType="Stretch"/>
+		<band height="156" splitType="Stretch">
+			<rectangle>
+				<reportElement x="361" y="32" width="157" height="85" uuid="5e92a5a8-4276-4189-8338-d6c29dd6b1f1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="381" y="32" width="120" height="20" uuid="03418939-15c4-419b-baa7-3faa27ed84a1"/>
+				<text><![CDATA[FOR ALERT AGENCIES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="9" y="30" width="546" height="2" uuid="b7f8dce2-f6a7-4182-b382-6485c030316a"/>
+			</line>
+			<line>
+				<reportElement x="9" y="134" width="546" height="1" uuid="ed98a062-cf34-492e-aad4-657d4ae58ecf"/>
+			</line>
+		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="165" splitType="Stretch"/>
 	</summary>
 </jasperReport>

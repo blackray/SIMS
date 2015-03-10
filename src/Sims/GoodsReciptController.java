@@ -90,13 +90,13 @@ public class GoodsReciptController implements Initializable {
         double dbrate = Double.parseDouble(Brate);
 
         
-        System.out.println("sdfjfdfghjkgf");
+        
         ObservableList<Goodsreciptdata> data = table.getItems();
         boolean flag = true;
         for(Goodsreciptdata d : data){
             System.out.println(d.getProduct()+proname);
             if((d.getProduct().equals(proname)) && (d.getBatch().equals(Batch)) ){
-                System.out.println("herewdlkfjkdfjlsdjflksdjfklsjdflkjs");
+               
                 flag = false;
                 return;
             }

@@ -5,6 +5,9 @@
  */
 package Sims.com.jasper;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -27,12 +30,18 @@ public class jaspercontroller {
 
     public void printInvoice(String[] ColumnNames, String[][] Data) {
         tableModel = new DefaultTableModel(Data, ColumnNames);
-
+        Connection connection = null;
+        try{
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/test" , "amalcs", "noentry");
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
         JasperPrint jasperprint = null;
         try {
             JasperCompileManager.compileReportToFile("report1.jrxml");
             jasperprint = JasperFillManager.fillReport("report name.jasper", new HashMap(),
-                    new JRTableModelDataSource(tableModel));
+                    connection);
             //JasperExportManager.exportReportToPdfFile(jasperprint,
               //    "invoice.pdf");            
             JasperViewer jasperviewer = new JasperViewer(jasperprint,false);

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Total pdvalue" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="400d624c-e94d-41a9-9c38-d5d08e38f33b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT SUM(PDVALUE),SUM(MRPVALUE) FROM INVOICEPRODUCT WHERE INVOICENO IN (SELECT MAX(INVOICENO) FROM INVOICEPRODUCT);]]>
+	</queryString>
+	<field name="SUM(PDVALUE)" class="java.lang.Double"/>
+	<field name="SUM(MRPVALUE)" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="88" height="20" uuid="b7a13c03-f501-4f90-ad7c-c4d078a91f53"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL   :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="88" y="0" width="82" height="20" uuid="154747b0-b48f-4778-ab9d-58032ad7dbd8"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(PDVALUE)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="0" width="100" height="20" uuid="09f533f7-99b2-4a5b-98cf-d96ed214b597"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(MRPVALUE)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
