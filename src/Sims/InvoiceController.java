@@ -175,9 +175,39 @@ public class InvoiceController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(InvoiceController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //Updating Stock
+        
+        //Update invoiceproduct db
+        
+        String inpdstmnt = "INSERT INTO INVOICEPRODUCT VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        PreparedStatement p = Database.GetPreparedStmt(inpdstmnt);
         ObservableList<InvoiceData> id = table.getItems();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        try{
+        for(InvoiceData data : id){
+            System.out.println("Here");
+            p.setString(1,invoiceno+"");
+            p.setString(2, data.getProduct());
+            p.setString(3,data.getBatch() );
+            p.setString(4,df.format(date) );
+            p.setString(5, data.getBilled());
+            p.setString(6, data.getFree());
+            p.setString(7, data.getPtr());
+            p.setString(8, data.getPts());
+            p.setString(9, data.getMrp());
+            p.setString(10, data.getTax());
+            p.setString(11, data.getTaxamt());
+            p.setString(12, data.getPdvalue());
+            p.setString(13, data.getMrpvalue());
+            
+            int executeUpdate = p.executeUpdate();
+            System.out.println(executeUpdate + " Row Changed in invoiceproduct");
+        }
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+        //Updating Stock
+        id = table.getItems();
         ResultSet Query;
         for (InvoiceData data : id) {
             try {

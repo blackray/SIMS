@@ -221,11 +221,19 @@ public class Database {
     private static void createInvoiceProductDB(){
         System.out.println("Creating INVOICE Product Table");
         String str = "CREATE TABLE INVOICEPRODUCT "
-                +"(INVOICENO INTEGER NOT NULL PRIMARY KEY,"
-                +"PNAME VARCHAR(20) UNIQUE NOT NULL,"
+                +"(INVOICENO INTEGER NOT NULL,"
+                +"PNAME VARCHAR(20)  NOT NULL,"
                 +"BATCH VARCHAR(10) NOT NULL,"
+                +"Expdat VARCHAR(20),"
                 +"QUANTITY INTEGER NOT NULL,"
                 +"FREE INTEGER NOT NULL,"
+                +"PTR VARCHAR(20),"
+                +"PTS VARCHAR(20),"
+                +"MRP VARCHAR(20),"
+                +"TAX VARCHAR(20),"
+                +"TAXAMT VARCHAR(20),"
+                +"PDVALUE VARCHAR(20),"
+                +"MRPVALUE VARCHAR(20),"
                 +"FOREIGN KEY(INVOICENO) REFERENCES INVOICE(INVOICENO),"
                 +"FOREIGN KEY(PNAME) REFERENCES PRODUCT(Name))";
         Update(str);
@@ -279,10 +287,8 @@ public class Database {
         System.out.println("Creating DEBITNOTEPR Table");
         String str="CREATE TABLE DEBITNOTEPR "
                 +"(Company VARCHAR(20) NOT NULL,"
-                + "Reciptno VARCHAR(10) NOT NULL,"
                 + "Dbno VARCHAR(10) NOT NULL PRIMARY KEY,"
-                + "Reciptdate DATE,"
-                + "FOREIGN KEY(Reciptno) REFERENCES GOODSRECIPT(Reciptno))";
+                + "Reciptdate DATE)";
         Update(str);
     }
     private static void createDebitnotePRPdtDB(){
