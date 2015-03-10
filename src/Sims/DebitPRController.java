@@ -33,8 +33,9 @@ import javafx.scene.text.Text;
  *
  * @author jesuit
  */
-public class DebitPRController implements Initializable{
-     @FXML
+public class DebitPRController implements Initializable {
+
+    @FXML
     private Label recpno;
     @FXML
     private Label recpdt;
@@ -67,7 +68,7 @@ public class DebitPRController implements Initializable{
     @FXML
     private ComboBox<String> fxcompname;
     @FXML
-    private TableView<Goodsreciptdata> table;
+    private TableView<DebitPRdata> table;
 
     @FXML
     private void add(ActionEvent ev) {
@@ -85,40 +86,45 @@ public class DebitPRController implements Initializable{
         double dfree = Integer.parseInt(Free);
         double dbrate = Double.parseDouble(Brate);
 
-        ObservableList<Goodsreciptdata> data = table.getItems();
+        ObservableList<DebitPRdata> data = table.getItems();
 
-        data.add(new Goodsreciptdata(proname, Brate, Mrp, Batch, date.toString(), Qty, Free));
+        data.add(new DebitPRdata(proname, Brate, Mrp, Batch, date.toString(), Qty, Free));
 
     }
 
     @FXML
     public void Submitaction(ActionEvent ev) {
-        ObservableList<Goodsreciptdata> data = table.getItems();
 
-        String stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
-            for (Goodsreciptdata d : data) {
-                updatestock.setString(1, d.getProduct());
-                updatestock.setString(2, d.getBatch());
-                updatestock.setString(3, d.getMRP());
-                updatestock.setString(4, d.getB_Rate());
-                updatestock.setString(5, d.getExpiry());
-                updatestock.setString(6, d.getQty());
-                updatestock.setString(7, d.getFree());
+        ObservableList<DebitPRdata> id = table.getItems();
+        ResultSet Query;
+        for (DebitPRdata data : id) {
+            try {
+                String stmnt = "SELECT Quantity,Free FROM STOCK WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                Query = Database.Query(stmnt);
+                if (Query.next()) {
+                    int newval = (int) (Query.getInt(1) - Double.parseDouble(data.getQty()));
+                    int newfree = (int) (Query.getInt("Free") - Double.parseDouble(data.getFree()));
+                    String updstmnt;
+                    if (newval == 0) {
+                        updstmnt = "DELETE FROM STOCK WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                    } else {
 
-                int executeUpdate = updatestock.executeUpdate();
-                System.out.println(executeUpdate + " Row Changed");
+                        updstmnt = "UPDATE STOCK SET Quantity=" + newval + ",Free=" + newfree + " WHERE Product='" + data.getProduct() + "' AND Batch=" + data.getBatch();
+                    }
+                    boolean Update = Database.Update(updstmnt);
+                    if (Update) {
+                        System.out.println("Update Success");
+                    }
+                }
+            } catch (SQLException ex) {
+
+                Messagebox.getInstance().message("Error", ex.getMessage());
+                Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
             }
-        } catch (SQLException ex) {
-
-            Messagebox.getInstance().message("Error", ex.getMessage());
-            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
-
-        //Update Goodsrecipt
+        //Update DebitnotePr
         try {
-            stmt = "INSERT INTO DEBITNOTEPR (Company,Dbno,Reciptdate) VALUES(?,?,?)";
+            String stmt = "INSERT INTO DEBITNOTEPR (Company,Dbno,Reciptdate) VALUES(?,?,?)";
             Date d = new Date();
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             PreparedStatement updatestmnt = Database.GetPreparedStmt(stmt);
@@ -133,12 +139,13 @@ public class DebitPRController implements Initializable{
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
         }
 
-        //Update Goods Recipt Product
-        stmt = "INSERT INTO DEBITNOTEPRPDT (Product,Dbno,Batch,Quantity,Free,MRP,BRATE,Expiry) VALUES(?,?,?,?,?,?,?,?)";
+        //Update DebitnotePR Product
+        String stmt = "INSERT INTO DEBITNOTEPRPDT (Product,Dbno,Batch,Quantity,Free,MRP,BRATE,Expiry) VALUES(?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
-            for (Goodsreciptdata d : data) {
+            ObservableList<DebitPRdata> da = table.getItems();
+            for (DebitPRdata d : da) {
                 updatestock.setString(1, d.getProduct());
                 updatestock.setString(2, recpno.getText());
                 updatestock.setString(3, d.getBatch());
@@ -159,7 +166,8 @@ public class DebitPRController implements Initializable{
     }
 
     @FXML
-    public void CompanyComboboxaction(ActionEvent ev) {
+    public void CompanyComboboxaction(ActionEvent ev
+    ) {
         try {
             String stmnt = "SELECT Address,TIN FROM COMPANY WHERE Name='" + fxcompname.getValue() + "'";
             ResultSet Query = Database.Query(stmnt);
@@ -180,14 +188,17 @@ public class DebitPRController implements Initializable{
                 System.out.println("No Company Found");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DebitPRController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources
+    ) {
+        //System.out.println("Heregikfsdfhs");
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         try {
-            String stmnt = "SELECT MAX(Reciptno) from GOODSRECIPTPRODUCT";
+            String stmnt = "SELECT MAX(Dbno) from DEBITNOTEPRPDT";
             PreparedStatement Query = Database.GetPreparedStmt(stmnt);
             ResultSet executeQuery = Query.executeQuery();
             while (executeQuery.next()) {
@@ -226,7 +237,7 @@ public class DebitPRController implements Initializable{
             }
             product.setItems(prod);
         } catch (SQLException ex) {
-            System.out.println("Execption in Goodsrecipt Initialize");
+            System.out.println("Execption in Debitnote Initialize");
             // Logger.getLogger(GoodsReciptController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

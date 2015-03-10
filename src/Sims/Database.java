@@ -58,15 +58,16 @@ public class Database {
         }else{
             createCompanyDB();
         }
-        if(ifexist_table("STOCK")){
-            System.out.println("STOCK Table Found");
-        }else{
-            createStockDB();
-        }
+        
         if(ifexist_table("PRODUCT")){
             System.out.println("PRODUCT Table Found");
         }else{
             createProuductDB();
+        }
+        if(ifexist_table("STOCK")){
+            System.out.println("STOCK Table Found");
+        }else{
+            createStockDB();
         }
         
         
@@ -281,7 +282,7 @@ public class Database {
                 +"(Company VARCHAR(20) NOT NULL,"
                
                 + "Dbno VARCHAR(10) NOT NULL PRIMARY KEY,"
-                + "Reciptdate DATE,)";
+                + "Reciptdate DATE)";
                 
         Update(str);
     }
