@@ -119,6 +119,7 @@ public class GoodsReciptController implements Initializable {
                 PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
                 for (Goodsreciptdata d : data) {
 
+<<<<<<< Updated upstream
                     updatestock.setString(1, d.getProduct());
                     updatestock.setString(2, d.getBatch());
                     updatestock.setString(3, d.getMRP());
@@ -170,6 +171,28 @@ public class GoodsReciptController implements Initializable {
                     updatestock.setString(6, d.getMRP());
                     updatestock.setString(7, d.getB_Rate());
                     updatestock.setString(8, d.getExpiry());
+=======
+        String stmt;
+
+        //Update Goodsrecipt
+        try {
+            stmt = "INSERT INTO GOODSRECIPT (Company,Orderno,Reciptno,Reciptdate) VALUES(?,?,?,?)";
+            Date d = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            PreparedStatement updatestmnt = Database.GetPreparedStmt(stmt);
+            updatestmnt.setString(1, fxcompname.getValue());
+            updatestmnt.setString(2, ordno.getText());
+            updatestmnt.setString(3, recpno.getText());
+            updatestmnt.setString(4, df.format(d));
+            int executeUpdate = updatestmnt.executeUpdate();
+            System.out.println(executeUpdate + " Row Changed");
+        } catch (SQLException ex) {
+
+            Messagebox.getInstance().message("Error", ex.getMessage());
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+            return;
+        }
+>>>>>>> Stashed changes
 
                     int executeUpdate = updatestock.executeUpdate();
                     System.out.println(executeUpdate + " Row Changed");
@@ -181,6 +204,7 @@ public class GoodsReciptController implements Initializable {
             }
         }
 
+<<<<<<< Updated upstream
         @FXML
         public void CompanyComboboxaction
         (ActionEvent ev
@@ -208,6 +232,32 @@ public class GoodsReciptController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(PurchaseOrderController.class.getName()).log(Level.SEVERE, null, ex);
             }
+=======
+            Messagebox.getInstance().message("Error", ex.getMessage());
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+            return;
+        }
+        
+        stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
+            for (Goodsreciptdata d : data) {
+                updatestock.setString(1, d.getProduct());
+                updatestock.setString(2, d.getBatch());
+                updatestock.setString(3, d.getMRP());
+                updatestock.setString(4, d.getB_Rate());
+                updatestock.setString(5, d.getExpiry());
+                updatestock.setString(6, d.getQty());
+                updatestock.setString(7, d.getFree());
+
+                int executeUpdate = updatestock.executeUpdate();
+                System.out.println(executeUpdate + " Row Changed");
+            }
+        } catch (SQLException ex) {
+
+            Messagebox.getInstance().message("Error", ex.getMessage());
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+>>>>>>> Stashed changes
         }
 
         @Override
