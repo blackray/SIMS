@@ -288,7 +288,7 @@ public class InvoiceController implements Initializable {
                 comp.add(cname);
             }
             customer.setItems(comp);
-            stmnt = "SELECT UNIQUE Product FROM STOCK";
+            stmnt = "SELECT DISTINCT Product FROM STOCK";
             GetPreparedStmt = Database.GetPreparedStmt(stmnt);
             executeQuery = GetPreparedStmt.executeQuery();
             ObservableList<String> compp = FXCollections.observableArrayList();
