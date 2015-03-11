@@ -121,7 +121,7 @@ public class InvoiceController implements Initializable {
             }
         }
         //Check stock balance
-        String stmnt = "SELECT Quantity FROM STOCK WHERE Product='"+pname+"' AND Batch="+bat;
+        String stmnt = "SELECT Quantity,Free FROM STOCK WHERE Product='"+pname+"' AND Batch="+bat;
         ResultSet Query = Database.Query(stmnt);
         try {
             if (Query.next()) {
@@ -129,6 +129,10 @@ public class InvoiceController implements Initializable {
                 if (stock_quantity < Qty) {
                     Messagebox.getInstance().message("Check Quantity", "Entered Quantity is less than Stock Quantity");
                     return;
+                }
+                int freeqty = Query.getInt("Free");
+                if(freeqty < Free){
+                    Messagebox.getInstance().message("Check Free Quantity", "Entered Free Quantity is less than Stock Free Quantity");                    
                 }
             }
         } catch (SQLException ex) {
@@ -284,7 +288,7 @@ public class InvoiceController implements Initializable {
                 comp.add(cname);
             }
             customer.setItems(comp);
-            stmnt = "SELECT Product FROM STOCK";
+            stmnt = "SELECT UNIQUE Product FROM STOCK";
             GetPreparedStmt = Database.GetPreparedStmt(stmnt);
             executeQuery = GetPreparedStmt.executeQuery();
             ObservableList<String> compp = FXCollections.observableArrayList();

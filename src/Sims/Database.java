@@ -58,15 +58,16 @@ public class Database {
         }else{
             createCompanyDB();
         }
-        if(ifexist_table("STOCK")){
-            System.out.println("STOCK Table Found");
-        }else{
-            createStockDB();
-        }
+        
         if(ifexist_table("PRODUCT")){
             System.out.println("PRODUCT Table Found");
         }else{
             createProuductDB();
+        }
+        if(ifexist_table("STOCK")){
+            System.out.println("STOCK Table Found");
+        }else{
+            createStockDB();
         }
         
         
@@ -144,7 +145,10 @@ public class Database {
     private static void createCustomerDB() {
         System.out.println("Creating Customer Table");
         String str = "CREATE TABLE CUSTOMER "
-                + "(Name VARCHAR(20) NOT NULL PRIMARY KEY,Address VARCHAR(100) NOT NULL,Place VARCHAR(50) NOT NULL,Phone VARCHAR(20) NOT NULL,Area VARCHAR(20) NOT NULL,Tin VARCHAR(20) NOT NULL)";
+                + "(Name VARCHAR(20) NOT NULL PRIMARY KEY,"
+                + "Address VARCHAR(100) NOT NULL,"
+                + "Place VARCHAR(50) NOT NULL,Phone VARCHAR(20) NOT NULL,"
+                + "Area VARCHAR(20) NOT NULL,Tin VARCHAR(20) NOT NULL)";
 
         Update(str);
     }
