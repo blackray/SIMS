@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT SUM(PDVALUE),SUM(MRPVALUE) FROM INVOICEPRODUCT WHERE INVOICENO IN (SELECT MAX(INVOICENO) FROM INVOICEPRODUCT);]]>
+		<![CDATA[SELECT SUM(PDVALUE),SUM(MRPVALUE) FROM APP.INVOICEPRODUCT WHERE INVOICENO IN (SELECT MAX(INVOICENO) FROM APP.INVOICEPRODUCT);]]>
 	</queryString>
 	<field name="SUM(PDVALUE)" class="java.lang.Double"/>
 	<field name="SUM(MRPVALUE)" class="java.lang.Double"/>

@@ -70,6 +70,7 @@ public class InvoiceController implements Initializable {
     public void CustomerAction(ActionEvent ev) {
         try {
             String stmnt = "SELECT Address,Tin FROM CUSTOMER WHERE Name='" + customer.getValue() + "'";
+            System.out.println("here");
             ResultSet Query = Database.Query(stmnt);
             if (Query.next()) {
                 address.setText(Query.getString("Address"));
