@@ -5,6 +5,8 @@
  */
 package Sims.com.jasper;
 
+import Sims.Config;
+import Sims.Database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,7 +35,7 @@ public class jaspercontroller {
         Connection connection = null;
         try{
             DriverManager.registerDriver(new com.mysql.jdbc.Driver ());
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/test" , "amalcs", "noentry");
+            connection = Database.getConnection();
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }

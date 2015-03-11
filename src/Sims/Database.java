@@ -27,6 +27,9 @@ public class Database {
     private Database() {
         conn = null;
     }
+    public static Connection getConnection(){
+        return conn;
+    }
 
     /*To be called first time the Program is run
      the function create the necessary database table

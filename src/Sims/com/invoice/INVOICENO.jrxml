@@ -4,7 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT MAX(INVOICENO) FROM INVOICE;]]>
+		<![CDATA[SELECT MAX(INVOICENO) FROM APP.INVOICE;]]>
 	</queryString>
 	<field name="MAX(INVOICENO)" class="java.lang.Integer"/>
 	<background>

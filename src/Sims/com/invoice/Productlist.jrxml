@@ -8,7 +8,7 @@
 		<defaultValueExpression><![CDATA["/home/amalcs/Project/SIMS/src/Sims/com/invoice/"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select * from INVOICEPRODUCT where INVOICENO IN (SELECT MAX(INVOICENO) FROM INVOICEPRODUCT);]]>
+		<![CDATA[select * from INVOICEPRODUCT where APP.INVOICENO IN (SELECT MAX(INVOICENO) FROM APP.INVOICEPRODUCT);]]>
 	</queryString>
 	<field name="INVOICENO" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>

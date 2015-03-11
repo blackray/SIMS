@@ -3,8 +3,8 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<queryString language="SQL">
-		<![CDATA[SELECT SUM(MRPVALUE) FROM INVOICEPRODUCT WHERE INVOICENO IN (SELECT MAX(INVOICENO) FROM INVOICEPRODUCT);]]>
+	<queryString>
+		<![CDATA[SELECT SUM(MRPVALUE) FROM APP.INVOICEPRODUCT WHERE INVOICENO IN (SELECT MAX(INVOICENO) FROM APP.INVOICEPRODUCT);]]>
 	</queryString>
 	<field name="SUM(MRPVALUE)" class="java.lang.Double"/>
 	<background>
