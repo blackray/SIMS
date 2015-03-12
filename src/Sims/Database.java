@@ -5,6 +5,8 @@
  */
 package Sims;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -12,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -130,10 +133,22 @@ public class Database {
         System.out.println("Creating LOGIN Table");
         String str = "CREATE TABLE LOGIN "
                 + "(USERNAME VARCHAR(20) NOT NULL PRIMARY KEY,"
-                + "PASSWORD VARCHAR(20) NOT NULL)";
+                + "PASSWORD VARCHAR(100) NOT NULL)";
 
         Update(str);
-        Update("insert into LOGIN (username,password) values ('admin','admin')");
+        String password_sha_string = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA");
+            String password = "admin";
+            byte[] password_sha = md.digest(password.getBytes());
+            md.reset();
+           password_sha_string = Arrays.toString(password_sha);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String stmnt = "insert into LOGIN (username,password) values ('admin','"+password_sha_string+"')";
+        Update(stmnt);
     }
 
     private static void createGenericDB() {

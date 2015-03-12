@@ -1,9 +1,13 @@
 package Sims;
 
+import Sims.com.Messagebox.Messagebox;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,13 +59,27 @@ public class AddAccountController implements Initializable {
             return;
         }
         try {
+            MessageDigest md;
+            String shapass = null;
+            try {
+                md = MessageDigest.getInstance("SHA");
+                md.reset();
+                byte[] s = md.digest(Password.getBytes());
+                shapass = Arrays.toString(s);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(AddAccountController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
 
             String stmt = "INSERT INTO LOGIN (USERNAME,PASSWORD) VALUES(?,?)";
             PreparedStatement pstmt = Database.GetPreparedStmt(stmt);
             pstmt.setString(1, Username);
-            pstmt.setString(2, Password);
+            pstmt.setString(2, shapass);
             pstmt.executeUpdate();
             mc.Setstatusmessage("Update Sucessful");
+            Messagebox.getInstance().message("Accounts","New Account Created Successfully");
+            tf_username.clear();
+            tf_password.clear();
         } catch (SQLException ex) {
             Logger.getLogger(AddAccountController.class.getName()).log(Level.SEVERE, null, ex);
         }

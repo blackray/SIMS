@@ -6,8 +6,11 @@
 package Sims;
 
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,13 +49,27 @@ public class Changepasswordcontroller implements Initializable{
             rp_status.setText("Don't Match");
             return;
         }
+        MessageDigest md;
+        String sha_cur=null;
+        String sha_newpass=null;
+        try {
+             md = MessageDigest.getInstance("SHA");
+             byte[] shap = md.digest(cur_pass.getBytes());
+             md.reset();
+             sha_cur = Arrays.toString(shap);
+             
+             shap = md.digest(new_pass.getBytes());
+             sha_newpass = Arrays.toString(shap);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Changepasswordcontroller.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         ResultSet Query = Database.Query("select PASSWORD from LOGIN where USERNAME='"+Username+"'");
         try {
             while(Query.next()){
                 String s=Query.getString("PASSWORD");
-                if(s.equals(cur_pass)){
-                    Database.Update("UPDATE LOGIN SET PASSWORD='"+new_pass+"' WHERE USERNAME = '"+Username+"'");
+                if(s.equals(sha_cur)){
+                    Database.Update("UPDATE LOGIN SET PASSWORD='"+sha_newpass+"' WHERE USERNAME = '"+Username+"'");
                 }else{
                     mc.Setstatusmessage("Error : Current Username Dont Match");
                 }

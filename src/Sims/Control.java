@@ -6,8 +6,11 @@
 package Sims;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +69,18 @@ public class Control {
             Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public boolean Authenticate(String username,String password){
+    public boolean Authenticate(String username,String password){    
+        String password_sha=null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA");
+            md.reset();
+            byte[] password_sha_byte = md.digest(password.getBytes());
+            md.reset();
+            password_sha = Arrays.toString(password_sha_byte);
+            System.out.println("Password for checking = "+password_sha);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Control.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ResultSet Query = Database.Query("select * from LOGIN where USERNAME='"+username+"'");
         if(Query == null){
             return false;
@@ -76,7 +90,7 @@ public class Control {
             while(Query.next()){
                 String s=Query.getString("PASSWORD");
                 System.out.println(s);
-                if(s.equals(password)){
+                if(s.equals(password_sha)){
                     this.username = username;
                     logedin = true;
                     return true;
