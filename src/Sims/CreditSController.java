@@ -150,18 +150,8 @@ public class CreditSController implements Initializable{
     @FXML
     public void Print(ActionEvent ev){
         jaspercontroller jc = new jaspercontroller();
-        String[] ColumnNames={"SL","ITEM","MRP"};
-        ObservableList<CreditSrData> id = table.getItems();
-        int i =0;
-        int size = id.size();
-        String[][] Data = new String[size][3];
-        for(CreditSrData idata : id){
-            Data[i][0]=(i+1)+"";
-            Data[i][1]=idata.getProduct();
-            Data[i][2]=idata.getMrp();
-            i++;
-        }
-        jc.printInvoice(ColumnNames, Data);
+
+        jc.printInvoice();
   
     }
 @Override
@@ -199,7 +189,7 @@ public class CreditSController implements Initializable{
                 comp.add(cname);
             }
             customer.setItems(comp);
-            stmnt = "SELECT Product FROM STOCK";
+            stmnt = "SELECT DISTINCT Product FROM STOCK";
             GetPreparedStmt = Database.GetPreparedStmt(stmnt);
             executeQuery = GetPreparedStmt.executeQuery();
             ObservableList<String> compp = FXCollections.observableArrayList();

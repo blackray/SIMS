@@ -87,6 +87,11 @@ public class DebitPRController implements Initializable {
         double dbrate = Double.parseDouble(Brate);
 
         ObservableList<DebitPRdata> data = table.getItems();
+        
+        for(DebitPRdata d : data){
+            if(d.getProduct().equals(proname) && d.getBatch().equals(Batch))
+                return;
+        }
 
         data.add(new DebitPRdata(proname, Brate, Mrp, Batch, date.toString(), Qty, Free));
 

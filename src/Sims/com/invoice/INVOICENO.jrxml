@@ -4,9 +4,9 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[SELECT MAX(INVOICENO) FROM APP.INVOICE;]]>
+		<![CDATA[SELECT MAX(Reciptno) FROM GOODSRECIPT;]]>
 	</queryString>
-	<field name="MAX(INVOICENO)" class="java.lang.Integer"/>
+	<field name="MAX(Reciptno)" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -17,14 +17,14 @@
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{MAX(INVOICENO)}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{MAX(Reciptno)}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="0" width="85" height="20" uuid="12d572bc-557c-4b28-bb7a-d62c9de8d24e"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[INVOICE NO  :]]></text>
+				<text><![CDATA[Receipt NO  :]]></text>
 			</staticText>
 		</band>
 	</detail>

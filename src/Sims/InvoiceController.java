@@ -127,13 +127,15 @@ public class InvoiceController implements Initializable {
         try {
             if (Query.next()) {
                 int stock_quantity = Query.getInt("Quantity");
+                int free_quantity = Query.getInt("Free");
                 if (stock_quantity < Qty) {
                     Messagebox.getInstance().message("Check Quantity", "Entered Quantity is less than Stock Quantity");
                     return;
                 }
                 int freeqty = Query.getInt("Free");
                 if(freeqty < Free){
-                    Messagebox.getInstance().message("Check Free Quantity", "Entered Free Quantity is less than Stock Free Quantity");                    
+                    Messagebox.getInstance().message("Check Free Quantity", "Entered Free Quantity is less than Stock Free Quantity");
+                    return;
                 }
             }
         } catch (SQLException ex) {
@@ -152,13 +154,8 @@ public class InvoiceController implements Initializable {
         tmvalue = (tmvalue + (Double.parseDouble(pd.getMrpvalue())));
         tmvalue = Math.round(100 * tmvalue) / 100d;
         Tmvalue.setText(tmvalue + "");
-
     }
 
-    @FXML
-    public void productcellcommit(ActionEvent ev) {
-        System.out.println("dfghj");
-    }
 
     @FXML
     public void Print(ActionEvent ev) {
@@ -240,17 +237,7 @@ public class InvoiceController implements Initializable {
         }
         //Printing Using Jasper
         jaspercontroller jc = new jaspercontroller();
-        String[] ColumnNames = {"SL", "ITEM", "MRP"};
-        int i = 0;
-        int size = id.size();
-        String[][] Data = new String[size][3];
-        for (InvoiceData idata : id) {
-            Data[i][0] = (i + 1) + "";
-            Data[i][1] = idata.getProduct();
-            Data[i][2] = idata.getMrp();
-            i++;
-        }
-        jc.printInvoice(ColumnNames, Data);
+        jc.printInvoice();
 
     }
 

@@ -7,6 +7,7 @@ package Sims;
 
 import static Sims.Database.GetPreparedStmt;
 import Sims.com.Messagebox.Messagebox;
+import Sims.com.jasper.jaspercontroller;
 import java.net.URL;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -89,6 +90,11 @@ public class GoodsReciptController implements Initializable {
         double dbrate = Double.parseDouble(Brate);
 
         ObservableList<Goodsreciptdata> data = table.getItems();
+        
+        for(Goodsreciptdata d : data){
+            if(d.getProduct().equals(proname) && d.getBatch().equals(Batch))
+                return;
+        }
 
         data.add(new Goodsreciptdata(proname, Brate, Mrp, Batch, date.toString(), Qty, Free));
 
@@ -98,26 +104,7 @@ public class GoodsReciptController implements Initializable {
     public void Submitaction(ActionEvent ev) {
         ObservableList<Goodsreciptdata> data = table.getItems();
 
-        String stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
-            for (Goodsreciptdata d : data) {
-                updatestock.setString(1, d.getProduct());
-                updatestock.setString(2, d.getBatch());
-                updatestock.setString(3, d.getMRP());
-                updatestock.setString(4, d.getB_Rate());
-                updatestock.setString(5, d.getExpiry());
-                updatestock.setString(6, d.getQty());
-                updatestock.setString(7, d.getFree());
-
-                int executeUpdate = updatestock.executeUpdate();
-                System.out.println(executeUpdate + " Row Changed");
-            }
-        } catch (SQLException ex) {
-
-            Messagebox.getInstance().message("Error", ex.getMessage());
-            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
-        }
+        String stmt = null;
 
         //Update Goodsrecipt
         try {
@@ -135,6 +122,7 @@ public class GoodsReciptController implements Initializable {
 
             Messagebox.getInstance().message("Error", ex.getMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+            return;
         }
 
         //Update Goods Recipt Product
@@ -159,7 +147,32 @@ public class GoodsReciptController implements Initializable {
 
             Messagebox.getInstance().message("Error", ex.getMessage());
             Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+            return;
         }
+        
+        stmt = "INSERT INTO STOCK (Product,Batch,MRP,Brate,Expiry,Quantity,Free)VALUES(?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement updatestock = Database.GetPreparedStmt(stmt);
+            for (Goodsreciptdata d : data) {
+                updatestock.setString(1, d.getProduct());
+                updatestock.setString(2, d.getBatch());
+                updatestock.setString(3, d.getMRP());
+                updatestock.setString(4, d.getB_Rate());
+                updatestock.setString(5, d.getExpiry());
+                updatestock.setString(6, d.getQty());
+                updatestock.setString(7, d.getFree());
+
+                int executeUpdate = updatestock.executeUpdate();
+                System.out.println(executeUpdate + " Row Changed");
+            }
+        } catch (SQLException ex) {
+
+            Messagebox.getInstance().message("Error", ex.getMessage());
+            Control.getInstance().getMainDocumentController().Setstatusmessage(ex.getMessage());
+        }
+        jaspercontroller jc = new jaspercontroller();
+        jc.printGoodsreceipt();
+        
     }
 
     @FXML

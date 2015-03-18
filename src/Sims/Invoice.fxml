@@ -151,7 +151,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
          <columns>
-            <TableColumn fx:id="productcell" editable="true" onEditCommit="#productcellcommit" prefWidth="177.0" text="Product Name">
+            <TableColumn fx:id="productcell" editable="true" prefWidth="177.0" text="Product Name">
                 <cellValueFactory>
                   <PropertyValueFactory property="Product" />
               </cellValueFactory>

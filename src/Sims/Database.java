@@ -218,7 +218,7 @@ public class Database {
         System.out.println("Creating PURCHASE Table");
         String str = "CREATE TABLE PURCHASE "
                 + "(COMPANY VARCHAR(20) NOT NULL,"
-                + "Orderno VARCHAR(10) NOT NULL PRIMARY KEY,"
+                + "Orderno INTEGER NOT NULL PRIMARY KEY,"
                 + "Orderdate DATE)";
         Update(str);
     }
@@ -226,7 +226,7 @@ public class Database {
     private static void createPurchaseOrderProductDB() {
         System.out.println("Creating PURCHASEORDERPRODUCT Table");
         String str = "CREATE TABLE PURCHASEORDERPRODUCT "
-                + "(Orderno VARCHAR(10) NOT NULL,"
+                + "(Orderno INTEGER NOT NULL,"
                 + "Product VARCHAR(20) NOT NULL,"
                 + "Quantity INTEGER,"
                 + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
@@ -293,8 +293,8 @@ public class Database {
         System.out.println("Creating GOODSRECIPT Table");
         String str = "CREATE TABLE GOODSRECIPT "
                 + "(Company VARCHAR(20) NOT NULL,"
-                + "Orderno VARCHAR(10) NOT NULL,"
-                + "Reciptno VARCHAR(10) NOT NULL PRIMARY KEY,"
+                + "Orderno INTEGER NOT NULL,"
+                + "Reciptno INTEGER NOT NULL PRIMARY KEY,"
                 + "Reciptdate DATE,"
                 + "FOREIGN KEY(Orderno) REFERENCES PURCHASE(Orderno))";
         Update(str);
@@ -304,7 +304,7 @@ public class Database {
         System.out.println("Creating GOODSRECIPTPRODUCT Table");
         String str = "CREATE TABLE GOODSRECIPTPRODUCT "
                 + "(Product VARCHAR(20) NOT NULL,"
-                + "Reciptno VARCHAR(10) NOT NULL,"
+                + "Reciptno INTEGER NOT NULL,"
                 + "Batch VARCHAR(10) NOT NULL,"
                 + "Quantity INTEGER NOT NULL,"
                 + "Free INTEGER NOT NULL,"
